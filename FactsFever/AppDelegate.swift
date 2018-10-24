@@ -21,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+//        let rootVC = LoginViewController()// your custom viewController. You can instantiate using nib too. UIViewController(nib name, bundle)
+//        
+//        let navController = UINavigationController(rootViewController: rootVC) // Integrate navigation controller programmatically if you want
+//        window?.rootViewController = navController
 
         return true
     }

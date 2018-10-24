@@ -12,6 +12,8 @@
 		D0677261216CC4F100D4C774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D067725F216CC4F100D4C774 /* Main.storyboard */; };
 		D0677263216CC4F500D4C774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0677262216CC4F500D4C774 /* Assets.xcassets */; };
 		D0677266216CC4F500D4C774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0677264216CC4F500D4C774 /* LaunchScreen.storyboard */; };
+		D0B7CD8121704B3400563707 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7CD8021704B3400563707 /* AboutTableViewController.swift */; };
+		D0B7CD8321704F2300563707 /* AboutDeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7CD8221704F2200563707 /* AboutDeveloperViewController.swift */; };
 		D0D9D4EC216CD3C900C6EBFB /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D9D4EB216CD3C900C6EBFB /* PhotoCell.swift */; };
 		D0D9D4F5216CFA9800C6EBFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0D9D4F4216CFA9800C6EBFB /* GoogleService-Info.plist */; };
 		D0D9D4F7216DB68000C6EBFB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D9D4F6216DB68000C6EBFB /* LoginViewController.swift */; };
@@ -30,6 +32,10 @@
 		D0677262216CC4F500D4C774 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0677265216CC4F500D4C774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0677267216CC4F500D4C774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D095D861216F676F00A8E7D5 /* FactsFever-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FactsFever-Bridging-Header.h"; sourceTree = "<group>"; };
+		D0B7CD8021704B3400563707 /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
+		D0B7CD8221704F2200563707 /* AboutDeveloperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDeveloperViewController.swift; sourceTree = "<group>"; };
+		D0B7CD842170C53900563707 /* FactsFever.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FactsFever.entitlements; sourceTree = "<group>"; };
 		D0D9D4EB216CD3C900C6EBFB /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		D0D9D4F4216CFA9800C6EBFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0D9D4F6216DB68000C6EBFB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -86,16 +92,20 @@
 		D067725A216CC4F100D4C774 /* FactsFever */ = {
 			isa = PBXGroup;
 			children = (
+				D0B7CD842170C53900563707 /* FactsFever.entitlements */,
 				D0D9D4EA216CD38D00C6EBFB /* Views */,
 				D067725B216CC4F100D4C774 /* AppDelegate.swift */,
 				D0D9D4F6216DB68000C6EBFB /* LoginViewController.swift */,
 				D067725D216CC4F100D4C774 /* ViewController.swift */,
 				D0D9D4F8216E07A200C6EBFB /* SetttingsTableViewController.swift */,
+				D0B7CD8021704B3400563707 /* AboutTableViewController.swift */,
+				D0B7CD8221704F2200563707 /* AboutDeveloperViewController.swift */,
 				D067725F216CC4F100D4C774 /* Main.storyboard */,
 				D0677262216CC4F500D4C774 /* Assets.xcassets */,
 				D0677264216CC4F500D4C774 /* LaunchScreen.storyboard */,
 				D0677267216CC4F500D4C774 /* Info.plist */,
 				D0D9D4F4216CFA9800C6EBFB /* GoogleService-Info.plist */,
+				D095D861216F676F00A8E7D5 /* FactsFever-Bridging-Header.h */,
 			);
 			path = FactsFever;
 			sourceTree = "<group>";
@@ -142,6 +152,15 @@
 				TargetAttributes = {
 					D0677257216CC4F100D4C774 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -253,7 +272,9 @@
 				D0D9D4EC216CD3C900C6EBFB /* PhotoCell.swift in Sources */,
 				D0D9D4F9216E07A200C6EBFB /* SetttingsTableViewController.swift in Sources */,
 				D067725C216CC4F100D4C774 /* AppDelegate.swift in Sources */,
+				D0B7CD8321704F2300563707 /* AboutDeveloperViewController.swift in Sources */,
 				D0D9D4F7216DB68000C6EBFB /* LoginViewController.swift in Sources */,
+				D0B7CD8121704B3400563707 /* AboutTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +421,8 @@
 			baseConfigurationReference = 58F1A412C54C959DF2956BDD /* Pods-FactsFever.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FactsFever/FactsFever.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z454JJQAC4;
 				INFOPLIST_FILE = FactsFever/Info.plist;
@@ -409,6 +432,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shreeBhagwat.FactsFever;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FactsFever/FactsFever-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -419,6 +444,8 @@
 			baseConfigurationReference = B4DAD61C6005B85E9976F264 /* Pods-FactsFever.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FactsFever/FactsFever.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z454JJQAC4;
 				INFOPLIST_FILE = FactsFever/Info.plist;
@@ -428,6 +455,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shreeBhagwat.FactsFever;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FactsFever/FactsFever-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -15,13 +15,19 @@ import ProgressHUD
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
+//    var user = UserDefaults.standard.object(forKey: "user")
+    @IBOutlet weak var anonoLoginOutlet: UIButton!
+   
     
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if (FBSDKAccessToken.current() != nil)
+        self.navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 0.8508075984, blue: 0.02254329405, alpha: 1)]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 0.8508075984, blue: 0.02254329405, alpha: 1)]
+        var user = UserDefaults.standard.object(forKey: "user")
+        if (FBSDKAccessToken.current() != nil || user != nil)
         {
             // User is already logged in, do work such as go to next view controller.
             let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
@@ -63,5 +69,23 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         print("user logged out")
     }
 
-
+    @IBAction func anonoLoginButtonPressed(_ sender: Any) {
+        ProgressHUD.show()
+        Auth.auth().signInAnonymously { (user, error) in
+            if error != nil {
+                print(error)
+                ProgressHUD.dismiss()
+                ProgressHUD.showError("Error Login Try Again")
+                return
+            }
+            let user = user?.user
+            let uid = user?.uid
+            print("UserLogged in Anaonymously with uid " )
+            let storeToDefaults = UserDefaults.standard.set(uid, forKey: "user")
+            ProgressHUD.dismiss()
+            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
+            self.present(VC, animated: true, completion: nil)
+        }
+    }
+    
 }
