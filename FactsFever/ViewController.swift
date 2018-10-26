@@ -131,7 +131,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func addToDatabase(imageUrl:String){
-        let messageDB = Database.database().reference().child("Messages")
+        let messageDB = Database.database().reference().child("Facts")
         let messageUrl = imageUrl
         messageDB.childByAutoId().setValue(messageUrl){
             (error, reference) in

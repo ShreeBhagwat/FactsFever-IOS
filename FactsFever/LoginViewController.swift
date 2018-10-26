@@ -13,20 +13,32 @@ import FBSDKLoginKit
 import FirebaseAuth
 import ProgressHUD
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
+  
+    
+    
+    
 
 //    var user = UserDefaults.standard.object(forKey: "user")
     @IBOutlet weak var anonoLoginOutlet: UIButton!
    
+    @IBOutlet weak var facebookLoginButton: UIButton!
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        tableView.delegate = self as! UITableViewDelegate
         self.navigationItem.hidesBackButton = true
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 0.8508075984, blue: 0.02254329405, alpha: 1)]
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 0.8508075984, blue: 0.02254329405, alpha: 1)]
+        
         var user = UserDefaults.standard.object(forKey: "user")
+        facebookLoginButton.addTarget(self, action: #selector(facebookLoginButtonPressed), for: .touchUpInside)
+        
+        
+        
         if (FBSDKAccessToken.current() != nil || user != nil)
         {
             // User is already logged in, do work such as go to next view controller.
@@ -36,15 +48,15 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
         else
         {
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            self.view.addSubview(loginView)
-            loginView.center = self.view.center
-            loginView.readPermissions = ["public_profile", "email", "user_friends"]
-            loginView.delegate = self
+//            facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
+//            facebookLoginButton.delegate = self
         }
     }
     
     
+    @objc func facebookLoginButtonPressed(){
+        print("Faceboook Button Pressed")
+    }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         
@@ -87,5 +99,18 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             self.present(VC, animated: true, completion: nil)
         }
     }
+    
+    //Mark: TableView
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        return cell
+    }
+    
+
+    
     
 }

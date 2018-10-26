@@ -85,33 +85,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9d-Lr-BgX">
-                                <rect key="frame" x="94" y="237" width="187" height="26"/>
-                                <color key="backgroundColor" red="0.01084895124" green="0.068848610290000001" blue="0.14497540880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXy-Yj-CUi">
+                                <rect key="frame" x="0.0" y="517" width="375" height="150"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEZ-Sz-G10">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                        <color key="backgroundColor" red="0.01084895124" green="0.068848610290000001" blue="0.14497540880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="cqM-hJ-bHw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="19"/>
+                                        <state key="normal" title="Anonymous Login">
+                                            <color key="titleColor" red="1" green="0.82589046020000001" blue="0.088540535719999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="anonoLoginButtonPressed:" destination="o6A-sg-Wqv" eventType="touchUpInside" id="yqQ-8d-Ipp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNv-JX-nf7">
+                                        <rect key="frame" x="0.0" y="75" width="375" height="75"/>
+                                        <color key="backgroundColor" red="0.076685495674610138" green="0.47192865610122681" blue="0.96561425924301147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="zcu-pP-YeG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="21"/>
+                                        <state key="normal" title="Facebook Login">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="d9d-Lr-BgX" secondAttribute="height" multiplier="187:26" id="Fix-et-5L4"/>
-                                    <constraint firstAttribute="height" constant="26" id="kw7-a1-WRJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="MNv-JX-nf7" secondAttribute="bottom" id="6Ln-sB-YCJ"/>
+                                    <constraint firstAttribute="height" constant="150" id="8yM-Jn-INE"/>
+                                    <constraint firstAttribute="trailing" secondItem="MNv-JX-nf7" secondAttribute="trailing" id="AxJ-bK-t8F"/>
+                                    <constraint firstItem="VEZ-Sz-G10" firstAttribute="top" secondItem="jXy-Yj-CUi" secondAttribute="top" id="VHR-bX-Uya"/>
+                                    <constraint firstItem="MNv-JX-nf7" firstAttribute="leading" secondItem="jXy-Yj-CUi" secondAttribute="leading" id="noU-t5-Q3R"/>
+                                    <constraint firstItem="VEZ-Sz-G10" firstAttribute="leading" secondItem="jXy-Yj-CUi" secondAttribute="leading" id="qgC-tD-7YJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="VEZ-Sz-G10" secondAttribute="trailing" id="qkZ-LX-UpI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
-                                <state key="normal" title="Anonymous Login">
-                                    <color key="titleColor" red="1" green="0.85080759839999998" blue="0.022543294049999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="anonoLoginButtonPressed:" destination="o6A-sg-Wqv" eventType="touchUpInside" id="atf-FM-moy"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="d9d-Lr-BgX" firstAttribute="top" secondItem="yee-dK-ZuN" secondAttribute="top" constant="121" id="3Vf-iQ-gQY"/>
-                            <constraint firstItem="yee-dK-ZuN" firstAttribute="trailing" secondItem="d9d-Lr-BgX" secondAttribute="trailing" constant="94" id="jFf-QQ-8YR"/>
-                            <constraint firstItem="d9d-Lr-BgX" firstAttribute="leading" secondItem="yee-dK-ZuN" secondAttribute="leading" constant="94" id="ked-Vt-akJ"/>
+                            <constraint firstItem="jXy-Yj-CUi" firstAttribute="bottom" secondItem="yee-dK-ZuN" secondAttribute="bottom" id="1Dd-t3-yyf"/>
+                            <constraint firstAttribute="trailing" secondItem="jXy-Yj-CUi" secondAttribute="trailing" id="NtJ-6k-G5n"/>
+                            <constraint firstItem="jXy-Yj-CUi" firstAttribute="leading" secondItem="yee-dK-ZuN" secondAttribute="leading" id="k70-9F-WCG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yee-dK-ZuN"/>
                     </view>
                     <navigationItem key="navigationItem" title="FactsFever Login" largeTitleDisplayMode="always" id="C8R-D2-D00"/>
                     <connections>
-                        <outlet property="anonoLoginOutlet" destination="d9d-Lr-BgX" id="GDQ-UH-Kgj"/>
+                        <outlet property="anonoLoginOutlet" destination="VEZ-Sz-G10" id="PWI-G2-CfY"/>
+                        <outlet property="facebookLoginButton" destination="MNv-JX-nf7" id="zdB-pT-h2o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9U-lq-gHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
