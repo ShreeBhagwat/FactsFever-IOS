@@ -26,13 +26,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //MARK:- Properties
     
     var images: [UIImage] = []
-    var imageUrls:[String] = []
+    var factsArray:[Facts] = [Facts]()
     var reverUrl:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        retriveDataFromDataBase()
+//        retriveDataFromDataBase()
+        observeFactsFromFirebase()
         self.view.addSubview(refreshControl)
         self.view.backgroundColor = UIColor.randomFlat()
 //        if let btn = self.navigationItem.rightBarButtonItem {
@@ -97,7 +98,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             uploadImageToFirebaseStorage(image: selectedImage) { (imageUrl) in
                 print("Image Url\(imageUrl)")
                 print("Image uploaded successfully ")
-                self.imageUrls.append(imageUrl)
+//                self.factLink.append(imageUrl)
                 self.addToDatabase(imageUrl: imageUrl)
             }
         }
@@ -131,32 +132,42 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func addToDatabase(imageUrl:String){
-        let messageDB = Database.database().reference().child("Facts")
-        let messageUrl = imageUrl
-        messageDB.childByAutoId().setValue(messageUrl){
+        let Id = NSUUID().uuidString
+        let factsDB = Database.database().reference().child("Facts")
+        let factsDictionary = ["factsLink": imageUrl, "likes": 0, "factsId": Id] as [String : Any]
+        factsDB.child(Id).setValue(factsDictionary){
             (error, reference) in
             
             if error != nil {
                 print(error)
                 ProgressHUD.showError("Image Upload Failed")
                 self.uploadButtonOutlet.isEnabled = true
+                return
                 
             } else{
                 print("Message Saved In DB")
                 ProgressHUD.showSuccess("image Uploded Successfully")
                 self.uploadButtonOutlet.isEnabled = true
-                self.retriveDataFromDataBase()
+//                self.retriveDataFromDataBase()
+                self.observeFactsFromFirebase()
             }
         }
     }
     
     func retriveDataFromDataBase(){
        
-        let messageDB = Database.database().reference().child("Messages")
+        let messageDB = Database.database().reference().child("Facts")
         messageDB.observe(.childAdded) { (snapshot) in
-            let snapshotValue = snapshot.value as! String
-            print("messageUrl from Firebase database \(snapshotValue)")
-            self.downloadImage(imageUrl: snapshotValue, completion: { (uiImage) in
+            let snapshotValue = snapshot.value as! [String: AnyObject]
+            print("snapshotvalue \(snapshotValue)")
+            let messageLink =  snapshotValue["factsLink"] as! String
+            let messageId = snapshotValue["factsId"] as! String
+            let messageLike = snapshotValue["likes"] as! Int
+            
+            let fact = Facts(dictionary: snapshotValue as [String : AnyObject])
+            self.factsArray.insert(fact, at: 0)
+            
+            self.downloadImage(imageUrl: messageLink, completion: { (uiImage) in
                 guard let uiImage = uiImage else {return}
                 if self.images.contains(uiImage) {
 
@@ -165,18 +176,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
 
             })
-            if self.imageUrls.contains(snapshotValue){
-                
-            }else{
-                self.imageUrls.insert(snapshotValue, at: 0)
-                self.collectionView.reloadData()
-                self.reverUrl = self.imageUrls.reversed()
+            
             }
             
             self.collectionView.reloadData()
             
-        }
         
+        
+    }
+    var imageUrl: [String] = []
+    func observeFactsFromFirebase(){
+        
+        let factsDB = Database.database().reference().child("Facts")
+        factsDB.observe(.value) { (snapshot) in
+            print("Observer Data snapshot \(snapshot.value)")
+            
+            self.factsArray = []
+            self.imageUrl = []
+            
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                for snap in snapshot {
+                    
+                    if let postDictionary = snap.value as? Dictionary<String, AnyObject> {
+                        let id = snap.key
+                        let facts = Facts(dictionary: postDictionary)
+                        self.factsArray.insert(facts, at: 0)
+                        self.imageUrl.insert(facts.factsLink, at: 0)
+                        
+                    }
+                }
+            }
+            self.collectionView.reloadData()
+  
+        }
     }
     // Download Image From Database
 
@@ -262,7 +294,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //MARK: Data Source
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return imageUrls.count
+       return factsArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -276,11 +308,7 @@ extension ViewController: UICollectionViewDataSource {
         cell.imageView.sd_showActivityIndicatorView()
         cell.imageView.sd_setIndicatorStyle(.gray)
         
-        cell.imageView.sd_setImage(with: URL(string: imageUrls[indexPath.item]))
-//        let indexPathOfFirstRow = NSIndexPath.init(row: 0, section: 0)
-//        collectionView.insertItems(at: [indexPathOfFirstRow as IndexPath])
-//        collectionView.reloadData()
-//        cell.imageView.image = images[indexPath.row]
+        cell.imageView.sd_setImage(with: URL(string: factsArray[indexPath.row].factsLink))
         
         return cell
     }
@@ -291,7 +319,7 @@ extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let photos = IDMPhoto.photos(withURLs: imageUrls)
+        let photos = IDMPhoto.photos(withURLs: imageUrl)
         let browser = IDMPhotoBrowser(photos: photos)
         browser?.setInitialPageIndex(UInt(indexPath.row))
         self.present(browser!, animated: true, completion: nil)
