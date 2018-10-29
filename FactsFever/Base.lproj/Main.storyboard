@@ -18,35 +18,82 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fFW-q2-F32">
-                            <size key="itemSize" width="375" height="340"/>
+                            <size key="itemSize" width="375" height="392"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="photoCell" reuseIdentifier="photoCell" id="m4l-2m-w6l" customClass="PhotoCell" customModule="FactsFever" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="340"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="392"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="340"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="392"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FactsFevere" translatesAutoresizingMaskIntoConstraints="NO" id="cQ2-PX-CQ9">
-                                            <rect key="frame" x="20" y="40" width="335" height="280"/>
+                                            <rect key="frame" x="20" y="40" width="335" height="275"/>
                                         </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eE-hX-2rh">
+                                            <rect key="frame" x="20" y="328" width="335" height="56"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgR-pQ-DKg">
+                                                    <rect key="frame" x="281" y="13" width="46" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="46" id="K9e-2V-j9e"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uz-V4-8XB">
+                                                    <rect key="frame" x="71" y="18" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="42" id="0Se-XN-7oV"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W13-Zm-ReR">
+                                                    <rect key="frame" x="17" y="8" width="39" height="39"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="39" id="gPW-JF-F9D"/>
+                                                    </constraints>
+                                                    <state key="normal" image="noLike"/>
+                                                    <connections>
+                                                        <action selector="likeButtonPressed:" destination="m4l-2m-w6l" eventType="touchUpInside" id="UAX-h0-e0w"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="W13-Zm-ReR" firstAttribute="top" secondItem="4eE-hX-2rh" secondAttribute="top" constant="8" id="40d-39-GS3"/>
+                                                <constraint firstAttribute="bottom" secondItem="W13-Zm-ReR" secondAttribute="bottom" constant="9" id="C16-xo-wUn"/>
+                                                <constraint firstAttribute="height" constant="56" id="D2o-kL-WTB"/>
+                                                <constraint firstItem="9uz-V4-8XB" firstAttribute="top" secondItem="4eE-hX-2rh" secondAttribute="top" constant="18" id="Q5B-Gb-gbQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="9uz-V4-8XB" secondAttribute="bottom" constant="17" id="fCQ-t2-hNg"/>
+                                                <constraint firstAttribute="trailing" secondItem="WgR-pQ-DKg" secondAttribute="trailing" constant="8" id="hIw-mg-94K"/>
+                                                <constraint firstItem="WgR-pQ-DKg" firstAttribute="top" secondItem="4eE-hX-2rh" secondAttribute="top" constant="13" id="iNY-xw-f6j"/>
+                                                <constraint firstItem="W13-Zm-ReR" firstAttribute="leading" secondItem="4eE-hX-2rh" secondAttribute="leading" constant="17" id="ivu-Mq-mEQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="WgR-pQ-DKg" secondAttribute="bottom" constant="13" id="vBu-aA-c1g"/>
+                                                <constraint firstItem="9uz-V4-8XB" firstAttribute="leading" secondItem="W13-Zm-ReR" secondAttribute="trailing" constant="15" id="zig-6M-MJn"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="cQ2-PX-CQ9" firstAttribute="top" secondItem="m4l-2m-w6l" secondAttribute="topMargin" constant="12" id="AUB-bw-WPc"/>
-                                    <constraint firstItem="cQ2-PX-CQ9" firstAttribute="leading" secondItem="m4l-2m-w6l" secondAttribute="leadingMargin" constant="12" id="Ozm-tI-q2O"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="cQ2-PX-CQ9" secondAttribute="trailing" constant="12" id="crD-rL-Zve"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="cQ2-PX-CQ9" secondAttribute="trailing" constant="12" id="enb-jX-P9G"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="cQ2-PX-CQ9" secondAttribute="bottom" constant="12" id="ew3-qm-mzY"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="cQ2-PX-CQ9" secondAttribute="bottom" constant="12" id="jfp-qe-dQp"/>
-                                    <constraint firstItem="cQ2-PX-CQ9" firstAttribute="leading" secondItem="m4l-2m-w6l" secondAttribute="leadingMargin" constant="12" id="wnC-VA-qtH"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="cQ2-PX-CQ9" secondAttribute="trailing" constant="12" id="3wA-Hj-QA4"/>
+                                    <constraint firstItem="cQ2-PX-CQ9" firstAttribute="top" secondItem="m4l-2m-w6l" secondAttribute="topMargin" constant="12" id="LyP-NA-KFr"/>
+                                    <constraint firstItem="cQ2-PX-CQ9" firstAttribute="leading" secondItem="m4l-2m-w6l" secondAttribute="leadingMargin" constant="12" id="Oz8-JB-NDX"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="4eE-hX-2rh" secondAttribute="trailing" constant="12" id="fuM-br-duJ"/>
+                                    <constraint firstItem="4eE-hX-2rh" firstAttribute="top" secondItem="cQ2-PX-CQ9" secondAttribute="bottom" constant="13" id="sRW-0d-XpW"/>
+                                    <constraint firstItem="4eE-hX-2rh" firstAttribute="bottom" secondItem="m4l-2m-w6l" secondAttribute="bottomMargin" id="tKg-UI-DhK"/>
+                                    <constraint firstItem="4eE-hX-2rh" firstAttribute="leading" secondItem="m4l-2m-w6l" secondAttribute="leadingMargin" constant="12" id="xcd-Ze-1rb"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="favButtonOutlet" destination="WgR-pQ-DKg" id="emM-Ee-chN"/>
                                     <outlet property="imageView" destination="cQ2-PX-CQ9" id="GM3-47-jlS"/>
+                                    <outlet property="likeButtonOutlet" destination="W13-Zm-ReR" id="qaP-Cc-EmM"/>
+                                    <outlet property="likeLableOutlet" destination="9uz-V4-8XB" id="5lU-GZ-Cv7"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -717,6 +764,7 @@
         <image name="Shikamaru" width="273.75" height="247.5"/>
         <image name="goku" width="1280" height="704"/>
         <image name="kakshi" width="640" height="640"/>
+        <image name="noLike" width="51.200000762939453" height="51.200000762939453"/>
         <image name="telegram" width="512" height="512"/>
     </resources>
 </document>

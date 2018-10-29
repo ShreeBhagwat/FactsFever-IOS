@@ -188,7 +188,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func observeFactsFromFirebase(){
         
         let factsDB = Database.database().reference().child("Facts")
-        factsDB.observe(.value) { (snapshot) in
+        factsDB.observe(.value){ (snapshot) in
             print("Observer Data snapshot \(snapshot.value)")
             
             self.factsArray = []
@@ -298,20 +298,16 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let facts = factsArray[indexPath.row]
+        let likes = factsArray[indexPath.row].factsLikes
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
         
-        
-        cell.imageView.layer.cornerRadius = 20
-        cell.imageView.layer.masksToBounds = true
-        cell.imageView.layer.shouldRasterize = true
-        cell.imageView.backgroundColor = UIColor.clear
-        cell.imageView.sd_showActivityIndicatorView()
-        cell.imageView.sd_setIndicatorStyle(.gray)
-        
-        cell.imageView.sd_setImage(with: URL(string: factsArray[indexPath.row].factsLink))
-        
+        cell.configureCell(fact: facts, indexPath:  indexPath)
         return cell
+        
+        
     }
+   
     
   
 }
