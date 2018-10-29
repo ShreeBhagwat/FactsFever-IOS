@@ -11,20 +11,21 @@ import Firebase
 
 class Facts{
     var factsLink: String!
-    var factsLikes: Int!
+    var factsLikes: [String]!
     var factsId: String!
     
     init(dictionary: [String: AnyObject]) {
         factsLink = dictionary["factsLink"] as? String
-        factsLikes = dictionary["likes"] as? Int
+        factsLikes = dictionary["likes"] as? [String]
         factsId = dictionary["factsId"] as? String
     }
     
     func addSubtractLike(addLike: Bool){
+        let currentUser = Auth.auth().currentUser?.uid
         if addLike{
-            factsLikes = factsLikes + 1
+            factsLikes.append(currentUser!)
         } else {
-            factsLikes =  factsLikes - 1
+            factsLikes.removeAll{$0 == currentUser}
         }
         let factsRef = Database.database().reference().child("Facts").child(factsId).child("likes")
 

@@ -27,12 +27,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var images: [UIImage] = []
     var factsArray:[Facts] = [Facts]()
-    var reverUrl:[String] = []
-    
+    var likeUsers:[String] = []
+    let currentUser = Auth.auth().currentUser?.uid
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 //        retriveDataFromDataBase()
+        
         observeFactsFromFirebase()
         self.view.addSubview(refreshControl)
         self.view.backgroundColor = UIColor.randomFlat()
@@ -133,8 +134,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func addToDatabase(imageUrl:String){
         let Id = NSUUID().uuidString
+        likeUsers.append(currentUser!)
         let factsDB = Database.database().reference().child("Facts")
-        let factsDictionary = ["factsLink": imageUrl, "likes": 0, "factsId": Id] as [String : Any]
+        let factsDictionary = ["factsLink": imageUrl, "likes": likeUsers, "factsId": Id] as [String : Any]
         factsDB.child(Id).setValue(factsDictionary){
             (error, reference) in
             
@@ -193,6 +195,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             self.factsArray = []
             self.imageUrl = []
+            self.likeUsers = []
             
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshot {
@@ -302,7 +305,7 @@ extension ViewController: UICollectionViewDataSource {
         let likes = factsArray[indexPath.row].factsLikes
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
         
-        cell.configureCell(fact: facts, indexPath:  indexPath)
+        cell.configureCell(fact: facts)
         return cell
         
         
