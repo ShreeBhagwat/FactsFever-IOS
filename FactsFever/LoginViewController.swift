@@ -17,16 +17,22 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
   
     @IBOutlet weak var anonoLoginOutlet: UIButton!
    
+    
+    @IBOutlet weak var bottomBoundryView: UIView!
+    @IBOutlet weak var welcomeTextView: UITextView!
+    @IBOutlet weak var squareView: UIView!
     @IBOutlet weak var facebookLoginButton: UIButton!
     var attachmentBehavior : UIAttachmentBehavior!
     var dynamicAnimator : UIDynamicAnimator!
     var gravityBehavior : UIGravityBehavior!
-
+    var collisionBehavior : UICollisionBehavior!
+    var bouncingBehavior  : UIDynamicItemBehavior!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 //        tableView.delegate = self as! UITableViewDelegate
+        welcomeTextView.backgroundColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
         self.navigationItem.hidesBackButton = true
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 0.8508075984, blue: 0.02254329405, alpha: 1)]
@@ -34,9 +40,20 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         
         var user = UserDefaults.standard.object(forKey: "user")
         facebookLoginButton.addTarget(self, action: #selector(facebookLoginButtonPressed), for: .touchUpInside)
+        self.view.backgroundColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
         
+        dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
+        gravityBehavior = UIGravityBehavior(items: [squareView])
+        gravityBehavior.gravityDirection = CGVector(dx: 0, dy: 1)
         
+        let point = CGPoint(x: (self.view.frame.width)/2, y: 0)
+        attachmentBehavior = UIAttachmentBehavior(item: squareView, attachedToAnchor: point)
+        attachmentBehavior.length = 300
+        attachmentBehavior.damping = 0.5
         
+        dynamicAnimator.addBehavior(gravityBehavior)
+        dynamicAnimator.addBehavior(attachmentBehavior)
+
         if (FBSDKAccessToken.current() != nil || user != nil)
         {
             // User is already logged in, do work such as go to next view controller.
