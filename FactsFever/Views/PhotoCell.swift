@@ -10,12 +10,15 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+
 class PhotoCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var likeLableOutlet: UILabel!
-    @IBOutlet weak var favButtonOutlet: UIButton!
  
+    @IBOutlet weak var reportButtonOutlet: UIButton!
+    
     @IBOutlet weak var likeButtonOutlet: UIButton!
+    
     
     var facts: Facts!
     var currentUser = Auth.auth().currentUser?.uid
@@ -23,7 +26,7 @@ class PhotoCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+        
         likeButtonOutlet.setImage(UIImage(named: "noLike"), for: .normal)
         likeButtonOutlet.setImage(UIImage(named: "like"), for: .selected)
         
@@ -52,8 +55,22 @@ class PhotoCell: UICollectionViewCell {
     }
     
     @IBAction func likeButtonPressed(_ sender: Any) {
-        
+    
+    
         let factsRef = Database.database().reference().child("Facts").child(facts.factsId).child("likes")
+        likeButtonOutlet.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        
+        UIView.animate(withDuration: 3.0,
+                       delay: 0,
+                       usingSpringWithDamping: CGFloat(0.30),
+                       initialSpringVelocity: CGFloat(5.0),
+                       options: UIView.AnimationOptions.allowUserInteraction,
+                       animations: {
+                        self.likeButtonOutlet.transform = CGAffineTransform.identity
+        },
+                       completion: { Void in()  }
+        )
+        
         
         factsRef.observeSingleEvent(of: .value) { (snapshot) in
             if self.likeButtonOutlet.isSelected == true {

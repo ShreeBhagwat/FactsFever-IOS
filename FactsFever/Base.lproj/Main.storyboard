@@ -37,12 +37,12 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eE-hX-2rh">
                                             <rect key="frame" x="20" y="328" width="335" height="56"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgR-pQ-DKg">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgR-pQ-DKg">
                                                     <rect key="frame" x="281" y="13" width="46" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="K9e-2V-j9e"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" title="Button" image="info"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uz-V4-8XB">
                                                     <rect key="frame" x="71" y="18" width="42" height="21"/>
@@ -60,7 +60,7 @@
                                                     </constraints>
                                                     <state key="normal" image="noLike"/>
                                                     <connections>
-                                                        <action selector="likeButtonPressed:" destination="m4l-2m-w6l" eventType="touchUpInside" id="UAX-h0-e0w"/>
+                                                        <action selector="likeButtonPressed:" destination="m4l-2m-w6l" eventType="touchUpInside" id="wIk-wG-0GG"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -90,10 +90,10 @@
                                     <constraint firstItem="4eE-hX-2rh" firstAttribute="leading" secondItem="m4l-2m-w6l" secondAttribute="leadingMargin" constant="12" id="xcd-Ze-1rb"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="favButtonOutlet" destination="WgR-pQ-DKg" id="emM-Ee-chN"/>
                                     <outlet property="imageView" destination="cQ2-PX-CQ9" id="GM3-47-jlS"/>
-                                    <outlet property="likeButtonOutlet" destination="W13-Zm-ReR" id="qaP-Cc-EmM"/>
+                                    <outlet property="likeButtonOutlet" destination="W13-Zm-ReR" id="4RZ-o2-9xt"/>
                                     <outlet property="likeLableOutlet" destination="9uz-V4-8XB" id="5lU-GZ-Cv7"/>
+                                    <outlet property="reportButtonOutlet" destination="WgR-pQ-DKg" id="Sc4-uq-aSR"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -108,8 +108,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Facts" id="pL2-Nj-Jkh">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="menu" id="5w5-gW-BL2">
+                            <color key="tintColor" red="1" green="0.82589046020000001" blue="0.088540535719999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="RCt-Fn-YrT">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="1" green="0.82589046020000001" blue="0.088540535719999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="uploadButtonPressed:" destination="BYZ-38-t0r" id="Whx-jS-RLG"/>
                             </connections>
@@ -818,7 +821,9 @@
         <image name="bulb1" width="737.280029296875" height="737.280029296875"/>
         <image name="facts" width="15.5" height="25"/>
         <image name="goku" width="1280" height="704"/>
+        <image name="info" width="37.5" height="37.5"/>
         <image name="kakshi" width="640" height="640"/>
+        <image name="menu" width="36" height="36"/>
         <image name="noLike" width="51.200000762939453" height="51.200000762939453"/>
         <image name="settings" width="37.5" height="37.5"/>
         <image name="telegram" width="512" height="512"/>
