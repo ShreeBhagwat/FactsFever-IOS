@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import ProgressHUD
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 
 class SetttingsTableViewController: UITableViewController {
@@ -42,6 +44,7 @@ class SetttingsTableViewController: UITableViewController {
         if currentUser != nil {
             do {
                 try firebaseAuth.signOut()
+                FBSDKAccessToken.setCurrent(nil)
                 print("UserLogged out")
                 let loginVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginView") as! LoginViewController
                 UserDefaults.standard.removeObject(forKey: "user")

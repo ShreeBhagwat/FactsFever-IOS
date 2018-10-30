@@ -15,15 +15,13 @@ import ProgressHUD
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
   
-    
-    
-    
-
-//    var user = UserDefaults.standard.object(forKey: "user")
     @IBOutlet weak var anonoLoginOutlet: UIButton!
    
     @IBOutlet weak var facebookLoginButton: UIButton!
-    
+    var attachmentBehavior : UIAttachmentBehavior!
+    var dynamicAnimator : UIDynamicAnimator!
+    var gravityBehavior : UIGravityBehavior!
+
     
 
     override func viewDidLoad() {
@@ -48,15 +46,49 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         }
         else
         {
-//            facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
-//            facebookLoginButton.delegate = self
+
         }
     }
     
     
     @objc func facebookLoginButtonPressed(){
-        print("Faceboook Button Pressed")
+        FBSDKLoginManager().logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+            if error != nil {
+                ProgressHUD.showError("Failed to login from Facebook, Try again after some time.\(error)")
+                return
+            }
+            print(result?.token.tokenString)
+            self.showEmailAddress()
+        }
     }
+    
+    func showEmailAddress(){
+       let accessToken = FBSDKAccessToken.current()
+        guard let accessTokenString = accessToken?.tokenString else {return}
+        let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
+        Auth.auth().signIn(with: credentials) { (user, error) in
+            if error != nil {
+                ProgressHUD.showError("Error In FaceBook Credentials, Please Try Again")
+                return
+            }
+            ProgressHUD.showSuccess("User Logged In successfully. \(user)")
+            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
+            self.present(VC, animated: true, completion: nil)
+        }
+        
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields":"id, name, email"])?.start(completionHandler: { (connection, result, err) in
+            if err != nil {
+                ProgressHUD.showError("Error Getting Facebook Credentials, Try again later \(err)")
+                return
+            }
+            print(result)
+        })
+    }
+    
+    
+    
+    
+    
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         
@@ -80,6 +112,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("user logged out")
     }
+    
+    
+    
+    
+    
+    
+    
+    
 
     @IBAction func anonoLoginButtonPressed(_ sender: Any) {
         ProgressHUD.show()

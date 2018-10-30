@@ -14,8 +14,7 @@ class AboutDeveloperViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         developerImage.clipsToBounds = true
-        developerImage.layer.cornerRadius = (developerImage.frame.size.width) / 2
-        
+        developerImage.layer.cornerRadius = 120
     }
     
 
