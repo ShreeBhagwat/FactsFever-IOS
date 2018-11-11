@@ -14,7 +14,7 @@ import FBSDKLoginKit
 
 
 class SetttingsTableViewController: UITableViewController {
-
+    let appline = ""
     let firebaseAuth = Auth.auth()
     let currentUser = Auth.auth().currentUser
     override func viewDidLoad() {
@@ -32,14 +32,45 @@ class SetttingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+   
+            return 7
+        
+        
+       
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
+    
+    @IBAction func shareThisAppButtonPressed(_ sender: Any) {
+        let text = "Daily dose of amazing and mind boggling facts. Download this app to to increase your general knowledge \(appline)"
+        let objectsToShare: [Any] = [text]
+        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.setValue("Lets Chat On Ping", forKey: "subject")
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    
+    
+    @IBAction func whyWeDontSellAdsButtonPressed(_ sender: Any) {
+        
+    }
+    
   
+    @IBAction func reviewThisAppButtonPressed(_ sender: Any) {
+        
+    }
+    
+    
+    @IBAction func instagramFollowButtonPressed(_ sender: Any) {
+        UIApplication.shared.openURL(URL(string: "https://instagram.com/_facts_fever_?utm_source=ig_profile_share&igshid=wtr2hhx82vu2")!)
+    }
+    
+    
+    
     @IBAction func logOutButtonPressed(_ sender: UIButton) {
         if currentUser != nil {
             do {
@@ -55,5 +86,9 @@ class SetttingsTableViewController: UITableViewController {
             }
         }
     }
+    
+    
+    
+    
     
 }

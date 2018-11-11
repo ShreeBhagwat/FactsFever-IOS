@@ -16,6 +16,7 @@ import SDWebImage
 import ProgressHUD
 import IDMPhotoBrowser
 import ChameleonFramework
+import PCLBlurEffectAlert
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK: Outlets
@@ -27,8 +28,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var images: [UIImage] = []
     var factsArray:[Facts] = [Facts]()
+    var factsStraightArray: [Facts] = [Facts]()
     var likeUsers:[String] = []
     let currentUser = Auth.auth().currentUser?.uid
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -47,8 +51,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             ProgressHUD.dismiss()
         }
         
-       
-    }
+         }
 
 
     
@@ -56,7 +59,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //MARK:- Upload Facts
     
     @IBAction func uploadButtonPressed(_ sender: Any) {
-        selectPhoto()
+//        self.addCaptionToText()
+        self.selectPhoto()
     }
     // Pull To refresh
     lazy var refreshControl: UIRefreshControl = {
@@ -71,6 +75,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         
         self.collectionView.reloadData()
+        self.view.backgroundColor = UIColor.randomFlat()
         refreshControl.endRefreshing()
     }
     // Image Picker View
@@ -92,7 +97,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         else if let orginalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             print("Size \(orginalImage.size)")
             selectedImageFromPicker = orginalImage
-        
+            
         }
         
         if let selectedImage = selectedImageFromPicker {
@@ -100,8 +105,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 print("Image Url\(imageUrl)")
                 print("Image uploaded successfully ")
 //                self.factLink.append(imageUrl)
-                self.addToDatabase(imageUrl: imageUrl)
+//                self.addToDatabase(imageUrl: imageUrl)
+                self.addCaptionToText(imageUrl: imageUrl)
             }
+//            self.addCaptionToText()
+
         }
         
         dismiss(animated: true, completion: nil)
@@ -132,11 +140,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    func addToDatabase(imageUrl:String){
+    func addToDatabase(imageUrl:String, caption: String){
         let Id = NSUUID().uuidString
         likeUsers.append(currentUser!)
+        let timeStamp = NSNumber(value: Int(NSDate().timeIntervalSince1970))
         let factsDB = Database.database().reference().child("Facts")
-        let factsDictionary = ["factsLink": imageUrl, "likes": likeUsers, "factsId": Id] as [String : Any]
+        let factsDictionary = ["factsLink": imageUrl, "likes": likeUsers, "factsId": Id, "timeStamp": timeStamp, "captionText": caption] as [String : Any]
         factsDB.child(Id).setValue(factsDictionary){
             (error, reference) in
             
@@ -189,14 +198,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var imageUrl: [String] = []
     func observeFactsFromFirebase(){
         
-        let factsDB = Database.database().reference().child("Facts")
+        let factsDB = Database.database().reference().child("Facts").queryOrdered(byChild: "timeStamp")
         factsDB.observe(.value){ (snapshot) in
             print("Observer Data snapshot \(snapshot.value)")
             
             self.factsArray = []
             self.imageUrl = []
             self.likeUsers = []
-            
+            self.factsStraightArray = []
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshot {
                     
@@ -304,15 +313,99 @@ extension ViewController: UICollectionViewDataSource {
         let facts = factsArray[indexPath.row]
         let likes = factsArray[indexPath.row].factsLikes
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
-        
+//        let image = images[indexPath.row]
+      
+        cell.layer.borderWidth = 2
+        cell.layer.borderColor = UIColor.black.cgColor
         cell.configureCell(fact: facts)
+        cell.reportButtonOutlet.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
+        
         return cell
         
         
     }
-   
     
-  
+
+    
+    @objc func reportButtonPressed(){
+       let alert = PCLBlurEffectAlert.Controller(title: "Report This Fact?", message: "Do you want to report this fact? ", effect: UIBlurEffect(style: .dark), style: .alert)
+        let cancelButton = PCLBlurEffectAlertAction.init(title: "Cancel", style: .destructive, handler: nil)
+        alert.addAction(cancelButton)
+        
+        let yesButton = PCLBlurEffectAlertAction.init(title: "Yes", style: .default) { (alert) in
+            self.showAlert()
+        }
+        alert.addAction(yesButton)
+        alert.configure(cornerRadius: 30)
+        alert.configure(titleColor: UIColor.orange)
+        alert.configure(messageColor: UIColor.white)
+        
+        alert.show()
+    }
+    func showAlert(){
+        let alert = PCLBlurEffectAlert.Controller(title: "Report Fact", message: "Click on the Below Option To report the problem", effect: UIBlurEffect(style: .dark), style: .alertVertical)
+        let reportImageButton = PCLBlurEffectAlertAction.init(title: "Inappropriate Image", style: .default) { (alert) in
+            print("Inappropriate Image Button Pressed")
+            self.thankYouForReporting()
+        }
+        let reportMistakeButton = PCLBlurEffectAlertAction.init(title: "Wrong Fact", style: .default) { (alert) in
+            print("Wrong Facts Button Pressed")
+            self.thankYouForReporting()
+        }
+        let spellingMistake = PCLBlurEffectAlertAction.init(title: "Spelling Mistake", style: .default) { (alert) in
+            print("Spelling Mistake Button Pressed")
+            self.thankYouForReporting()
+        }
+        let cancelButton = PCLBlurEffectAlertAction.init(title: "Cancel", style: .destructive) { (alert) in
+            print("Cancel Button Pressed")
+        }
+        alert.addAction(reportImageButton)
+        alert.addAction(reportMistakeButton)
+        alert.addAction(spellingMistake)
+        alert.addAction(cancelButton)
+        alert.configure(cornerRadius: 20)
+        alert.configure(titleColor: UIColor.orange)
+        alert.configure(messageColor: UIColor.white)
+    
+        alert.show()
+        
+    }
+    func thankYouForReporting(){
+        let picker = UIImagePickerController()
+        let alert = PCLBlurEffectAlert.Controller(title: "Tank You For Reporting", message: "Developers Will Check The Fact Shortly", effect: UIBlurEffect(style: .dark), style: .alert)
+        let button = PCLBlurEffectAlertAction.init(title: "OK", style: .default) { (alert) in
+            
+        }
+        alert.configure(titleColor: UIColor.orange)
+        alert.configure(messageColor: UIColor.white)
+        alert.addAction(button)
+        alert.present(picker, animated: true, completion: nil)
+    }
+    
+    func addCaptionToText(imageUrl: String){
+        print("Caption Alert Method called")
+        let alert = PCLBlurEffectAlert.Controller(title: "Add Caption", message: nil, effect: UIBlurEffect(style: .dark), style: .alert)
+        
+        alert.addTextField { (textFiled) in
+            let button = PCLBlurEffectAlertAction.init(title: "Ok", style: .default) { (alert) in
+                print(textFiled?.text)
+                self.addToDatabase(imageUrl: imageUrl, caption: textFiled!.text!)
+            }
+            alert.addAction(button)
+        }
+        
+        let can = PCLBlurEffectAlertAction.init(title: "Cancel", style: .cancel) { (alert) in
+            
+        }
+        alert.configure(textFieldHeight: 30)
+//        alert.addAction(button)
+        alert.addAction(can)
+        alert.show()
+    }
+    
+    
+    
+    
 }
 extension ViewController: UICollectionViewDelegate {
     
@@ -323,5 +416,6 @@ extension ViewController: UICollectionViewDelegate {
         browser?.setInitialPageIndex(UInt(indexPath.row))
         self.present(browser!, animated: true, completion: nil)
     }
+  
 }
 

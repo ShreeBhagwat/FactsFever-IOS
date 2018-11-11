@@ -13,11 +13,15 @@ class Facts{
     var factsLink: String!
     var factsLikes: [String]!
     var factsId: String!
+    var timeStamp: NSNumber!
+    var captionText: String!
     
     init(dictionary: [String: AnyObject]) {
         factsLink = dictionary["factsLink"] as? String
         factsLikes = dictionary["likes"] as? [String]
         factsId = dictionary["factsId"] as? String
+        timeStamp = dictionary["timeStamo"] as? NSNumber
+        captionText = dictionary["captionText"] as? String
     }
     
     func addSubtractLike(addLike: Bool){

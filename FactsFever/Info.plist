@@ -41,6 +41,10 @@
 	<string>Allow FactsFever To Access Camera to click pickture.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow FactsFever To Access Photos To Save Photos</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

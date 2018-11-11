@@ -32,6 +32,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 //        tableView.delegate = self as! UITableViewDelegate
+        squareView.isHidden = true
         welcomeTextView.backgroundColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
         self.navigationItem.hidesBackButton = true
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
@@ -73,11 +74,15 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             if error != nil {
                 ProgressHUD.showError("Failed to login from Facebook, Try again after some time.\(error)")
                 return
+            } else if (result?.isCancelled)! {
+                
+            }else {
+                print(result?.token.tokenString)
+                self.showEmailAddress()
             }
-            print(result?.token.tokenString)
-            self.showEmailAddress()
         }
     }
+    
     
     func showEmailAddress(){
        let accessToken = FBSDKAccessToken.current()
