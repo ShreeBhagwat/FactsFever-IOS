@@ -31,11 +31,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="521"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FactsFevere" translatesAutoresizingMaskIntoConstraints="NO" id="cQ2-PX-CQ9">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FactsFevere" translatesAutoresizingMaskIntoConstraints="NO" id="cQ2-PX-CQ9">
                                             <rect key="frame" x="16" y="36" width="343" height="345"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="345" id="0Br-jP-mQ3"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                    <real key="value" value="0.69999999999999996"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="rect" keyPath="layer.shadowOffset">
+                                                    <rect key="value" x="2" y="2" width="2" height="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eE-hX-2rh">
                                             <rect key="frame" x="16" y="461" width="343" height="51"/>
@@ -86,6 +94,7 @@
                                     <constraint firstAttribute="trailingMargin" secondItem="BHH-94-8xZ" secondAttribute="trailing" constant="8" id="moI-kf-6KE"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="4eE-hX-2rh" secondAttribute="trailing" constant="8" id="q8Q-Nh-12k"/>
                                 </constraints>
+                                <size key="customSize" width="375" height="521"/>
                                 <connections>
                                     <outlet property="captionTextViewOutlet" destination="BHH-94-8xZ" id="LFL-i2-rir"/>
                                     <outlet property="imageView" destination="cQ2-PX-CQ9" id="GM3-47-jlS"/>

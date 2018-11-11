@@ -34,28 +34,42 @@ class PhotoCell: UICollectionViewCell {
         
         likeButtonOutlet.setImage(UIImage(named: "noLike"), for: .normal)
         likeButtonOutlet.setImage(UIImage(named: "like"), for: .selected)
-        
-    
+       
     }
+  
     
+    lazy var width: NSLayoutConstraint = {
+        let width = contentView.widthAnchor.constraint(equalToConstant: bounds.size.width)
+        width.isActive = true
+        return width
+    }()
+
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        width.constant = bounds.size.width
+        return contentView.systemLayoutSizeFitting(CGSize(width: targetSize.width, height: 1))
+    }
     func configureCell(fact: Facts){
         self.facts = fact
+        
         self.imageView.layer.cornerRadius = 20
         self.imageView.clipsToBounds = true
         self.imageView.layer.shouldRasterize = true
         self.imageView.backgroundColor = UIColor.clear
+        self.imageView.layer.masksToBounds = false
         self.imageView.sd_setImage(with: URL(string: fact.factsLink))
+        //////////////////
         self.likeLableOutlet.text = String(fact.factsLikes.count)
+        /////////////////
         self.optionView.layer.cornerRadius = 20
         self.optionView.layer.borderColor = UIColor.black.cgColor
         self.optionView.layer.borderWidth = 1
+        ////////////////
         self.captionTextViewOutlet.isScrollEnabled = false
-       
-    
         self.captionTextViewOutlet.sizeToFit()
-        self.captionTextViewOutlet.backgroundColor = UIColor.clear
-        
-        self.captionTextViewOutlet.textColor = UIColor(contrastingBlackOrWhiteColorOn: captionTextViewOutlet.backgroundColor, isFlat: true)
+        self.captionTextViewOutlet.backgroundColor = UIColor.white
+        self.captionTextViewOutlet.textColor = UIColor.black
+//        self.captionTextViewOutlet
+//        self.captionTextViewOutlet.textColor = UIColor(contrastingBlackOrWhiteColorOn: captionTextViewOutlet.backgroundColor, isFlat: true)
         self.captionTextViewOutlet.text = fact.captionText
 
 
@@ -71,6 +85,7 @@ class PhotoCell: UICollectionViewCell {
         }
 
     }
+  
     
     @IBAction func likeButtonPressed(_ sender: Any) {
     
@@ -104,6 +119,6 @@ class PhotoCell: UICollectionViewCell {
 
 
    
-
+  
     
 }

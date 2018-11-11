@@ -18,7 +18,7 @@ import IDMPhotoBrowser
 import ChameleonFramework
 import PCLBlurEffectAlert
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout {
     //MARK: Outlets
     
     @IBOutlet weak var uploadButtonOutlet: UIBarButtonItem!
@@ -32,12 +32,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var likeUsers:[String] = []
     let currentUser = Auth.auth().currentUser?.uid
   
+    var layout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        let width = UIScreen.main.bounds.size.width
+        layout.estimatedItemSize = CGSize(width: width, height: 30)
+        return layout
+    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 //        retriveDataFromDataBase()
+   
         
+        collectionView?.collectionViewLayout = layout
         observeFactsFromFirebase()
         self.view.addSubview(refreshControl)
         self.view.backgroundColor = UIColor.randomFlat()
@@ -54,7 +63,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
          }
 
 
-    
+ 
 
     //MARK:- Upload Facts
     
@@ -322,7 +331,17 @@ extension ViewController: UICollectionViewDataSource {
         
         return cell
         
-        
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        layout.estimatedItemSize = CGSize(width: view.bounds.size.width, height: 10)
+        super.traitCollectionDidChange(previousTraitCollection)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        layout.estimatedItemSize = CGSize(width: view.bounds.size.width, height: 10)
+        layout.invalidateLayout()
+        super.viewWillTransition(to: size, with: coordinator)
     }
     
 
@@ -405,7 +424,6 @@ extension ViewController: UICollectionViewDataSource {
     
     
     
-    
 }
 extension ViewController: UICollectionViewDelegate {
     
@@ -418,4 +436,7 @@ extension ViewController: UICollectionViewDelegate {
     }
   
 }
+
+
+
 
