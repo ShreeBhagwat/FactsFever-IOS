@@ -21,6 +21,7 @@ class PhotoCell: UICollectionViewCell {
     @IBOutlet weak var optionView: UIView!
     @IBOutlet weak var captionTextViewOutlet: UITextView!
     
+    @IBOutlet weak var allViewOutlet: UIView!
     var facts: Facts!
     var currentUser = Auth.auth().currentUser?.uid
     var overlayView: UIView!
@@ -60,9 +61,9 @@ class PhotoCell: UICollectionViewCell {
         //////////////////
         self.likeLableOutlet.text = String(fact.factsLikes.count)
         /////////////////
-        self.optionView.layer.cornerRadius = 20
-        self.optionView.layer.borderColor = UIColor.black.cgColor
-        self.optionView.layer.borderWidth = 1
+//        self.optionView.layer.cornerRadius = 20
+//        self.optionView.layer.borderColor = UIColor.black.cgColor
+//        self.optionView.layer.borderWidth = 1
         ////////////////
         self.captionTextViewOutlet.isScrollEnabled = false
         self.captionTextViewOutlet.sizeToFit()
