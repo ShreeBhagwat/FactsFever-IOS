@@ -14,7 +14,12 @@ class AboutDeveloperViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         developerImage.clipsToBounds = true
-        developerImage.layer.cornerRadius = 120
+        developerImage.layer.masksToBounds = false
+        developerImage.layer.cornerRadius = 20
+        developerImage.layer.shadowColor = UIColor.gray.cgColor
+        developerImage.layer.shadowOffset = CGSize(width: 2, height: 2)
+        developerImage.layer.shadowOpacity = 1
+        developerImage.layer.shadowRadius = 5
     }
     
 

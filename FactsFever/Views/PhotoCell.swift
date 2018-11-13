@@ -35,7 +35,14 @@ class PhotoCell: UICollectionViewCell {
         
         likeButtonOutlet.setImage(UIImage(named: "noLike"), for: .normal)
         likeButtonOutlet.setImage(UIImage(named: "like"), for: .selected)
-       
+       self.roundCorners(view: imageView, corners: [.topLeft, .topRight], radius: 20)
+        
+    }
+    func roundCorners(view :UIView, corners: UIRectCorner, radius: CGFloat){
+        let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        view.layer.mask = mask
     }
   
     
@@ -44,15 +51,19 @@ class PhotoCell: UICollectionViewCell {
         width.isActive = true
         return width
     }()
-
+//
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         width.constant = bounds.size.width
         return contentView.systemLayoutSizeFitting(CGSize(width: targetSize.width, height: 1))
     }
     func configureCell(fact: Facts){
         self.facts = fact
-        
-        self.imageView.layer.cornerRadius = 20
+        self.allViewOutlet.layer.cornerRadius = 20
+        self.allViewOutlet.layer.shadowColor = UIColor.gray.cgColor
+        self.allViewOutlet.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.allViewOutlet.layer.shadowOpacity = 1
+        self.allViewOutlet.layer.shadowRadius = 5
+//        self.imageView.layer.cornerRadius = 20
         self.imageView.clipsToBounds = true
         self.imageView.layer.shouldRasterize = true
         self.imageView.backgroundColor = UIColor.clear
@@ -61,15 +72,15 @@ class PhotoCell: UICollectionViewCell {
         //////////////////
         self.likeLableOutlet.text = String(fact.factsLikes.count)
         /////////////////
-//        self.optionView.layer.cornerRadius = 20
+        self.optionView.layer.cornerRadius = 20
 //        self.optionView.layer.borderColor = UIColor.black.cgColor
 //        self.optionView.layer.borderWidth = 1
         ////////////////
         self.captionTextViewOutlet.isScrollEnabled = false
         self.captionTextViewOutlet.sizeToFit()
         self.captionTextViewOutlet.backgroundColor = UIColor.white
-        self.captionTextViewOutlet.textColor = UIColor.black
-//        self.captionTextViewOutlet
+        self.captionTextViewOutlet.textColor = UIColor.gray
+        //        self.captionTextViewOutlet
 //        self.captionTextViewOutlet.textColor = UIColor(contrastingBlackOrWhiteColorOn: captionTextViewOutlet.backgroundColor, isFlat: true)
         self.captionTextViewOutlet.text = fact.captionText
 

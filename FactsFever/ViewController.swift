@@ -35,7 +35,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.size.width
-        layout.estimatedItemSize = CGSize(width: width, height: 30)
+        layout.estimatedItemSize = CGSize(width: width, height: 300)
         return layout
     }()
 
@@ -48,8 +48,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         collectionView?.collectionViewLayout = layout
         observeFactsFromFirebase()
-        self.view.addSubview(refreshControl)
-        self.view.backgroundColor = UIColor.randomFlat()
+        
+//        self.view.backgroundColor = UIColor.randomFlat()
 //        if let btn = self.navigationItem.rightBarButtonItem {
 //            btn.isEnabled = false
 //            btn.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -71,22 +71,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //        self.addCaptionToText()
         self.selectPhoto()
     }
-    // Pull To refresh
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action:
-            #selector(self.handleRefresh(_:)),
-                                 for: UIControl.Event.valueChanged)
-        refreshControl.tintColor = #colorLiteral(red: 1, green: 0.8508075984, blue: 0.02254329405, alpha: 1)
-        
-        return refreshControl
-    }()
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        
-        self.collectionView.reloadData()
-        self.view.backgroundColor = UIColor.randomFlat()
-        refreshControl.endRefreshing()
-    }
+
     // Image Picker View
     func selectPhoto(){
         uploadButtonOutlet.isEnabled = false
@@ -324,8 +309,7 @@ extension ViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
 //        let image = images[indexPath.row]
       
-        cell.layer.borderWidth = 2
-        cell.layer.borderColor = UIColor.black.cgColor
+      
         cell.configureCell(fact: facts)
         cell.reportButtonOutlet.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
         
@@ -334,15 +318,15 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        layout.estimatedItemSize = CGSize(width: view.bounds.size.width, height: 10)
+        layout.estimatedItemSize = CGSize(width: view.bounds.size.width, height: 400)
         super.traitCollectionDidChange(previousTraitCollection)
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        layout.estimatedItemSize = CGSize(width: view.bounds.size.width, height: 10)
-        layout.invalidateLayout()
-        super.viewWillTransition(to: size, with: coordinator)
-    }
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        layout.estimatedItemSize = CGSize(width: view.bounds.size.width, height: 10)
+//        layout.invalidateLayout()
+//        super.viewWillTransition(to: size, with: coordinator)
+//    }
     
 
     

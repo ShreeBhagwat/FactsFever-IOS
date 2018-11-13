@@ -14,57 +14,54 @@ import FirebaseAuth
 import ProgressHUD
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        //Todo
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        //TODO
+    }
+    
   
     @IBOutlet weak var anonoLoginOutlet: UIButton!
-   
-    
-    @IBOutlet weak var bottomBoundryView: UIView!
-    @IBOutlet weak var welcomeTextView: UITextView!
-    @IBOutlet weak var squareView: UIView!
     @IBOutlet weak var facebookLoginButton: UIButton!
-    var attachmentBehavior : UIAttachmentBehavior!
-    var dynamicAnimator : UIDynamicAnimator!
-    var gravityBehavior : UIGravityBehavior!
-    var collisionBehavior : UICollisionBehavior!
-    var bouncingBehavior  : UIDynamicItemBehavior!
-    
 
+    @IBOutlet weak var facebookButtonViewOutlet: UIView!
+    
+    @IBOutlet weak var annoButtonOutletView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        tableView.delegate = self as! UITableViewDelegate
-        squareView.isHidden = true
-        welcomeTextView.backgroundColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
+         setupLoginButton()
         self.navigationItem.hidesBackButton = true
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 0.8508075984, blue: 0.02254329405, alpha: 1)]
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 0.8508075984, blue: 0.02254329405, alpha: 1)]
         
-        var user = UserDefaults.standard.object(forKey: "user")
+        
         facebookLoginButton.addTarget(self, action: #selector(facebookLoginButtonPressed), for: .touchUpInside)
-        self.view.backgroundColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
+        print("Facebook access Token\(FBSDKAccessToken.current())")
+//        print("User \(user)")
         
-        dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
-        gravityBehavior = UIGravityBehavior(items: [squareView])
-        gravityBehavior.gravityDirection = CGVector(dx: 0, dy: 1)
-        
-        let point = CGPoint(x: (self.view.frame.width)/2, y: 0)
-        attachmentBehavior = UIAttachmentBehavior(item: squareView, attachedToAnchor: point)
-        attachmentBehavior.length = 300
-        attachmentBehavior.damping = 0.5
-        
-        dynamicAnimator.addBehavior(gravityBehavior)
-        dynamicAnimator.addBehavior(attachmentBehavior)
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        var user = UserDefaults.standard.object(forKey: "user")
         if (FBSDKAccessToken.current() != nil || user != nil)
         {
+            print("not nil")
             // User is already logged in, do work such as go to next view controller.
-            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
+            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainView") as! UIViewController
             present(VC, animated: true, completion: nil)
-      
+            
         }
         else
         {
-
+            print("nil")
+            
         }
     }
     
@@ -107,41 +104,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         })
     }
     
+
     
-    
-    
-    
-    
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        let credentials = FacebookAuthProvider.credential(withAccessToken: (FBSDKAccessToken.current()?.tokenString)!)
-        Auth.auth().signInAndRetrieveData(with: credentials) { (authResult, error) in
-            if  let error = error {
-                ProgressHUD.showError("Error Login Into Firebase try Again")
-                return
-            }
-            ProgressHUD.showSuccess("Successfully Signed In ")
-            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
-            self.present(VC, animated: true, completion: nil)
-            
-        }
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("user logged out")
-    }
-    
-    
-    
-    
-    
-    
-    
-    
+
 
     @IBAction func anonoLoginButtonPressed(_ sender: Any) {
         ProgressHUD.show()
@@ -162,14 +127,25 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         }
     }
     
-    //Mark: TableView
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        return cell
+    func setupLoginButton(){
+        facebookButtonViewOutlet.layer.cornerRadius = 5
+//        facebookButtonViewOutlet.layer.borderWidth = 1
+//        facebookButtonViewOutlet.layer.borderColor = UIColor.gray.cgColor
+        facebookButtonViewOutlet.layer.masksToBounds = false
+        facebookButtonViewOutlet.layer.shadowRadius = 5
+        facebookButtonViewOutlet.layer.shadowColor = UIColor.gray.cgColor
+        facebookButtonViewOutlet.layer.shadowOffset = CGSize(width: 2, height: 2)
+        facebookButtonViewOutlet.layer.shadowOpacity = 0.8
+        
+       
+        annoButtonOutletView.layer.cornerRadius = 5
+//        annoButtonOutletView.layer.borderWidth = 1
+//        annoButtonOutletView.layer.borderColor = UIColor.gray.cgColor
+        annoButtonOutletView.layer.masksToBounds = false
+        annoButtonOutletView.layer.shadowRadius = 2
+        annoButtonOutletView.layer.shadowColor = UIColor.gray.cgColor
+        annoButtonOutletView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        annoButtonOutletView.layer.shadowOpacity = 0.8
     }
     
 
