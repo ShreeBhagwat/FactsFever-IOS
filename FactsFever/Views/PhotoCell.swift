@@ -15,6 +15,10 @@ import ChameleonFramework
 class PhotoCell: UICollectionViewCell {
     var facts: Facts!
     var currentUser = Auth.auth().currentUser?.uid
+    let allView: UIView = {
+        let view = UIView()
+        return view
+    }()
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -36,8 +40,6 @@ class PhotoCell: UICollectionViewCell {
     let captionTextView : UITextView = {
         let captionTextView = UITextView()
         captionTextView.textColor = UIColor.gray
-//        captionTextView.backgroundColor = UIColor.red
-        captionTextView.text = "TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TESTTEST TEST TEST TEST TEST TEST TESTTEST TEST TEST TEST TEST TEST TESTTEST TEST TEST TEST TEST TEST TESTTEST TEST TEST TEST TEST TEST TESTTEST TEST TEST TEST TEST TEST TESTTEST TEST TEST TEST TEST TEST TESTTEST TEST TEST TEST TEST TEST TEST "
         captionTextView.translatesAutoresizingMaskIntoConstraints = false
         captionTextView.backgroundColor = UIColor.white
         captionTextView.isEditable = false
@@ -79,26 +81,50 @@ class PhotoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+//        addSubview(allView)
+//        allView.addSubview(imageView)
+//        allView.addSubview(captionTextView)
+//         allView.addSubview(buttonView)
+
         addSubview(imageView)
         addSubview(captionTextView)
         addSubview(buttonView)
-        buttonView.addSubview(likeButton)
         buttonView.addSubview(likeLable)
         buttonView.addSubview(infoButton)
+        buttonView.addSubview(likeButton)
+        
+//        allView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
+//        allView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
+//        allView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
+//        allView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
 //
+//        imageView.leftAnchor.constraint(equalTo: allView.leftAnchor).isActive = true
+//        imageView.rightAnchor.constraint(equalTo: allView.rightAnchor).isActive = true
+//        imageView.topAnchor.constraint(equalTo: allView.topAnchor).isActive = true
+//        imageView.bottomAnchor.constraint(equalTo: captionTextView.topAnchor).isActive = true
+//
+//        captionTextView.leftAnchor.constraint(equalTo: allView.leftAnchor).isActive = true
+//        captionTextView.rightAnchor.constraint(equalTo: allView.rightAnchor).isActive = true
+//        captionTextView.bottomAnchor.constraint(equalTo: buttonView.topAnchor).isActive = true
+//        captionTextView.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
+//
+//        buttonView.leftAnchor.constraint(equalTo: allView.leftAnchor).isActive = true
+//        buttonView.rightAnchor.constraint(equalTo: allView.rightAnchor).isActive = true
+//        buttonView.bottomAnchor.constraint(equalTo: allView.bottomAnchor).isActive = true
+//        buttonView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         imageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         imageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
         imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
         imageView.bottomAnchor.constraint(equalTo: captionTextView.topAnchor).isActive = true
 //        imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        
+
         captionTextView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         captionTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
         captionTextView.topAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
 //        captionTextView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         captionTextView.bottomAnchor.constraint(equalTo: buttonView.topAnchor).isActive = true
-//
-//
+
         buttonView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         buttonView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
         buttonView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
@@ -128,12 +154,7 @@ class PhotoCell: UICollectionViewCell {
         //////////////////
         likeLable.text = String(fact.factsLikes.count)
         /////////////////
-        
-
-
         self.captionTextView.text = fact.captionText
-
-
         let factsRef = Database.database().reference().child("Facts").child(facts.factsId).child("likes")
         factsRef.observeSingleEvent(of: .value) { (snapshot) in
             if fact.factsLikes.contains(self.currentUser!){

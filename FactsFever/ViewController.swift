@@ -41,7 +41,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Do any additional setup after loading the view, typically from a nib.
 //        retriveDataFromDataBase()
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: cellid)
-        collectionView.register(PhotoCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter , withReuseIdentifier: footerId)
+        
 //        collectionView?.collectionViewLayout = layout
         observeFactsFromFirebase()
         
@@ -306,15 +306,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return NSString(string:text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], context: nil)
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerId, for: indexPath)
-        footer.backgroundColor = UIColor.yellow
-        return footer
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 100)
-    }
+   
     
 }
 
