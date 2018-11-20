@@ -32,21 +32,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var likeUsers:[String] = []
     let currentUser = Auth.auth().currentUser?.uid
   
-    var layout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        let width = UIScreen.main.bounds.size.width
-        layout.estimatedItemSize = CGSize(width: width, height: 300)
-        return layout
-    }()
 
-    
+
+    let cellid = "CellId"
+    let footerId = "FooterId"
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 //        retriveDataFromDataBase()
-   
-        
-        collectionView?.collectionViewLayout = layout
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: cellid)
+        collectionView.register(PhotoCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter , withReuseIdentifier: footerId)
+//        collectionView?.collectionViewLayout = layout
         observeFactsFromFirebase()
         
 //        self.view.backgroundColor = UIColor.randomFlat()
@@ -100,7 +96,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 print("Image uploaded successfully ")
 //                self.factLink.append(imageUrl)
 //                self.addToDatabase(imageUrl: imageUrl)
-                self.addCaptionToText(imageUrl: imageUrl)
+                self.addCaptionToText(imageUrl: imageUrl, image: selectedImage)
             }
 //            self.addCaptionToText()
 
@@ -134,12 +130,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    func addToDatabase(imageUrl:String, caption: String){
+    func addToDatabase(imageUrl:String, caption: String, image: UIImage){
         let Id = NSUUID().uuidString
         likeUsers.append(currentUser!)
         let timeStamp = NSNumber(value: Int(NSDate().timeIntervalSince1970))
         let factsDB = Database.database().reference().child("Facts")
-        let factsDictionary = ["factsLink": imageUrl, "likes": likeUsers, "factsId": Id, "timeStamp": timeStamp, "captionText": caption] as [String : Any]
+        let factsDictionary = ["factsLink": imageUrl, "likes": likeUsers, "factsId": Id, "timeStamp": timeStamp, "captionText": caption, "imageWidth": image.size.width, "imageHeight": image.size.height] as [String : Any]
         factsDB.child(Id).setValue(factsDictionary){
             (error, reference) in
             
@@ -290,8 +286,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var height: CGFloat = 200
+        let facts = factsArray[indexPath.item]
+        if let imageWidth = facts.imageWidht?.floatValue, let imageHeight = facts.imageHeight?.floatValue {
+            let mul = Float(self.view.frame.width)
+            height = CGFloat(imageHeight / imageWidth * mul)
+        }
+        let h1 = estimatedFrameForText(text: facts.captionText).height + 20
+        let width = UIScreen.main.bounds.width - 16
+        return CGSize(width: width, height: height + 50 + h1)
+    }
     
-   
+    private func estimatedFrameForText(text:String) -> (CGRect){
+        
+        let size = CGSize(width: self.view.frame.width - 16, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        
+        return NSString(string:text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], context: nil)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerId, for: indexPath)
+        footer.backgroundColor = UIColor.yellow
+        return footer
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 100)
+    }
     
 }
 
@@ -306,29 +329,23 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let facts = factsArray[indexPath.row]
         let likes = factsArray[indexPath.row].factsLikes
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellid, for: indexPath) as? PhotoCell
+//        cell?.imageView.sd_setImage(with: URL(string: facts.factsLink))
+//        cell?.captionTextView.text = facts.captionText
 //        let image = images[indexPath.row]
-      
-      
-        cell.configureCell(fact: facts)
-        cell.reportButtonOutlet.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
+//        cell?.captionTextView.text = "TEST TEST TEST TEST TEST TTETETETETETETET"
         
-        return cell
+     
+        cell!.configureCell(fact: facts)
+//        cell.reportButtonOutlet.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
+        
+        return cell!
         
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        layout.estimatedItemSize = CGSize(width: view.bounds.size.width, height: 400)
-        super.traitCollectionDidChange(previousTraitCollection)
-    }
-    
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        layout.estimatedItemSize = CGSize(width: view.bounds.size.width, height: 10)
-//        layout.invalidateLayout()
-//        super.viewWillTransition(to: size, with: coordinator)
-//    }
     
 
+    
     
     @objc func reportButtonPressed(){
        let alert = PCLBlurEffectAlert.Controller(title: "Report This Fact?", message: "Do you want to report this fact? ", effect: UIBlurEffect(style: .dark), style: .alert)
@@ -385,14 +402,14 @@ extension ViewController: UICollectionViewDataSource {
         alert.present(picker, animated: true, completion: nil)
     }
     
-    func addCaptionToText(imageUrl: String){
+    func addCaptionToText(imageUrl: String, image: UIImage){
         print("Caption Alert Method called")
         let alert = PCLBlurEffectAlert.Controller(title: "Add Caption", message: nil, effect: UIBlurEffect(style: .dark), style: .alert)
         
         alert.addTextField { (textFiled) in
             let button = PCLBlurEffectAlertAction.init(title: "Ok", style: .default) { (alert) in
                 print(textFiled?.text)
-                self.addToDatabase(imageUrl: imageUrl, caption: textFiled!.text!)
+                self.addToDatabase(imageUrl: imageUrl, caption: textFiled!.text!, image: image)
             }
             alert.addAction(button)
         }
@@ -418,6 +435,8 @@ extension ViewController: UICollectionViewDelegate {
         browser?.setInitialPageIndex(UInt(indexPath.row))
         self.present(browser!, animated: true, completion: nil)
     }
+    
+
   
 }
 
