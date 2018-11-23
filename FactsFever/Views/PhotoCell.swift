@@ -24,16 +24,16 @@ class PhotoCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints =  false
         imageView.layer.masksToBounds = true
-//        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = UIColor.blue
-//        imageView.layer.cornerRadius = 20
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = UIColor.white
+        imageView.layer.cornerRadius = 10
         return imageView
     }()
     let buttonView: UIView = {
        let view = UIView()
         view.backgroundColor = UIColor.white
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 10
         return view
     }()
     
@@ -77,15 +77,23 @@ class PhotoCell: UICollectionViewCell {
         return likeLable
     }()
     
+        func roundCorners(view :UIView, corners: UIRectCorner, radius: CGFloat){
+            let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+            let mask = CAShapeLayer()
+            mask.path = path.cgPath
+            view.layer.mask = mask
+        }
+
     
+    var imageViewHeightConstraint: NSLayoutConstraint!
     override init(frame: CGRect) {
         super.init(frame: frame)
         
 //        addSubview(allView)
 //        allView.addSubview(imageView)
 //        allView.addSubview(captionTextView)
-//         allView.addSubview(buttonView)
-
+//        allView.addSubview(buttonView)
+    
         addSubview(imageView)
         addSubview(captionTextView)
         addSubview(buttonView)
@@ -93,36 +101,18 @@ class PhotoCell: UICollectionViewCell {
         buttonView.addSubview(infoButton)
         buttonView.addSubview(likeButton)
         
-//        allView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
-//        allView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
-//        allView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
-//        allView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-//
-//        imageView.leftAnchor.constraint(equalTo: allView.leftAnchor).isActive = true
-//        imageView.rightAnchor.constraint(equalTo: allView.rightAnchor).isActive = true
-//        imageView.topAnchor.constraint(equalTo: allView.topAnchor).isActive = true
-//        imageView.bottomAnchor.constraint(equalTo: captionTextView.topAnchor).isActive = true
-//
-//        captionTextView.leftAnchor.constraint(equalTo: allView.leftAnchor).isActive = true
-//        captionTextView.rightAnchor.constraint(equalTo: allView.rightAnchor).isActive = true
-//        captionTextView.bottomAnchor.constraint(equalTo: buttonView.topAnchor).isActive = true
-//        captionTextView.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
-//
-//        buttonView.leftAnchor.constraint(equalTo: allView.leftAnchor).isActive = true
-//        buttonView.rightAnchor.constraint(equalTo: allView.rightAnchor).isActive = true
-//        buttonView.bottomAnchor.constraint(equalTo: allView.bottomAnchor).isActive = true
-//        buttonView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+
         
         imageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         imageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
         imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: captionTextView.topAnchor).isActive = true
-//        imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-
+//        imageView.bottomAnchor.constraint(equalTo: captionTextView.topAnchor).isActive = true
+        imageViewHeightConstraint =  imageView.heightAnchor.constraint(equalToConstant: 200)
+        imageViewHeightConstraint.isActive = true
+        
         captionTextView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         captionTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
         captionTextView.topAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
-//        captionTextView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         captionTextView.bottomAnchor.constraint(equalTo: buttonView.topAnchor).isActive = true
 
         buttonView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
@@ -145,6 +135,13 @@ class PhotoCell: UICollectionViewCell {
         infoButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
         infoButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
         infoButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
+    }
+    
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.apply(layoutAttributes)
+        if let attributes = layoutAttributes as? FactsFeverLayoutAttributes {
+        imageViewHeightConstraint.constant =  attributes.photoHeight
+        }
     }
     
     func configureCell(fact: Facts){
