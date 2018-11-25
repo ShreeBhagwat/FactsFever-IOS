@@ -20,6 +20,7 @@ class AboutDeveloperViewController: UIViewController {
         developerImage.layer.shadowOffset = CGSize(width: 2, height: 2)
         developerImage.layer.shadowOpacity = 1
         developerImage.layer.shadowRadius = 5
+        view.backgroundColor = UIColor.black
     }
     
 

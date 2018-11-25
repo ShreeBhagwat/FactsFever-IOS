@@ -20,7 +20,7 @@ class SetttingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
-       
+       tableView.backgroundColor = UIColor.black
     }
 
     // MARK: - Table view data source

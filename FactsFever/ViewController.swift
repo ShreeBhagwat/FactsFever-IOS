@@ -18,6 +18,7 @@ import ProgressHUD
 import IDMPhotoBrowser
 import ChameleonFramework
 import PCLBlurEffectAlert
+import SkeletonView
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK: Outlets
@@ -36,25 +37,30 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
 
     let cellid = "CellId"
-    let footerId = "FooterId"
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        retriveDataFromDataBase()
-        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: cellid)
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refreshControl
+        } else {
+            collectionView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshView), for: .valueChanged)
+        refreshControl.tintColor = UIColor.white
         if let layout = collectionView?.collectionViewLayout as? FactsFeverLayout {
             layout.delegate = self
         }
-
+        collectionView.backgroundColor = UIColor.black
         observeFactsFromFirebase()
-        
-//        self.view.backgroundColor = UIColor.randomFlat()
+      
 //        if let btn = self.navigationItem.rightBarButtonItem {
 //            btn.isEnabled = false
 //            btn.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 //            btn.title = ""
 //        }
-        ProgressHUD.show("Welcome To FactsFever, Loading Facts")
+        ProgressHUD.show("Welcome To FactsFever, Loading Facts, This might take a While")
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             ProgressHUD.dismiss()
         }
@@ -62,12 +68,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
          }
 
 
- 
+    @objc func refreshView(){
+        observeFactsFromFirebase()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+        if let layout = collectionView?.collectionViewLayout as? FactsFeverLayout {
+            layout.delegate = self
+        }
+    }
 
     //MARK:- Upload Facts
     
     @IBAction func uploadButtonPressed(_ sender: Any) {
-//        self.addCaptionToText()
+
         self.selectPhoto()
     }
 
@@ -101,7 +118,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //                self.addToDatabase(imageUrl: imageUrl)
                 self.addCaptionToText(imageUrl: imageUrl, image: selectedImage)
             }
-//            self.addCaptionToText()
+
 
         }
         
@@ -152,7 +169,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 print("Message Saved In DB")
                 ProgressHUD.showSuccess("image Uploded Successfully")
                 self.uploadButtonOutlet.isEnabled = true
-//                self.retriveDataFromDataBase()
+
                 self.observeFactsFromFirebase()
             }
         }
@@ -212,6 +229,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
             }
             self.collectionView.reloadData()
+            self.refreshControl.endRefreshing()
   
         }
     }
@@ -295,26 +313,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //MARK: Data Source
-extension ViewController: UICollectionViewDataSource {
+extension ViewController: UICollectionViewDataSource, SkeletonCollectionViewDataSource {
+ 
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "newCellTrial"
+    }
+    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+        return 1
+    }
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return factsArray.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        return factsArray.count
     }
     
+
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let facts = factsArray[indexPath.row]
-        let likes = factsArray[indexPath.row].factsLikes
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellid, for: indexPath) as? PhotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newCellTrial", for: indexPath) as? NewCellCollectionViewCell
+        
+        cell?.configureCell(fact: facts)
 
         
-     
-        cell!.configureCell(fact: facts)
-//        cell.reportButtonOutlet.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
         
+        cell?.infoButton.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
         return cell!
-        
     }
-    
-    
 
     
     
@@ -426,9 +454,9 @@ extension ViewController: FactsFeverLayoutDelegate {
         let topPadding = CGFloat(8)
         let bottomPadding = CGFloat(8)
         let captionFont = UIFont.systemFont(ofSize: 15)
-        let viewHeight = CGFloat(50)
+        let viewHeight = CGFloat(40)
         let captionHeight = self.height(for: fact.captionText, with: captionFont, width: width)
-        let height = topPadding + captionHeight + topPadding + viewHeight + bottomPadding
+        let height = topPadding + captionHeight + topPadding + viewHeight + bottomPadding + topPadding + 10
         
         return height
         
@@ -446,6 +474,12 @@ extension ViewController: FactsFeverLayoutDelegate {
     
     
 }
+
+
+
+    
+    
+
 
 
 

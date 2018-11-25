@@ -59,7 +59,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         {
             print("not nil")
             // User is already logged in, do work such as go to next view controller.
-            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainView") as! UIViewController
+            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
             present(VC, animated: true, completion: nil)
             
         }
