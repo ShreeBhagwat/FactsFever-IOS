@@ -111,11 +111,6 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornnerRadius">
-                                <integer key="value" value="20"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="BYZ-38-t0r" id="TAk-zT-Rvq"/>
                             <outlet property="delegate" destination="BYZ-38-t0r" id="gbd-Aj-0rB"/>

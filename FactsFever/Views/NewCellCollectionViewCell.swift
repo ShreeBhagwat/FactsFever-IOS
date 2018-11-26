@@ -31,25 +31,9 @@ class NewCellCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         likeButton.setImage(UIImage(named: "noLike"), for: .normal)
         likeButton.setImage(UIImage(named: "like"), for: .selected)
-//        self.showAnimatedGradientSkeleton()
- 
-        
-        
-        updateUI()
         setupLayout()
     }
     
-    func updateUI(){
-        imageView.layer.cornerRadius = 10
-        imageView.layer.masksToBounds = true
-        
-        captionTextView.isEditable = false
-        captionTextView.isSelectable = false
-        captionTextView.isScrollEnabled = false
-        
-
-        
-    }
     
     func configureCell(fact: Facts){
         facts = fact
@@ -70,15 +54,22 @@ class NewCellCollectionViewCell: UICollectionViewCell {
     }
     
     func setupLayout(){
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
         imageView.backgroundColor = UIColor.black
+        
         captionTextView.backgroundColor = UIColor.black
         captionTextView.textColor = UIColor.white
+        captionTextView.isEditable = false
+        captionTextView.isSelectable = false
+        captionTextView.isScrollEnabled = false
         
         likeLable.backgroundColor = #colorLiteral(red: 0.1242010223, green: 0.1241877451, blue: 0.1290884067, alpha: 1)
         likeLable.textColor = UIColor.white
         
         buttonView.backgroundColor = #colorLiteral(red: 0.1242010223, green: 0.1241877451, blue: 0.1290884067, alpha: 1)
         buttonView.layer.cornerRadius = 10
+        
         infoButton.tintColor = UIColor.white
         likeButton.tintColor = UIColor.white
     }

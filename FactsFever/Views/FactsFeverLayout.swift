@@ -67,7 +67,7 @@ class FactsFeverLayout: UICollectionViewLayout {
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
-        
+
         for attributes in attributeCache {
             if attributes.frame.intersects(rect){
                 layoutAttributes.append(attributes)
@@ -85,11 +85,12 @@ class FactsFeverLayoutAttributes: UICollectionViewLayoutAttributes {
         copy.photoHeight = photoHeight
         return copy
     }
-    
+
     override func isEqual(_ object: Any?) -> Bool {
         if let attributes = object as? FactsFeverLayoutAttributes {
             if attributes.photoHeight == photoHeight {
                 super.isEqual(object)
+
             }
         }
         return false

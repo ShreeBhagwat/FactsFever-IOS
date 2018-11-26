@@ -16,7 +16,7 @@ class AboutDeveloperViewController: UIViewController {
         developerImage.clipsToBounds = true
         developerImage.layer.masksToBounds = false
         developerImage.layer.cornerRadius = 20
-        developerImage.layer.shadowColor = UIColor.gray.cgColor
+        developerImage.layer.shadowColor = UIColor.white.cgColor
         developerImage.layer.shadowOffset = CGSize(width: 2, height: 2)
         developerImage.layer.shadowOpacity = 1
         developerImage.layer.shadowRadius = 5

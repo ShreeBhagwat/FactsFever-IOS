@@ -36,7 +36,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
   
 
 
-    let cellid = "CellId"
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -71,6 +70,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @objc func refreshView(){
         observeFactsFromFirebase()
     }
+    
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        collectionView.collectionViewLayout.invalidateLayout()
+//    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -175,36 +179,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    func retriveDataFromDataBase(){
-       
-        let messageDB = Database.database().reference().child("Facts")
-        messageDB.observe(.childAdded) { (snapshot) in
-            let snapshotValue = snapshot.value as! [String: AnyObject]
-            print("snapshotvalue \(snapshotValue)")
-            let messageLink =  snapshotValue["factsLink"] as! String
-            let messageId = snapshotValue["factsId"] as! String
-            let messageLike = snapshotValue["likes"] as! Int
-            
-            let fact = Facts(dictionary: snapshotValue as [String : AnyObject])
-            self.factsArray.insert(fact, at: 0)
-            
-            self.downloadImage(imageUrl: messageLink, completion: { (uiImage) in
-                guard let uiImage = uiImage else {return}
-                if self.images.contains(uiImage) {
-
-                }else{
-                   self.images.append(uiImage)
-                }
-
-            })
-            
-            }
-            
-            self.collectionView.reloadData()
-            
-        
-        
-    }
+   
     var imageUrl: [String] = []
     func observeFactsFromFirebase(){
         
@@ -215,7 +190,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.factsArray = []
             self.imageUrl = []
             self.likeUsers = []
-            self.factsStraightArray = []
+          
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshot {
                     
@@ -224,14 +199,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         let facts = Facts(dictionary: postDictionary)
                         self.factsArray.insert(facts, at: 0)
                         self.imageUrl.insert(facts.factsLink, at: 0)
+//                        self.factsArray.append(facts)
+//                        self.imageUrl.append(facts.factsLink)
                         
                     }
                 }
             }
             self.collectionView.reloadData()
+          
             self.refreshControl.endRefreshing()
+           
   
         }
+        collectionView.reloadData()
     }
     // Download Image From Database
 
@@ -313,19 +293,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //MARK: Data Source
-extension ViewController: UICollectionViewDataSource, SkeletonCollectionViewDataSource {
+extension ViewController: UICollectionViewDataSource{
  
-    
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return "newCellTrial"
-    }
-    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return factsArray.count
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        return factsArray.count
     }
@@ -337,10 +306,8 @@ extension ViewController: UICollectionViewDataSource, SkeletonCollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newCellTrial", for: indexPath) as? NewCellCollectionViewCell
         
         cell?.configureCell(fact: facts)
-
-        
-        
         cell?.infoButton.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
+       
         return cell!
     }
 
