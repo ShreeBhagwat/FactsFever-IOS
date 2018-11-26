@@ -13,7 +13,7 @@ class AboutDeveloperViewController: UIViewController {
     @IBOutlet weak var developerImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        developerImage.clipsToBounds = true
+//        developerImage.clipsToBounds = true
         developerImage.layer.masksToBounds = false
         developerImage.layer.cornerRadius = 20
         developerImage.layer.shadowColor = UIColor.white.cgColor

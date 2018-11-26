@@ -25,8 +25,9 @@ class FactsFeverLayout: UICollectionViewLayout {
         let insets = collectionView!.contentInset
         return (collectionView!.bounds.width - insets.left + insets.right)
     }
-    private var attributeCache = [FactsFeverLayoutAttributes]()
+  private var attributeCache = [FactsFeverLayoutAttributes]()
    override func prepare() {
+    attributeCache.removeAll()
     if attributeCache.isEmpty {
         let containerWidth = contentWidth
         var xOffset : CGFloat = 0
@@ -56,7 +57,7 @@ class FactsFeverLayout: UICollectionViewLayout {
             
             
         }
-        
+    
         
     }
     }
@@ -75,6 +76,7 @@ class FactsFeverLayout: UICollectionViewLayout {
         }
         return layoutAttributes
     }
+
 }
 // UICollectionView FlowLayout
 // Abstract

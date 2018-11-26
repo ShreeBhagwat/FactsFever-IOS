@@ -35,7 +35,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let currentUser = Auth.auth().currentUser?.uid
   
 
-
+    var factsLayout = FactsFeverLayout()
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -50,6 +50,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         refreshControl.tintColor = UIColor.white
         if let layout = collectionView?.collectionViewLayout as? FactsFeverLayout {
             layout.delegate = self
+            
         }
         collectionView.backgroundColor = UIColor.black
         observeFactsFromFirebase()
@@ -76,14 +77,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //        collectionView.collectionViewLayout.invalidateLayout()
 //    }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        collectionView.reloadData()
-        if let layout = collectionView?.collectionViewLayout as? FactsFeverLayout {
-            layout.delegate = self
-        }
-    }
+
 
     //MARK:- Upload Facts
     
@@ -206,7 +200,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
             }
             self.collectionView.reloadData()
-          
             self.refreshControl.endRefreshing()
            
   
