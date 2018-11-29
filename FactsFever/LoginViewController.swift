@@ -29,27 +29,23 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 0.8508075984, blue: 0.02254329405, alpha: 1)]
         self.view.addSubview(facebookButtonViewOutlet)
         setupfbButton()
-        print("Facebook access Token\(FBSDKAccessToken.current())")
-//        print("User \(user)")
-        
-
     }
     
-    let fbButton: FBSDKLoginButton = {
-        let fbButton = FBSDKLoginButton()
-        fbButton.translatesAutoresizingMaskIntoConstraints = false
-        fbButton.readPermissions = ["public_profile", "email"]
-//        fbButton.delegate = self
-                
-        return fbButton
+
+    lazy var loginView: FBSDKLoginButton = {
+        let loginView = FBSDKLoginButton()
+        loginView.translatesAutoresizingMaskIntoConstraints = false
+        loginView.readPermissions = ["public_profile", "email"]
+        loginView.delegate = self
+        return loginView
     }()
     
     func setupfbButton(){
-        facebookButtonViewOutlet.addSubview(fbButton)
-        fbButton.leftAnchor.constraint(equalTo: facebookButtonViewOutlet.leftAnchor).isActive = true
-        fbButton.rightAnchor.constraint(equalTo: facebookButtonViewOutlet.rightAnchor).isActive = true
-        fbButton.topAnchor.constraint(equalTo: facebookButtonViewOutlet.topAnchor).isActive = true
-        fbButton.bottomAnchor.constraint(equalTo: facebookButtonViewOutlet.bottomAnchor).isActive = true
+        facebookButtonViewOutlet.addSubview(loginView)
+        loginView.leftAnchor.constraint(equalTo: facebookButtonViewOutlet.leftAnchor).isActive = true
+        loginView.rightAnchor.constraint(equalTo: facebookButtonViewOutlet.rightAnchor).isActive = true
+        loginView.topAnchor.constraint(equalTo: facebookButtonViewOutlet.topAnchor).isActive = true
+        loginView.bottomAnchor.constraint(equalTo: facebookButtonViewOutlet.bottomAnchor).isActive = true
             }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -93,8 +89,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     }
 
 }
-
-
+    
     @IBAction func anonoLoginButtonPressed(_ sender: Any) {
         ProgressHUD.show()
         Auth.auth().signInAnonymously { (user, error) in

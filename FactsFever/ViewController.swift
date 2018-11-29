@@ -61,7 +61,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //            btn.title = ""
 //        }
         ProgressHUD.show("Welcome To FactsFever, Loading Facts, This might take a While")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             ProgressHUD.dismiss()
         }
         
@@ -72,10 +72,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         observeFactsFromFirebase()
     }
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        collectionView.collectionViewLayout.invalidateLayout()
-//    }
+
     
 
 
@@ -99,21 +96,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         var selectedImageFromPicker : UIImage?
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
-           print("Edited Image Size\(editedImage.size)")
             selectedImageFromPicker = editedImage
         }
         else if let orginalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            print("Size \(orginalImage.size)")
             selectedImageFromPicker = orginalImage
             
         }
         
         if let selectedImage = selectedImageFromPicker {
             uploadImageToFirebaseStorage(image: selectedImage) { (imageUrl) in
-                print("Image Url\(imageUrl)")
-                print("Image uploaded successfully ")
-//                self.factLink.append(imageUrl)
-//                self.addToDatabase(imageUrl: imageUrl)
+
                 self.addCaptionToText(imageUrl: imageUrl, image: selectedImage)
             }
 
@@ -179,7 +171,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let factsDB = Database.database().reference().child("Facts").queryOrdered(byChild: "timeStamp")
         factsDB.observe(.value){ (snapshot) in
-            print("Observer Data snapshot \(snapshot.value)")
             
             self.factsArray = []
             self.imageUrl = []
@@ -193,8 +184,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         let facts = Facts(dictionary: postDictionary)
                         self.factsArray.insert(facts, at: 0)
                         self.imageUrl.insert(facts.factsLink, at: 0)
-//                        self.factsArray.append(facts)
-//                        self.imageUrl.append(facts.factsLink)
                         
                     }
                 }
@@ -280,10 +269,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
     
-    
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //MARK: Data Source
 extension ViewController: UICollectionViewDataSource{
@@ -291,8 +278,6 @@ extension ViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        return factsArray.count
     }
-    
-
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let facts = factsArray[indexPath.row]
@@ -304,8 +289,6 @@ extension ViewController: UICollectionViewDataSource{
         return cell!
     }
 
-    
-    
     @objc func reportButtonPressed(){
        let alert = PCLBlurEffectAlert.Controller(title: "Report This Fact?", message: "Do you want to report this fact? ", effect: UIBlurEffect(style: .dark), style: .alert)
         let cancelButton = PCLBlurEffectAlertAction.init(title: "Cancel", style: .destructive, handler: nil)
@@ -377,7 +360,6 @@ extension ViewController: UICollectionViewDataSource{
             
         }
         alert.configure(textFieldHeight: 30)
-//        alert.addAction(button)
         alert.addAction(can)
         alert.show()
     }
@@ -395,8 +377,6 @@ extension ViewController: UICollectionViewDelegate {
         self.present(browser!, animated: true, completion: nil)
     }
     
-
-  
 }
 extension ViewController: FactsFeverLayoutDelegate {
     func collectionView(CollectionView: UICollectionView, heightForThePhotoAt indexPath: IndexPath, with width: CGFloat) -> CGFloat {

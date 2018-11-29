@@ -227,21 +227,6 @@
             </objects>
             <point key="canvasLocation" x="1987" y="715"/>
         </scene>
-        <!--Launch View Controller-->
-        <scene sceneID="Wja-SN-Wkc">
-            <objects>
-                <viewController id="nWC-ck-k1y" customClass="LaunchViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="A1T-ur-e15">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="QI9-Sa-B2V"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PO2-R4-DRp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1072" y="804"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="TNj-sy-Y0i">
             <objects>

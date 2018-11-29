@@ -57,6 +57,8 @@ class NewCellCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = UIColor.black
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = UIColor.gray.cgColor
         
         captionTextView.backgroundColor = UIColor.black
         captionTextView.textColor = UIColor.white
