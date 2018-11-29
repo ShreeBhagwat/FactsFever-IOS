@@ -11,6 +11,7 @@ import Firebase
 import FirebaseDatabase
 import ChameleonFramework
 import SkeletonView
+import ProgressHUD
 
 class NewCellCollectionViewCell: UICollectionViewCell {
     
@@ -37,10 +38,11 @@ class NewCellCollectionViewCell: UICollectionViewCell {
     
     func configureCell(fact: Facts){
         facts = fact
-        
+        imageView.sd_setShowActivityIndicatorView(true)
         imageView.sd_setImage(with: URL(string: fact.factsLink))
         likeLable.text = String(fact.factsLikes.count)
         captionTextView.text = fact.captionText
+//        ProgressHUD.dismiss()
         let factsRef = Database.database().reference().child("Facts").child(facts.factsId).child("likes")
         factsRef.observeSingleEvent(of: .value) { (snapshot) in
             if fact.factsLikes.contains(self.currentUser!){

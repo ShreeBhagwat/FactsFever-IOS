@@ -33,13 +33,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var factsStraightArray: [Facts] = [Facts]()
     var likeUsers:[String] = []
     let currentUser = Auth.auth().currentUser?.uid
-  
+    let activityView = UIActivityIndicatorView(style: .whiteLarge)
 
     var factsLayout = FactsFeverLayout()
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     FactsFeverCustomLoader.instance.showLoader()
         // Do any additional setup after loading the view, typically from a nib.
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
@@ -53,28 +54,34 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
         }
         collectionView.backgroundColor = UIColor.black
-        observeFactsFromFirebase()
+
       
 //        if let btn = self.navigationItem.rightBarButtonItem {
 //            btn.isEnabled = false
 //            btn.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 //            btn.title = ""
 //        }
-        ProgressHUD.show("Welcome To FactsFever, Loading Facts, This might take a While")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            ProgressHUD.dismiss()
-        }
+//        ProgressHUD.show("Welcome To FactsFever, Loading Facts, This might take a While")
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+//            ProgressHUD.dismiss()
+//        }
         
+
          }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
+            self.observeFactsFromFirebase()
+        }
+
+    }
 
     @objc func refreshView(){
         observeFactsFromFirebase()
     }
-    
-
-    
-
 
     //MARK:- Upload Facts
     
@@ -193,7 +200,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
            
   
         }
-        collectionView.reloadData()
+//        collectionView.reloadData()
     }
     // Download Image From Database
 
@@ -285,7 +292,8 @@ extension ViewController: UICollectionViewDataSource{
         
         cell?.configureCell(fact: facts)
         cell?.infoButton.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
-       
+//       ProgressHUD.dismiss()
+        FactsFeverCustomLoader.instance.hideLoader()
         return cell!
     }
 
