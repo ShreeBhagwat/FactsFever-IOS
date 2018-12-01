@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7A2C20E321A7C9D400E92641 /* NewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */; };
+		7A81120221B25568002058C5 /* logo1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A81120121B25568002058C5 /* logo1.gif */; };
 		7AA805F021B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA805EF21B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift */; };
 		7AA805F221B035240022A2B3 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA805F121B035240022A2B3 /* UIImage+Gif.swift */; };
-		7AA805F421B03DB80022A2B3 /* loadingimage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7AA805F321B03DB80022A2B3 /* loadingimage.gif */; };
 		7AF9D90C21A57B8C00AA092F /* FactsFeverLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF9D90B21A57B8C00AA092F /* FactsFeverLayout.swift */; };
 		7AFDA63C218353CB00263F82 /* Facts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA63B218353CB00263F82 /* Facts.swift */; };
 		D067725C216CC4F100D4C774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D067725B216CC4F100D4C774 /* AppDelegate.swift */; };
@@ -29,9 +29,9 @@
 /* Begin PBXFileReference section */
 		58F1A412C54C959DF2956BDD /* Pods-FactsFever.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FactsFever.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FactsFever/Pods-FactsFever.debug.xcconfig"; sourceTree = "<group>"; };
 		7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		7A81120121B25568002058C5 /* logo1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo1.gif; sourceTree = "<group>"; };
 		7AA805EF21B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsFeverActivityIndicator.swift; sourceTree = "<group>"; };
 		7AA805F121B035240022A2B3 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
-		7AA805F321B03DB80022A2B3 /* loadingimage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingimage.gif; sourceTree = "<group>"; };
 		7AF9D90B21A57B8C00AA092F /* FactsFeverLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsFeverLayout.swift; sourceTree = "<group>"; };
 		7AFDA63B218353CB00263F82 /* Facts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facts.swift; sourceTree = "<group>"; };
 		ACF27C2E873ED375417E5C89 /* Pods_FactsFever.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FactsFever.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,8 +122,8 @@
 				D0B7CD8221704F2200563707 /* AboutDeveloperViewController.swift */,
 				D067725F216CC4F100D4C774 /* Main.storyboard */,
 				D0677262216CC4F500D4C774 /* Assets.xcassets */,
-				7AA805F321B03DB80022A2B3 /* loadingimage.gif */,
 				D0677264216CC4F500D4C774 /* LaunchScreen.storyboard */,
+				7A81120121B25568002058C5 /* logo1.gif */,
 				D0677267216CC4F500D4C774 /* Info.plist */,
 				D0D9D4F4216CFA9800C6EBFB /* GoogleService-Info.plist */,
 				D095D861216F676F00A8E7D5 /* FactsFever-Bridging-Header.h */,
@@ -215,7 +215,7 @@
 			files = (
 				D0677266216CC4F500D4C774 /* LaunchScreen.storyboard in Resources */,
 				D0D9D4F5216CFA9800C6EBFB /* GoogleService-Info.plist in Resources */,
-				7AA805F421B03DB80022A2B3 /* loadingimage.gif in Resources */,
+				7A81120221B25568002058C5 /* logo1.gif in Resources */,
 				D0677263216CC4F500D4C774 /* Assets.xcassets in Resources */,
 				D0677261216CC4F100D4C774 /* Main.storyboard in Resources */,
 			);

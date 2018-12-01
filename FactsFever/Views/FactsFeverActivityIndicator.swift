@@ -15,17 +15,17 @@ class FactsFeverCustomLoader: UIView {
     
     lazy var transparentView : UIView = {
        let view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor.yellow.withAlphaComponent(0.8)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         view.isUserInteractionEnabled = false
         return view
     }()
     
     lazy var gifImage: UIImageView = {
-        let gifimage = UIImageView(frame: CGRect(x: 0, y: 0, width: 400, height: 200))
+        let gifimage = UIImageView(frame: CGRect(x: 0, y: 0, width: 400, height: 400))
         gifimage.contentMode = .scaleAspectFit
         gifimage.center = transparentView.center
         gifimage.isUserInteractionEnabled = false
-        gifimage.loadGif(name: "loadingimage")
+        gifimage.loadGif(name: "logo1")
         return gifimage
     }()
     
