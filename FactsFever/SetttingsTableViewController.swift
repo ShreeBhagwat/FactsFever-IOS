@@ -14,7 +14,7 @@ import FBSDKLoginKit
 
 
 class SetttingsTableViewController: UITableViewController {
-    let appline = ""
+    let appline = "https://itunes.apple.com/us/app/pingme/id1438849522?ls=1&mt=8"
     let firebaseAuth = Auth.auth()
     let currentUser = Auth.auth().currentUser
     override func viewDidLoad() {
@@ -61,7 +61,7 @@ class SetttingsTableViewController: UITableViewController {
     
   
     @IBAction func reviewThisAppButtonPressed(_ sender: Any) {
-        
+        UIApplication.shared.openURL(URL(string: "https://itunes.apple.com/us/app/pingme/id1438849522?ls=1&mt=8")!)
     }
     
     

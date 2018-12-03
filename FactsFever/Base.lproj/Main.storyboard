@@ -464,6 +464,7 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="whyWeDontSellAdsButtonPressed:" destination="xfJ-dZ-TaG" eventType="touchUpInside" id="wTJ-Um-qOG"/>
+                                                        <segue destination="vlU-WN-cNC" kind="show" id="sTq-fe-8MW"/>
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrongaccess" translatesAutoresizingMaskIntoConstraints="NO" id="QuL-wg-aBN">
@@ -698,6 +699,36 @@
             </objects>
             <point key="canvasLocation" x="5456.8000000000002" y="958.4707646176912"/>
         </scene>
+        <!--Why We Dont Sell Ads View Controller-->
+        <scene sceneID="arw-Ac-UV6">
+            <objects>
+                <viewController id="vlU-WN-cNC" customClass="WhyWeDontSellAdsViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jzo-Bz-g5z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVS-QX-dbX">
+                                <rect key="frame" x="0.0" y="116" width="414" height="571"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BVS-QX-dbX" firstAttribute="leading" secondItem="9wT-Fg-ds2" secondAttribute="leading" id="ELp-VE-OsD"/>
+                            <constraint firstItem="9wT-Fg-ds2" firstAttribute="bottom" secondItem="BVS-QX-dbX" secondAttribute="bottom" id="Y0t-3d-ahY"/>
+                            <constraint firstItem="BVS-QX-dbX" firstAttribute="top" secondItem="9wT-Fg-ds2" secondAttribute="top" id="YJ8-et-XMk"/>
+                            <constraint firstItem="9wT-Fg-ds2" firstAttribute="trailing" secondItem="BVS-QX-dbX" secondAttribute="trailing" id="xtv-hp-lNZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9wT-Fg-ds2"/>
+                    </view>
+                    <connections>
+                        <outlet property="webViewOutlet" destination="BVS-QX-dbX" id="9S1-Qh-dx8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7et-yL-q2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4590" y="1646"/>
+        </scene>
         <!--About FactsFever-->
         <scene sceneID="ROT-GT-srk">
             <objects>
@@ -709,16 +740,16 @@
                         <sections>
                             <tableViewSection headerTitle="About" id="bbx-xu-oIO">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="135" id="uNc-fU-418">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="135"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="uNc-fU-418">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uNc-fU-418" id="41r-4N-0Dh">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="134.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO3-8r-fIa">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="143"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                     <string key="text">FactsFever originally started as a Telegram Channel. Where we share awesome and mind boggling facts. Facts That will make you think and will improve your general knowledge. </string>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -727,14 +758,14 @@
                                                 </textView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.1225600466132164" green="0.12984576821327209" blue="0.13997954130172729" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Telegram Channel" id="VKH-lk-HNh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="ET6-6R-2M5">
-                                        <rect key="frame" x="0.0" y="191" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="206" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ET6-6R-2M5" id="boz-3k-oMD">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.666666666666671"/>
@@ -772,7 +803,7 @@
                             <tableViewSection headerTitle="Admins Of FactsFever" id="Dw9-G3-sIx">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="zbG-1X-jha">
-                                        <rect key="frame" x="0.0" y="284" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="299" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zbG-1X-jha" id="UH5-Vk-B4K">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.666666666666671"/>
@@ -804,7 +835,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="Gbc-ag-3M6">
-                                        <rect key="frame" x="0.0" y="349" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="364" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gbc-ag-3M6" id="aR6-dM-aDX">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.666666666666671"/>
@@ -836,7 +867,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="Tay-bW-Eya">
-                                        <rect key="frame" x="0.0" y="414" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="429" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tay-bW-Eya" id="LyI-5p-FK7">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.666666666666671"/>
@@ -868,7 +899,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="S6F-a9-05q">
-                                        <rect key="frame" x="0.0" y="479" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="494" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S6F-a9-05q" id="Gfz-OC-vGG">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.666666666666671"/>
@@ -900,13 +931,13 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="kX3-Tf-T52">
-                                        <rect key="frame" x="0.0" y="544" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="559" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kX3-Tf-T52" id="gEY-YE-uyt">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sasuke" translatesAutoresizingMaskIntoConstraints="NO" id="dLv-NR-eSv">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegata" translatesAutoresizingMaskIntoConstraints="NO" id="dLv-NR-eSv">
                                                     <rect key="frame" x="20" y="6.9999999999999964" width="50" height="50.666666666666657"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="SG4-az-999"/>
@@ -932,7 +963,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="zRU-xX-Mkq">
-                                        <rect key="frame" x="0.0" y="609" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="624" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zRU-xX-Mkq" id="1ZX-bf-Q3f">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64.666666666666671"/>
@@ -1051,7 +1082,6 @@
         <image name="Group" width="338" height="450"/>
         <image name="Hinata" width="1024" height="768"/>
         <image name="Jiraiya" width="1080" height="810"/>
-        <image name="Sasuke" width="909.75" height="688.5"/>
         <image name="Shikamaru" width="273.75" height="247.5"/>
         <image name="aboutus" width="102.40000152587891" height="102.40000152587891"/>
         <image name="facts" width="15.333333015441895" height="25"/>
@@ -1066,6 +1096,7 @@
         <image name="settings" width="56.25" height="56.25"/>
         <image name="share" width="102.40000152587891" height="102.40000152587891"/>
         <image name="telegram" width="512" height="512"/>
+        <image name="vegata" width="350" height="350"/>
         <image name="webdesign" width="102.40000152587891" height="102.40000152587891"/>
         <image name="wrongaccess" width="102.40000152587891" height="102.40000152587891"/>
     </resources>
