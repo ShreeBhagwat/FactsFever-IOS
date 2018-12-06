@@ -19,6 +19,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     @IBOutlet weak var facebookButtonViewOutlet: UIView!
     @IBOutlet weak var annoButtonOutletView: UIView!
 //    var currentUser = Auth.auth().currentUser
+    var handler: AuthStateDidChangeListenerHandle?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        tableView.delegate = self as! UITableViewDelegate
@@ -50,20 +52,45 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        var user = UserDefaults.standard.object(forKey: "user")
-        if (FBSDKAccessToken.current() != nil || user != nil)
-        {
-            print("not nil")
-            // User is already logged in, do work such as go to next view controller.
-            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
-            present(VC, animated: true, completion: nil)
-            
+        handler = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            self.checkLoggedInUser()
+        })
+        
+//        var user = UserDefaults.standard.object(forKey: "user")
+//        if (FBSDKAccessToken.current() != nil || user != nil)
+//        {
+//            print("not nil")
+//            // User is already logged in, do work such as go to next view controller.
+//            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
+//            present(VC, animated: true, completion: nil)
+//
+//        }
+//        else
+//        {
+//            print("nil")
+//
+//        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let handler = handler else {return}
+        Auth.auth().removeStateDidChangeListener(handler)
+        
+    }
+    
+    func checkLoggedInUser(){
+        DispatchQueue.main.async {
+            if Auth.auth().currentUser == nil {
+                
+            } else {
+                let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
+                self.present(VC, animated: true, completion: nil)
+                return
+            }
         }
-        else
-        {
-            print("nil")
-            
-        }
+        
+     
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
@@ -76,6 +103,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             ProgressHUD.showError("Cancled By User, Try Again")
             return
         } else {
+            ProgressHUD.show("Siging In")
             let credentials = FacebookAuthProvider.credential(withAccessToken: (FBSDKAccessToken.current()?.tokenString)!)
             Auth.auth().signInAndRetrieveData(with: credentials) { (authResult, error) in
                 if  let error = error {
@@ -85,6 +113,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                 ProgressHUD.showSuccess("Successfully Signed In ")
                 let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
                 self.present(VC, animated: true, completion: nil)
+                return
         }
         
     }
