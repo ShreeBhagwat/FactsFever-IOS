@@ -71,11 +71,16 @@ class SetttingsTableViewController: UITableViewController {
     
     
     
-    @IBAction func logOutButtonPressed(_ sender: UIButton) {
+    @IBAction func logOutButtonPressed(_ sender: Any) {
+        print("Logout Button pressed")
         if currentUser != nil {
             do {
-                try firebaseAuth.signOut()
-                FBSDKAccessToken.setCurrent(nil)
+//                try firebaseAuth.signOut()
+                try Auth.auth().signOut()
+//                FBSDKAccessToken.setCurrent(nil)
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut()
+                FBSDKProfile.setCurrent(nil)
                 print("UserLogged out")
                 let loginVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginView") as! LoginViewController
                 UserDefaults.standard.removeObject(forKey: "user")

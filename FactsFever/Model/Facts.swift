@@ -17,7 +17,7 @@ class Facts{
     var captionText: String!
     var imageWidht: NSNumber!
     var imageHeight: NSNumber!
-    
+    var categories: String!
     
     init(dictionary: [String: AnyObject]) {
         factsLink = dictionary["factsLink"] as? String
@@ -27,7 +27,7 @@ class Facts{
         captionText = dictionary["captionText"] as? String
         imageWidht = dictionary["imageWidth"] as? NSNumber
         imageHeight = dictionary["imageHeight"] as? NSNumber
-        
+        categories = dictionary["categories"] as? String
     }
     
     func addSubtractLike(addLike: Bool){

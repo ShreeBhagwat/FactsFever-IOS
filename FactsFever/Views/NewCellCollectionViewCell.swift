@@ -30,6 +30,7 @@ class NewCellCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        currentUser = Auth.auth().currentUser?.uid
         likeButton.setImage(UIImage(named: "noLike"), for: .normal)
         likeButton.setImage(UIImage(named: "like"), for: .selected)
         setupLayout()

@@ -20,25 +20,66 @@ import ChameleonFramework
 import PCLBlurEffectAlert
 import SkeletonView
 
-class UploadFactsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadFactsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     
-    
+    private let categoriesOption = ["Science", "History","Love","Animals","Space","Language","Countries","Culture","Sports","Others"]
+    var categories = ""
     @IBOutlet weak var imageViewOutlet: UIImageView!
     @IBOutlet weak var captionViewOutlet: UITextView!
     @IBOutlet weak var selectImageButtonOutlet: UIButton!
     @IBOutlet weak var uploadFactButtonOutlet: UIButton!
     
+    @IBOutlet weak var categoriesPickerView: UIPickerView!
     var currentUserUId = Auth.auth().currentUser?.uid
     var likeUsers:[String] = []
+    var keyboardAdjusted = false
+    var lastKeyboardOffset = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        categoriesPickerView.delegate = self
+        categoriesPickerView.dataSource = self
         uploadFactButtonOutlet.isEnabled = true
-     
+        setupView()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         uploadFactButtonOutlet.isEnabled = true
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
+
+
+    
+    
+    
+    
     
     @IBAction func selectImageButtonPressed(_ sender: Any) {
         uploadFactButtonOutlet.isHidden = false
@@ -47,6 +88,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func uploadFactsButtonPressed(_ sender: Any) {
+        captionViewOutlet.resignFirstResponder()
         uploadFactButtonOutlet.isEnabled = false
         uploadFactButtonOutlet.isHidden = true
         if imageViewOutlet.image != nil {
@@ -130,7 +172,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
         likeUsers.append(currentUserUId!)
         let timeStamp = NSNumber(value: Int(NSDate().timeIntervalSince1970))
         let factsDB = Database.database().reference().child("Facts")
-        let factsDictionary = ["factsLink": imageUrl, "likes": likeUsers, "factsId": Id, "timeStamp": timeStamp, "captionText": caption, "imageWidth": image.size.width, "imageHeight": image.size.height] as [String : Any]
+        let factsDictionary = ["factsLink": imageUrl, "likes": likeUsers, "factsId": Id, "timeStamp": timeStamp, "captionText": caption, "imageWidth": image.size.width, "imageHeight": image.size.height, "categories": categories] as [String : Any]
         factsDB.child(Id).setValue(factsDictionary){
             (error, reference) in
             
@@ -150,6 +192,24 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
-
+    func setupView(){
+        captionViewOutlet.layer.borderWidth = 1
+        captionViewOutlet.layer.borderColor = UIColor.black.cgColor
+        imageViewOutlet.layer.borderWidth = 1
+        imageViewOutlet.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoriesOption.count
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categories = categoriesOption[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categoriesOption[row]
+    }
     
 }

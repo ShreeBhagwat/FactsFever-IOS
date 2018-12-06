@@ -18,7 +18,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     @IBOutlet weak var anonoLoginOutlet: UIButton!
     @IBOutlet weak var facebookButtonViewOutlet: UIView!
     @IBOutlet weak var annoButtonOutletView: UIView!
-
+//    var currentUser = Auth.auth().currentUser
     override func viewDidLoad() {
         super.viewDidLoad()
 //        tableView.delegate = self as! UITableViewDelegate
@@ -68,6 +68,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         //Todo
+        FBSDKAccessToken.current() == nil
         if let error = error {
                     print(error.localizedDescription)
                     return

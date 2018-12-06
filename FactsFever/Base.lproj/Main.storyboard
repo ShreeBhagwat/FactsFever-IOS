@@ -24,7 +24,7 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XG3-Op-rve">
-                                <rect key="frame" x="20" y="397" width="374" height="232"/>
+                                <rect key="frame" x="20" y="402" width="374" height="227"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -44,10 +44,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8a-0H-rQ2">
-                                <rect key="frame" x="20" y="353" width="374" height="30"/>
+                                <rect key="frame" x="20" y="353" width="154" height="35"/>
                                 <color key="backgroundColor" red="0.14099270110000001" green="0.19175317880000001" blue="0.25633955000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ogs-oK-z1h"/>
+                                    <constraint firstAttribute="width" constant="154" id="bUR-fA-dUW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Select Image">
@@ -57,28 +57,37 @@
                                     <action selector="selectImageButtonPressed:" destination="vkH-zo-CgF" eventType="touchUpInside" id="pig-lT-efZ"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KKf-iV-CgN">
+                                <rect key="frame" x="240" y="349" width="154" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="154" id="6Fp-mm-PZ9"/>
+                                    <constraint firstAttribute="height" constant="52" id="xT5-gC-bhD"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="XG3-Op-rve" firstAttribute="top" secondItem="Z8a-0H-rQ2" secondAttribute="bottom" constant="14" id="550-Hq-pYK"/>
                             <constraint firstItem="keT-Se-tvL" firstAttribute="top" secondItem="ESI-rD-I26" secondAttribute="top" id="EHH-Zq-Ycj"/>
                             <constraint firstItem="keT-Se-tvL" firstAttribute="trailing" secondItem="ESI-rD-I26" secondAttribute="trailing" id="Exs-Er-zfq"/>
+                            <constraint firstItem="KKf-iV-CgN" firstAttribute="top" secondItem="keT-Se-tvL" secondAttribute="bottom" constant="17" id="HaI-J0-bo4"/>
                             <constraint firstItem="ESI-rD-I26" firstAttribute="bottom" secondItem="yNh-Ea-kY0" secondAttribute="bottom" constant="14" id="Ow8-Tk-sa0"/>
                             <constraint firstItem="yNh-Ea-kY0" firstAttribute="leading" secondItem="ESI-rD-I26" secondAttribute="leading" constant="20" id="Tee-Pr-bG4"/>
+                            <constraint firstItem="Z8a-0H-rQ2" firstAttribute="leading" secondItem="ESI-rD-I26" secondAttribute="leading" constant="20" id="XFM-N7-lXY"/>
+                            <constraint firstItem="Z8a-0H-rQ2" firstAttribute="top" secondItem="keT-Se-tvL" secondAttribute="bottom" constant="21" id="YBS-aO-Yga"/>
                             <constraint firstItem="keT-Se-tvL" firstAttribute="leading" secondItem="ESI-rD-I26" secondAttribute="leading" id="Yq2-Oc-0Sq"/>
                             <constraint firstItem="XG3-Op-rve" firstAttribute="leading" secondItem="ESI-rD-I26" secondAttribute="leading" constant="20" id="Z0K-9W-M7m"/>
-                            <constraint firstItem="Z8a-0H-rQ2" firstAttribute="top" secondItem="keT-Se-tvL" secondAttribute="bottom" constant="21" id="eCC-5V-7xh"/>
                             <constraint firstItem="yNh-Ea-kY0" firstAttribute="top" secondItem="XG3-Op-rve" secondAttribute="bottom" constant="14" id="g2N-z8-pV8"/>
                             <constraint firstItem="ESI-rD-I26" firstAttribute="trailing" secondItem="yNh-Ea-kY0" secondAttribute="trailing" constant="20" id="lMc-fq-bzc"/>
-                            <constraint firstItem="ESI-rD-I26" firstAttribute="trailing" secondItem="Z8a-0H-rQ2" secondAttribute="trailing" constant="20" id="yHd-vP-1hW"/>
+                            <constraint firstItem="ESI-rD-I26" firstAttribute="trailing" secondItem="KKf-iV-CgN" secondAttribute="trailing" constant="20" id="yBb-TS-vnn"/>
                             <constraint firstItem="ESI-rD-I26" firstAttribute="trailing" secondItem="XG3-Op-rve" secondAttribute="trailing" constant="20" id="yUx-0p-Bqk"/>
-                            <constraint firstItem="Z8a-0H-rQ2" firstAttribute="leading" secondItem="ESI-rD-I26" secondAttribute="leading" constant="20" id="yej-o3-yTb"/>
+                            <constraint firstItem="XG3-Op-rve" firstAttribute="top" secondItem="Z8a-0H-rQ2" secondAttribute="bottom" constant="14" id="yZf-bT-42W"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ESI-rD-I26"/>
                     </view>
                     <navigationItem key="navigationItem" title="Upload Facts" id="YKD-qH-2Q6"/>
                     <connections>
                         <outlet property="captionViewOutlet" destination="XG3-Op-rve" id="CnY-st-7Oe"/>
+                        <outlet property="categoriesPickerView" destination="KKf-iV-CgN" id="ETg-LN-XnP"/>
                         <outlet property="imageViewOutlet" destination="keT-Se-tvL" id="8BS-no-KEm"/>
                         <outlet property="selectImageButtonOutlet" destination="Z8a-0H-rQ2" id="Th5-Px-fX6"/>
                         <outlet property="uploadFactButtonOutlet" destination="yNh-Ea-kY0" id="XFs-g3-Cfl"/>
@@ -579,7 +588,7 @@
                                                         <color key="titleColor" red="1" green="0.088816739180000007" blue="0.058201293530000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="logOutButtonPressed:" destination="xfJ-dZ-TaG" eventType="touchUpInside" id="r69-dj-mr3"/>
+                                                        <action selector="logOutButtonPressed:" destination="xfJ-dZ-TaG" eventType="touchUpInside" id="4sT-Pd-acF"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -970,13 +979,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kakshi" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-0y-zZM">
-                                                    <rect key="frame" x="20" y="6.9999999999999964" width="50" height="50.666666666666657"/>
+                                                    <rect key="frame" x="8" y="3.9999999999999964" width="50" height="56.666666666666657"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="nRg-g7-ox5"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shree" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB7-oI-wLQ">
-                                                    <rect key="frame" x="88" y="11" width="306" height="43"/>
+                                                    <rect key="frame" x="76" y="7.9999999999999964" width="330" height="48.666666666666657"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
