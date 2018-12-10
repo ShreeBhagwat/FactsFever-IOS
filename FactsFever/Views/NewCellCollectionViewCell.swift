@@ -41,7 +41,13 @@ class NewCellCollectionViewCell: UICollectionViewCell {
         facts = fact
         imageView.sd_setShowActivityIndicatorView(true)
         imageView.sd_setImage(with: URL(string: fact.factsLink))
-        likeLable.text = String(fact.factsLikes.count)
+        let likes = fact.factsLikes
+        if likes == nil {
+            likeLable.text = "0"
+        } else {
+            likeLable.text = String(fact.factsLikes.count)
+        }
+       
         captionTextView.text = fact.captionText
 //        ProgressHUD.dismiss()
         let factsRef = Database.database().reference().child("Facts").child(facts.factsId).child("likes")

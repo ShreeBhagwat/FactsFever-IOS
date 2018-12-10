@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import FBSDKCoreKit
-
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        let oneSignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: "c9b03431-8ca8-470c-ac7f-2b9c387e6d15",
+                                        handleNotificationAction: nil,
+                                        settings: oneSignalInitSettings)
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notifications: \(accepted)")
+        })
 //        let rootVC = LoginViewController()// your custom viewController. You can instantiate using nib too. UIViewController(nib name, bundle)
 //        
 //        let navController = UINavigationController(rootViewController: rootVC) // Integrate navigation controller programmatically if you want

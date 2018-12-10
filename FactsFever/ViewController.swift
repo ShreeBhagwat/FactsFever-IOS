@@ -56,13 +56,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         collectionView.backgroundColor = UIColor.black
 
       
-        if let btn = self.navigationItem.rightBarButtonItem {
-            btn.isEnabled = false
-            btn.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            btn.title = ""
-        }
+//        if let btn = self.navigationItem.rightBarButtonItem {
+//            btn.isEnabled = false
+//            btn.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//            btn.title = ""
+//        }
 
-        
+      
 
          }
 
@@ -72,6 +72,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             self.observeFactsFromFirebase()
+          
         }
 
     }

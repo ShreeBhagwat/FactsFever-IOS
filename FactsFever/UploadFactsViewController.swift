@@ -22,7 +22,7 @@ import SkeletonView
 
 class UploadFactsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     
-    private let categoriesOption = ["Science", "History","Love","Animals","Space","Language","Countries","Culture","Sports","Others"]
+    private let categoriesOption = ["Science", "History","Love","Animals","Space","Language","Countries","Culture","Sports","Humans","Monuments","Trees","Weird","Others"]
     var categories = ""
     @IBOutlet weak var imageViewOutlet: UIImageView!
     @IBOutlet weak var captionViewOutlet: UITextView!
@@ -91,7 +91,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
         captionViewOutlet.resignFirstResponder()
         uploadFactButtonOutlet.isEnabled = false
         uploadFactButtonOutlet.isHidden = true
-        if imageViewOutlet.image != nil {
+        if imageViewOutlet.image != nil && categories != "" {
             ProgressHUD.show()
             let imageToUpload = imageViewOutlet.image
             uploadImageToFirebaseStorage(image: imageToUpload!) { (imageUrl) in
