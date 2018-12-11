@@ -28,12 +28,12 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var captionViewOutlet: UITextView!
     @IBOutlet weak var selectImageButtonOutlet: UIButton!
     @IBOutlet weak var uploadFactButtonOutlet: UIButton!
-    
     @IBOutlet weak var categoriesPickerView: UIPickerView!
     var currentUserUId = Auth.auth().currentUser?.uid
     var likeUsers:[String] = []
     var keyboardAdjusted = false
     var lastKeyboardOffset = 0.0
+    var allUsers: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
         categoriesPickerView.dataSource = self
         uploadFactButtonOutlet.isEnabled = true
         setupView()
+        fetchUsers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +76,15 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
     }
     
 
-
+    func fetchUsers(){
+        let userDB = Database.database().reference().child("Users")
+        userDB.observe(.childAdded) { (snapshot) in
+            
+            let dictionary = snapshot.value as? [String: AnyObject]
+            let user = Users.init(dictionary: dictionary!)
+            self.allUsers.append(user.UserId)
+        }
+    }
     
     
     
@@ -95,20 +104,26 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
             ProgressHUD.show()
             let imageToUpload = imageViewOutlet.image
             uploadImageToFirebaseStorage(image: imageToUpload!) { (imageUrl) in
+                
                 if self.captionViewOutlet.text == nil || self.captionViewOutlet.text == ""{
                     self.captionViewOutlet.text = "FactsFever"
                     self.addToDatabase(imageUrl: imageUrl, caption: self.captionViewOutlet.text, image: imageToUpload!)
+//                     sendPushNotification(membersToPush: self.allUsers, category: self.categories)
                     ProgressHUD.dismiss()
                     self.uploadFactButtonOutlet.isEnabled = false
                 }else {
                     self.addToDatabase(imageUrl: imageUrl, caption: self.captionViewOutlet.text, image: imageToUpload!)
+//                     sendPushNotification(membersToPush: self.allUsers, category: self.categories)
                     ProgressHUD.dismiss()
                     self.uploadFactButtonOutlet.isEnabled = false
                 }
+               
+                 sendPushNotification(membersToPush: self.allUsers, category: self.categories)
             }
         }else {
         uploadFactButtonOutlet.isEnabled = true
         uploadFactButtonOutlet.isHidden = false
+           
         }
       
     }

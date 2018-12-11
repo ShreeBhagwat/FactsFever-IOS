@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     @IBOutlet weak var anonoLoginOutlet: UIButton!
     @IBOutlet weak var facebookButtonViewOutlet: UIView!
     @IBOutlet weak var annoButtonOutletView: UIView!
+    var userArray : [Users] = [Users]()
 //    var currentUser = Auth.auth().currentUser
     var handler: AuthStateDidChangeListenerHandle?
     
@@ -55,21 +56,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         handler = Auth.auth().addStateDidChangeListener({ (auth, user) in
             self.checkLoggedInUser()
         })
-        
-//        var user = UserDefaults.standard.object(forKey: "user")
-//        if (FBSDKAccessToken.current() != nil || user != nil)
-//        {
-//            print("not nil")
-//            // User is already logged in, do work such as go to next view controller.
-//            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
-//            present(VC, animated: true, completion: nil)
-//
-//        }
-//        else
-//        {
-//            print("nil")
-//
-//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,6 +70,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             if Auth.auth().currentUser == nil {
                 
             } else {
+                let uid = Auth.auth().currentUser?.uid
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLoginNotification"), object: nil, userInfo: ["userId": uid])
                 let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
                 self.present(VC, animated: true, completion: nil)
                 return
@@ -110,9 +98,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                     ProgressHUD.showError("Error Login Into Firebase try Again")
                     return
                 }
+                let userId = authResult?.user.uid
                 ProgressHUD.showSuccess("Successfully Signed In ")
-                let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
-                self.present(VC, animated: true, completion: nil)
+                self.registerUserIntoDatabaseWithUidAndPushId(uid: userId!, pushId: "")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLoginNotification"), object: nil, userInfo: ["userId": userId])
+
                 return
         }
         
@@ -134,8 +124,22 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             print("UserLogged in Anaonymously with uid " )
             let storeToDefaults = UserDefaults.standard.set(uid, forKey: "user")
             ProgressHUD.dismiss()
-            let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
-            self.present(VC, animated: true, completion: nil)
+            self.registerUserIntoDatabaseWithUidAndPushId(uid: uid!, pushId: "")
+             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLoginNotification"), object: nil, userInfo: ["userId": uid])
+            return
+        }
+    }
+    
+    private func registerUserIntoDatabaseWithUidAndPushId(uid: String, pushId: String){
+        let userDb = Database.database().reference().child("Users").child(uid)
+        let userDictionary = ["UserId": uid,"pushId": pushId] as [String: AnyObject]
+        
+        userDb.updateChildValues(userDictionary) { (err, userDB) in
+            if err != nil {
+                print(err as Any)
+                return
+            }
+            let users = Users(dictionary: userDictionary)
         }
     }
     

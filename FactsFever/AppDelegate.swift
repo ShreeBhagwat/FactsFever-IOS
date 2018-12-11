@@ -10,32 +10,66 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import OneSignal
+import PushKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate {
+    func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
+        
+    }
+    
 
     var window: UIWindow?
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        let oneSignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
-        OneSignal.initWithLaunchOptions(launchOptions,
-                                        appId: "c9b03431-8ca8-470c-ac7f-2b9c387e6d15",
-                                        handleNotificationAction: nil,
-                                        settings: oneSignalInitSettings)
-        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        
+        
+        
+        func userDidLogin(userId: String){
+            print("onesignal started.................")
+            self.startOneSignal()
+        }
+    
+        NotificationCenter.default.addObserver(forName: Notification.Name("UserDidLoginNotification"), object: nil, queue: nil) { (note) in
+            let userId = note.userInfo!["userId"] as? String
+            UserDefaults.standard.set(userId, forKey: "userId")
+            UserDefaults.standard.synchronize()
+            print("user logged in ..............................................\(userId)")
+            userDidLogin(userId: userId!)
+        }
+    
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted, error) in
+            })
+            DispatchQueue.main.async {
+               application.registerForRemoteNotifications()
+            }
+            
+        } else {
+            let types: UIUserNotificationType = [.alert, .badge, .sound]
+            let settings = UIUserNotificationSettings(types: types, categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
+        
+//        let oneSignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+//        OneSignal.initWithLaunchOptions(launchOptions,
+//                                        appId: "c9b03431-8ca8-470c-ac7f-2b9c387e6d15",
+//                                        handleNotificationAction: nil,
+//                                        settings: oneSignalInitSettings)
+//        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        
+          OneSignal.initWithLaunchOptions(launchOptions, appId: "c9b03431-8ca8-470c-ac7f-2b9c387e6d15", handleNotificationReceived: nil, handleNotificationAction: nil, settings: [kOSSettingsKeyInAppAlerts : false])
         
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             print("User accepted notifications: \(accepted)")
         })
-//        let rootVC = LoginViewController()// your custom viewController. You can instantiate using nib too. UIViewController(nib name, bundle)
-//        
-//        let navController = UINavigationController(rootViewController: rootVC) // Integrate navigation controller programmatically if you want
-//        window?.rootViewController = navController
+
 
         return true
     }
@@ -71,8 +105,78 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        //        self.push.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+        
+        Auth.auth().setAPNSToken(deviceToken, type:AuthAPNSTokenType.prod)
+    }
+    
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("rem not with fetch")
+        
+        let firebaseAuth = Auth.auth()
+        if (firebaseAuth.canHandleNotification(userInfo)){
+            return
+        } else {
 
+        }
+        
+    }
 
+    // MARK: OneSignal
+    
+    func startOneSignal(){
+        let status: OSPermissionSubscriptionState = OneSignal.getPermissionSubscriptionState()
+        let userID = status.subscriptionStatus.userId
+        let pushToken = status.subscriptionStatus.pushToken
 
+        if pushToken != nil {
+            if let playerID = userID {
+                UserDefaults.standard.set(playerID, forKey: "pushID")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "pushID")
+            }
+            UserDefaults.standard.synchronize()
+        }
+         //Update OneSignal ID
+        updateOneSignalId()
+    }
+
+    func updateOneSignalId(){
+        if Auth.auth().currentUser != nil {
+            if let pushId = UserDefaults.standard.string(forKey: "pushID") {
+                setOneSignalId(pushId: pushId)
+            } else {
+                removeOneSignalId()
+            }
+//
+        }
+
+    }
+
+    func setOneSignalId(pushId: String){
+        updateCurrentUserOneSignalId(newId: pushId)
+//        print(".................................... \(pushId)")
+    }
+
+    func removeOneSignalId(){
+        updateCurrentUserOneSignalId(newId: "")
+    }
+
+    func updateCurrentUserOneSignalId(newId: String){
+        let uid = Auth.auth().currentUser?.uid
+        let userDB = Database.database().reference().child("Users").child(uid!)
+        userDB.updateChildValues(["pushId": newId])
+        
+        
+    }
+    
+    func GoToApp(){
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLoginNotification"), object: nil, userInfo: ["userId": Auth.auth().currentUser?.uid])
+    }
+    
 }
 

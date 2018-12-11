@@ -9,7 +9,14 @@
 import Foundation
 import Firebase
 
-class Users: NSObject {
-    @objc  var UserId:String?
-    @objc var pushId:String?
+class Users {
+    var UserId:String!
+    var pushId:String!
+    
+    
+    init(dictionary: [String: AnyObject]) {
+        UserId = dictionary["UserId"] as? String
+        pushId = dictionary["pushId"] as? String
+    }
+    
 }

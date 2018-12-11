@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A124A2021BE9E1B00EBC049 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A124A1F21BE9E1B00EBC049 /* PushNotification.swift */; };
 		7A2C20E321A7C9D400E92641 /* NewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */; };
 		7A81120221B25568002058C5 /* logo1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A81120121B25568002058C5 /* logo1.gif */; };
 		7A81120421B28B67002058C5 /* UploadFactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81120321B28B67002058C5 /* UploadFactsViewController.swift */; };
@@ -61,6 +62,7 @@
 		3E21E7D194752012E286A243 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		507F0074309CAA35763752CB /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		58F1A412C54C959DF2956BDD /* Pods-FactsFever.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FactsFever.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FactsFever/Pods-FactsFever.debug.xcconfig"; sourceTree = "<group>"; };
+		7A124A1F21BE9E1B00EBC049 /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A81120121B25568002058C5 /* logo1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo1.gif; sourceTree = "<group>"; };
 		7A81120321B28B67002058C5 /* UploadFactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFactsViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				D0D9D4F8216E07A200C6EBFB /* SetttingsTableViewController.swift */,
 				D0B7CD8021704B3400563707 /* AboutTableViewController.swift */,
 				D0B7CD8221704F2200563707 /* AboutDeveloperViewController.swift */,
+				7A124A1F21BE9E1B00EBC049 /* PushNotification.swift */,
 				D067725F216CC4F100D4C774 /* Main.storyboard */,
 				D0677262216CC4F500D4C774 /* Assets.xcassets */,
 				D0677264216CC4F500D4C774 /* LaunchScreen.storyboard */,
@@ -267,6 +270,9 @@
 					7AD3313321BBB290005E24C2 = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -276,6 +282,9 @@
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -451,6 +460,7 @@
 				7AF9D90C21A57B8C00AA092F /* FactsFeverLayout.swift in Sources */,
 				D0B7CD8121704B3400563707 /* AboutTableViewController.swift in Sources */,
 				7AFDA63C218353CB00263F82 /* Facts.swift in Sources */,
+				7A124A2021BE9E1B00EBC049 /* PushNotification.swift in Sources */,
 				7A2C20E321A7C9D400E92641 /* NewCellCollectionViewCell.swift in Sources */,
 				7A81120421B28B67002058C5 /* UploadFactsViewController.swift in Sources */,
 			);
