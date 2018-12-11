@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7A124A2021BE9E1B00EBC049 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A124A1F21BE9E1B00EBC049 /* PushNotification.swift */; };
+		7A17E96D21BFDF8E00BA3A12 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A17E96C21BFDF8E00BA3A12 /* PushKit.framework */; };
 		7A2C20E321A7C9D400E92641 /* NewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */; };
 		7A81120221B25568002058C5 /* logo1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A81120121B25568002058C5 /* logo1.gif */; };
 		7A81120421B28B67002058C5 /* UploadFactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81120321B28B67002058C5 /* UploadFactsViewController.swift */; };
@@ -63,6 +64,7 @@
 		507F0074309CAA35763752CB /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		58F1A412C54C959DF2956BDD /* Pods-FactsFever.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FactsFever.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FactsFever/Pods-FactsFever.debug.xcconfig"; sourceTree = "<group>"; };
 		7A124A1F21BE9E1B00EBC049 /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
+		7A17E96C21BFDF8E00BA3A12 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A81120121B25568002058C5 /* logo1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo1.gif; sourceTree = "<group>"; };
 		7A81120321B28B67002058C5 /* UploadFactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFactsViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A17E96D21BFDF8E00BA3A12 /* PushKit.framework in Frameworks */,
 				EDEBB4B01B1CBBC0D554F211 /* Pods_FactsFever.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +155,7 @@
 		860933BC0E3FD60C702EE511 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A17E96C21BFDF8E00BA3A12 /* PushKit.framework */,
 				ACF27C2E873ED375417E5C89 /* Pods_FactsFever.framework */,
 				CCC76EAE9D45A153C02CCDE5 /* Pods_OneSignalNotificationServiceExtension.framework */,
 			);

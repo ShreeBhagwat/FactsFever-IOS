@@ -43,6 +43,7 @@
 	<string>Allow FactsFever To Access Photos To Save Photos</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
@@ -64,5 +65,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>OneSignal_disable_badge_clearing</key>
+	<false/>
 </dict>
 </plist>

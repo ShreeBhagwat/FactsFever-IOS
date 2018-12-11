@@ -7,6 +7,7 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.com.shreeBhagwat.FactsFever</string>
+		<string>group.shreeBhagwat.FactsFever.onesignal</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
