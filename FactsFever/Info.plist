@@ -65,7 +65,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>OneSignal_disable_badge_clearing</key>
-	<false/>
 </dict>
 </plist>

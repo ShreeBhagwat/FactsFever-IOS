@@ -61,14 +61,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate {
                                         handleNotificationAction: nil,
                                         settings: oneSignalInitSettings)
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
-        
-//          OneSignal.initWithLaunchOptions(launchOptions, appId: "c9b03431-8ca8-470c-ac7f-2b9c387e6d15", handleNotificationReceived: nil, handleNotificationAction: nil, settings: [kOSSettingsKeyInAppAlerts : false])
+
         
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             print("User accepted notifications: \(accepted)")
         })
-
-
+        
+//        UIApplication.shared.applicationIconBadgeNumber = 0
         return true
     }
     
@@ -99,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-  
+        
         FBSDKAppEvents.activateApp()
     }
 

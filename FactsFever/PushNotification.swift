@@ -19,8 +19,8 @@ func sendPushNotification(membersToPush: [String], category: String){
         
         let currentUser = Auth.auth().currentUser
         OneSignal.postNotification(["contents" : ["en" : " Amazing New Facts uploaded in \(category)"],
-                                    "ios_badgeType" : "Increase",
                                     "ios_badgeCount" : 1,
+                                    "ios_badgeType" : "Increase",
                                     "include_player_ids" : userPushIds])
        
     }
