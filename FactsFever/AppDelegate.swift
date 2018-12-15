@@ -11,11 +11,17 @@ import Firebase
 import FBSDKCoreKit
 import OneSignal
 import PushKit
+import GoogleSignIn
+import ProgressHUD
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
+//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+//
+//    }
+//
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
-        
+
     }
     
 
@@ -25,11 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+//        GIDSignIn.sharedInstance()?.clientID = "381776864970-lcii1cqlamngbhc34a1n4rli2sivb1f3.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
+//        GIDSignIn.sharedInstance()?.delegate = self
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
-        
-        
-        
+
+
         func userDidLogin(userId: String){
             self.startOneSignal()
         }
@@ -70,14 +77,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate {
 //        UIApplication.shared.applicationIconBadgeNumber = 0
         return true
     }
+    // FaceBook login
+//    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//
+//        let handled: Bool = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+//        // Add any custom logic here.
+//        return handled
+//    }
     
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        let handled: Bool = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
-        // Add any custom logic here.
-        return handled
+    // Google Sign In Login.
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
+        -> Bool {
+            return GIDSignIn.sharedInstance().handle(url,
+                                                     sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                                                     annotation: [:])
     }
-    
     
 
     func applicationWillResignActive(_ application: UIApplication) {

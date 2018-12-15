@@ -12,9 +12,11 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import FirebaseAuth
 import ProgressHUD
+import GoogleSignIn
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
-    
+
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate{
+
     @IBOutlet weak var anonoLoginOutlet: UIButton!
     @IBOutlet weak var facebookButtonViewOutlet: UIView!
     @IBOutlet weak var annoButtonOutletView: UIView!
@@ -25,6 +27,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 //        tableView.delegate = self as! UITableViewDelegate
+        GIDSignIn.sharedInstance().delegate = self
+//        GIDSignIn.sharedInstance().uiDelegate = self
+//        GIDSignInDelegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
+//        GIDSignIn.sharedInstance()?.signIn()
+        
+        
+        
          setupLoginButton()
         self.navigationItem.hidesBackButton = true
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
@@ -43,16 +53,30 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         return loginView
     }()
     
+    lazy var GoogleSinginButton: GIDSignInButton = {
+        let button = GIDSignInButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     func setupfbButton(){
-        facebookButtonViewOutlet.addSubview(loginView)
-        loginView.leftAnchor.constraint(equalTo: facebookButtonViewOutlet.leftAnchor).isActive = true
-        loginView.rightAnchor.constraint(equalTo: facebookButtonViewOutlet.rightAnchor).isActive = true
-        loginView.topAnchor.constraint(equalTo: facebookButtonViewOutlet.topAnchor).isActive = true
-        loginView.bottomAnchor.constraint(equalTo: facebookButtonViewOutlet.bottomAnchor).isActive = true
+//        facebookButtonViewOutlet.addSubview(loginView)
+//        loginView.leftAnchor.constraint(equalTo: facebookButtonViewOutlet.leftAnchor).isActive = true
+//        loginView.rightAnchor.constraint(equalTo: facebookButtonViewOutlet.rightAnchor).isActive = true
+//        loginView.topAnchor.constraint(equalTo: facebookButtonViewOutlet.topAnchor).isActive = true
+//        loginView.bottomAnchor.constraint(equalTo: facebookButtonViewOutlet.bottomAnchor).isActive = true
+        
+        facebookButtonViewOutlet.addSubview(GoogleSinginButton)
+        GoogleSinginButton.leftAnchor.constraint(equalTo: facebookButtonViewOutlet.leftAnchor).isActive = true
+        GoogleSinginButton.rightAnchor.constraint(equalTo: facebookButtonViewOutlet.rightAnchor).isActive = true
+        GoogleSinginButton.topAnchor.constraint(equalTo: facebookButtonViewOutlet.topAnchor).isActive = true
+        GoogleSinginButton.bottomAnchor.constraint(equalTo: facebookButtonViewOutlet.bottomAnchor).isActive = true
             }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        
         handler = Auth.auth().addStateDidChangeListener({ (auth, user) in
             self.checkLoggedInUser()
         })
@@ -81,6 +105,25 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
      
     }
     
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        ProgressHUD.show()
+        if let error = error {
+            ProgressHUD.showError("Error Signin in")
+        }
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+            ProgressHUD.show()
+            if error != nil {
+                ProgressHUD.showError("Google Singin Error Try again !")
+            }
+            let userId = authResult?.user.uid
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLoginNotification"), object: nil, userInfo: ["userId": userId])
+            self.registerUserIntoDatabaseWithUidAndPushId(uid: userId!, pushId: "")
+            ProgressHUD.showSuccess("User Signed In sucessfully")
+        }
+    }
+    
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         //Todo
         FBSDKAccessToken.current() == nil
@@ -100,6 +143,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                 }
                 let userId = authResult?.user.uid
                 ProgressHUD.showSuccess("Successfully Signed In ")
+                
+//                let pushid = UserDefaults.standard.string(forKey: "pushID")
                 self.registerUserIntoDatabaseWithUidAndPushId(uid: userId!, pushId: "")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLoginNotification"), object: nil, userInfo: ["userId": userId])
 

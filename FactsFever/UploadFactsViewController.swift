@@ -82,7 +82,12 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
             
             let dictionary = snapshot.value as? [String: AnyObject]
             let user = Users.init(dictionary: dictionary!)
-            self.allUsers.append(user.UserId)
+            if user.UserId == nil {
+                return
+            }else {
+                 self.allUsers.append(user.UserId)
+            }
+           
         }
     }
     
@@ -148,8 +153,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
         
         if let selectedImage = selectedImageFromPicker {
             self.imageViewOutlet.image = selectedImage
-//            uploadImageToFirebaseStorage(image: selectedImage) { (imageUrl) in
-//            }
+
             
             
         }

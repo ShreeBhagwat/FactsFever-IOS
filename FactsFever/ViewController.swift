@@ -40,6 +40,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        if factsArray.isEmpty {
+//            FactsFeverCustomLoader.instance.hideLoader()
+//        } else {
+//             FactsFeverCustomLoader.instance.showLoader()
+//        }
      FactsFeverCustomLoader.instance.showLoader()
         // Do any additional setup after loading the view, typically from a nib.
         if #available(iOS 10.0, *) {
@@ -61,7 +66,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //            btn.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 //            btn.title = ""
 //        }
-
+   
       
 
          }
@@ -72,7 +77,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             self.observeFactsFromFirebase()
-          
+//            if self.factsArray.count == 0 {
+//                FactsFeverCustomLoader.instance.hideLoader()
+//            }
         }
 
     }
