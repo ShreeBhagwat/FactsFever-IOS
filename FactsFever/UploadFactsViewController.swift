@@ -22,7 +22,7 @@ import SkeletonView
 
 class UploadFactsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     
-    private let categoriesOption = ["Science", "History","Love","Animals","Space","Language","Countries","Culture","Sports","Humans","Monuments","Trees","Weird","Others"]
+    private let categoriesOption = ["Science","Education","Technology","Space","History","Love","Food","Human","Animals","Sports","Language","Culture","Countries","Monuments","Tress","Weird","Random","Other",]
     var categories = ""
     @IBOutlet weak var imageViewOutlet: UIImageView!
     @IBOutlet weak var captionViewOutlet: UITextView!
@@ -190,7 +190,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
         let Id = NSUUID().uuidString
         likeUsers.append(currentUserUId!)
         let timeStamp = NSNumber(value: Int(NSDate().timeIntervalSince1970))
-        let factsDB = Database.database().reference().child("Facts")
+        let factsDB = Database.database().reference().child("Facts").child(categories)
         let factsDictionary = ["factsLink": imageUrl, "likes": likeUsers, "factsId": Id, "timeStamp": timeStamp, "captionText": caption, "imageWidth": image.size.width, "imageHeight": image.size.height, "categories": categories] as [String : Any]
         factsDB.child(Id).setValue(factsDictionary){
             (error, reference) in

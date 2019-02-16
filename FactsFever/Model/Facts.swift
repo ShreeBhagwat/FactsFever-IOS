@@ -37,7 +37,7 @@ class Facts{
         } else {
             factsLikes.removeAll{$0 == currentUser}
         }
-        let factsRef = Database.database().reference().child("Facts").child(factsId).child("likes")
+        let factsRef = Database.database().reference().child("Facts").child(categories).child(factsId).child("likes")
 
         factsRef.setValue(factsLikes)
         

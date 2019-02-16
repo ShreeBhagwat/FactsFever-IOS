@@ -8,14 +8,12 @@
 
 import UIKit
 import Firebase
-import FBSDKCoreKit
-import FBSDKLoginKit
 import FirebaseAuth
 import ProgressHUD
 import GoogleSignIn
 
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate{
+class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
 
     @IBOutlet weak var anonoLoginOutlet: UIButton!
     @IBOutlet weak var facebookButtonViewOutlet: UIView!
@@ -45,13 +43,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
     }
     
 
-    lazy var loginView: FBSDKLoginButton = {
-        let loginView = FBSDKLoginButton()
-        loginView.translatesAutoresizingMaskIntoConstraints = false
-        loginView.readPermissions = ["public_profile", "email"]
-        loginView.delegate = self
-        return loginView
-    }()
+    //    lazy var loginView: FBSDKLoginButton = {
+    //        let loginView = FBSDKLoginButton()
+    //        loginView.translatesAutoresizingMaskIntoConstraints = false
+    //        loginView.readPermissions = ["public_profile", "email"]
+    //        loginView.delegate = self
+    //        return loginView
+    //    }()
     
     lazy var GoogleSinginButton: GIDSignInButton = {
         let button = GIDSignInButton()
@@ -124,36 +122,36 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
         }
     }
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        //Todo
-        FBSDKAccessToken.current() == nil
-        if let error = error {
-                    print(error.localizedDescription)
-                    return
-        } else if result.isCancelled {
-            ProgressHUD.showError("Cancled By User, Try Again")
-            return
-        } else {
-            ProgressHUD.show("Siging In")
-            let credentials = FacebookAuthProvider.credential(withAccessToken: (FBSDKAccessToken.current()?.tokenString)!)
-            Auth.auth().signInAndRetrieveData(with: credentials) { (authResult, error) in
-                if  let error = error {
-                    ProgressHUD.showError("Error Login Into Firebase try Again")
-                    return
-                }
-                let userId = authResult?.user.uid
-                ProgressHUD.showSuccess("Successfully Signed In ")
-                
-//                let pushid = UserDefaults.standard.string(forKey: "pushID")
-                self.registerUserIntoDatabaseWithUidAndPushId(uid: userId!, pushId: "")
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLoginNotification"), object: nil, userInfo: ["userId": userId])
+//    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+//        //Todo
+//        FBSDKAccessToken.current() == nil
+//        if let error = error {
+//                    print(error.localizedDescription)
+//                    return
+//        } else if result.isCancelled {
+//            ProgressHUD.showError("Cancled By User, Try Again")
+//            return
+//        } else {
+//            ProgressHUD.show("Siging In")
+//            let credentials = FacebookAuthProvider.credential(withAccessToken: (FBSDKAccessToken.current()?.tokenString)!)
+//            Auth.auth().signInAndRetrieveData(with: credentials) { (authResult, error) in
+//                if  let error = error {
+//                    ProgressHUD.showError("Error Login Into Firebase try Again")
+//                    return
+//                }
+//                let userId = authResult?.user.uid
+//                ProgressHUD.showSuccess("Successfully Signed In ")
+//
+////                let pushid = UserDefaults.standard.string(forKey: "pushID")
+//                self.registerUserIntoDatabaseWithUidAndPushId(uid: userId!, pushId: "")
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLoginNotification"), object: nil, userInfo: ["userId": userId])
+//
+//                return
+//        }
+//
+//    }
 
-                return
-        }
-        
-    }
-
-}
+//}
     
     @IBAction func anonoLoginButtonPressed(_ sender: Any) {
         ProgressHUD.show()
@@ -206,10 +204,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
         annoButtonOutletView.layer.shadowOpacity = 0.8
     }
     
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        //User Did Logged out
-        
-    }
+//    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+//        //User Did Logged out
+//        
+//    }
     
     
 }

@@ -13,13 +13,16 @@
 		7A17E97921BFF4F500BA3A12 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A17E97221BFF4F500BA3A12 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A17E97D21BFF57500BA3A12 /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC76EAE9D45A153C02CCDE5 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		7A2C20E321A7C9D400E92641 /* NewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */; };
-		7A81120221B25568002058C5 /* logo1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A81120121B25568002058C5 /* logo1.gif */; };
 		7A81120421B28B67002058C5 /* UploadFactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81120321B28B67002058C5 /* UploadFactsViewController.swift */; };
 		7A9CFCF621BE22B300EF010E /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CFCF521BE22B300EF010E /* Users.swift */; };
 		7AA805F021B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA805EF21B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift */; };
 		7AA805F221B035240022A2B3 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA805F121B035240022A2B3 /* UIImage+Gif.swift */; };
+		7ABF419B221719E800B6CEBF /* SliderMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABF419A221719E800B6CEBF /* SliderMenuTableViewController.swift */; };
+		7ABF419D2217275F00B6CEBF /* logo1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7ABF419C2217275E00B6CEBF /* logo1.gif */; };
 		7AC1F23221B54F770039398F /* ads.html in Resources */ = {isa = PBXBuildFile; fileRef = 7AC1F23121B54F770039398F /* ads.html */; };
 		7AC1F23421B54FB80039398F /* WhyWeDontSellAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC1F23321B54FB80039398F /* WhyWeDontSellAdsViewController.swift */; };
+		7AF879132217C00400976E85 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF879122217C00400976E85 /* SlideInTransition.swift */; };
+		7AF8791722187EA400976E85 /* QuizMainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF8791622187EA400976E85 /* QuizMainCollectionViewController.swift */; };
 		7AF9D90C21A57B8C00AA092F /* FactsFeverLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF9D90B21A57B8C00AA092F /* FactsFeverLayout.swift */; };
 		7AFDA63C218353CB00263F82 /* Facts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDA63B218353CB00263F82 /* Facts.swift */; };
 		D067725C216CC4F100D4C774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D067725B216CC4F100D4C774 /* AppDelegate.swift */; };
@@ -70,13 +73,16 @@
 		7A17E97621BFF4F500BA3A12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A17E97E21BFF5B100BA3A12 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCellCollectionViewCell.swift; sourceTree = "<group>"; };
-		7A81120121B25568002058C5 /* logo1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo1.gif; sourceTree = "<group>"; };
 		7A81120321B28B67002058C5 /* UploadFactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFactsViewController.swift; sourceTree = "<group>"; };
 		7A9CFCF521BE22B300EF010E /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		7AA805EF21B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsFeverActivityIndicator.swift; sourceTree = "<group>"; };
 		7AA805F121B035240022A2B3 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		7ABF419A221719E800B6CEBF /* SliderMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuTableViewController.swift; sourceTree = "<group>"; };
+		7ABF419C2217275E00B6CEBF /* logo1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo1.gif; sourceTree = "<group>"; };
 		7AC1F23121B54F770039398F /* ads.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ads.html; sourceTree = "<group>"; };
 		7AC1F23321B54FB80039398F /* WhyWeDontSellAdsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhyWeDontSellAdsViewController.swift; sourceTree = "<group>"; };
+		7AF879122217C00400976E85 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		7AF8791622187EA400976E85 /* QuizMainCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMainCollectionViewController.swift; sourceTree = "<group>"; };
 		7AF9D90B21A57B8C00AA092F /* FactsFeverLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsFeverLayout.swift; sourceTree = "<group>"; };
 		7AFDA63B218353CB00263F82 /* Facts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facts.swift; sourceTree = "<group>"; };
 		ACF27C2E873ED375417E5C89 /* Pods_FactsFever.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FactsFever.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +146,14 @@
 			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
+		7AF8791522187E8500976E85 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				7AF8791622187EA400976E85 /* QuizMainCollectionViewController.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
 		7AFDA63D218353D100263F82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,9 +200,12 @@
 				D0B7CD842170C53900563707 /* FactsFever.entitlements */,
 				D0D9D4EA216CD38D00C6EBFB /* Views */,
 				D067725B216CC4F100D4C774 /* AppDelegate.swift */,
+				7AF8791522187E8500976E85 /* Quiz */,
 				7AFDA63D218353D100263F82 /* Model */,
 				D0D9D4F6216DB68000C6EBFB /* LoginViewController.swift */,
 				D067725D216CC4F100D4C774 /* ViewController.swift */,
+				7ABF419A221719E800B6CEBF /* SliderMenuTableViewController.swift */,
+				7AF879122217C00400976E85 /* SlideInTransition.swift */,
 				7A81120321B28B67002058C5 /* UploadFactsViewController.swift */,
 				7AC1F23321B54FB80039398F /* WhyWeDontSellAdsViewController.swift */,
 				D0D9D4F8216E07A200C6EBFB /* SetttingsTableViewController.swift */,
@@ -198,7 +215,7 @@
 				D067725F216CC4F100D4C774 /* Main.storyboard */,
 				D0677262216CC4F500D4C774 /* Assets.xcassets */,
 				D0677264216CC4F500D4C774 /* LaunchScreen.storyboard */,
-				7A81120121B25568002058C5 /* logo1.gif */,
+				7ABF419C2217275E00B6CEBF /* logo1.gif */,
 				D0677267216CC4F500D4C774 /* Info.plist */,
 				D0D9D4F4216CFA9800C6EBFB /* GoogleService-Info.plist */,
 				7AC1F23121B54F770039398F /* ads.html */,
@@ -337,8 +354,8 @@
 			files = (
 				D0677266216CC4F500D4C774 /* LaunchScreen.storyboard in Resources */,
 				7AC1F23221B54F770039398F /* ads.html in Resources */,
+				7ABF419D2217275F00B6CEBF /* logo1.gif in Resources */,
 				D0D9D4F5216CFA9800C6EBFB /* GoogleService-Info.plist in Resources */,
-				7A81120221B25568002058C5 /* logo1.gif in Resources */,
 				D0677263216CC4F500D4C774 /* Assets.xcassets in Resources */,
 				D0677261216CC4F100D4C774 /* Main.storyboard in Resources */,
 			);
@@ -354,20 +371,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FactsFever/Pods-FactsFever-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/Gemini/Gemini.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IDMPhotoBrowser/IDMPhotoBrowser.framework",
-				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/PCLBlurEffectAlert/PCLBlurEffectAlert.framework",
 				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -378,20 +387,12 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gemini.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IDMPhotoBrowser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PCLBlurEffectAlert.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -484,9 +485,12 @@
 			files = (
 				D067725E216CC4F100D4C774 /* ViewController.swift in Sources */,
 				D0D9D4F9216E07A200C6EBFB /* SetttingsTableViewController.swift in Sources */,
+				7AF879132217C00400976E85 /* SlideInTransition.swift in Sources */,
 				D067725C216CC4F100D4C774 /* AppDelegate.swift in Sources */,
 				7AC1F23421B54FB80039398F /* WhyWeDontSellAdsViewController.swift in Sources */,
 				7AA805F221B035240022A2B3 /* UIImage+Gif.swift in Sources */,
+				7AF8791722187EA400976E85 /* QuizMainCollectionViewController.swift in Sources */,
+				7ABF419B221719E800B6CEBF /* SliderMenuTableViewController.swift in Sources */,
 				D0B7CD8321704F2300563707 /* AboutDeveloperViewController.swift in Sources */,
 				7A9CFCF621BE22B300EF010E /* Users.swift in Sources */,
 				D0D9D4F7216DB68000C6EBFB /* LoginViewController.swift in Sources */,

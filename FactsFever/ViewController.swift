@@ -18,7 +18,7 @@ import ProgressHUD
 import IDMPhotoBrowser
 import ChameleonFramework
 import PCLBlurEffectAlert
-import SkeletonView
+
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK: Outlets
@@ -26,6 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var uploadButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var menuButtonOutlet: UIBarButtonItem!
     //MARK:- Properties
     
     var images: [UIImage] = []
@@ -45,7 +46,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //        } else {
 //             FactsFeverCustomLoader.instance.showLoader()
 //        }
-     FactsFeverCustomLoader.instance.showLoader()
+//     FactsFeverCustomLoader.instance.showLoader()
         // Do any additional setup after loading the view, typically from a nib.
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
@@ -76,7 +77,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-            self.observeFactsFromFirebase()
+            self.observeFactsFromFirebase(category: "Science")
 //            if self.factsArray.count == 0 {
 //                FactsFeverCustomLoader.instance.hideLoader()
 //            }
@@ -85,17 +86,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @objc func refreshView(){
-        observeFactsFromFirebase()
+//        observeFactsFromFirebase()
     }
+    
+    let transition = SlideInTransition()
 
-
-
+    @IBAction func menuButtonTapped(_ sender: UIBarButtonItem) {
+        guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? SliderMenuTableViewController else {return}
+        menuViewController.didTappedMenuType = {menuType in
+            print(menuType)
+            self.changeCategories(menuType)
+        }
+        menuViewController.modalPresentationStyle = .overCurrentContext
+        menuViewController.transitioningDelegate = self
+        present(menuViewController, animated: true, completion: nil)
+    }
+    
+    func changeCategories(_ menuType: MenuType){
+//        observeFactsFromFirebase()
+        let category = "\(menuType)"
+        observeFactsFromFirebase(category: category)
+    }
 
    
     var imageUrl: [String] = []
-    func observeFactsFromFirebase(){
+    func observeFactsFromFirebase(category: String){
         
-        let factsDB = Database.database().reference().child("Facts").queryOrdered(byChild: "timeStamp")
+        let factsDB = Database.database().reference().child("Facts").child(category).queryOrdered(byChild: "timeStamp")
         factsDB.observe(.value){ (snapshot) in
             
             self.factsArray = []
@@ -318,6 +335,17 @@ extension ViewController: FactsFeverLayoutDelegate {
     }
     
     
+}
+extension ViewController: UIViewControllerTransitioningDelegate{
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = true
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = false
+        return transition
+    }
 }
 
 

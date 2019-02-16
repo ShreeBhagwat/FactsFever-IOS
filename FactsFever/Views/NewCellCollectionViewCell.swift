@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import ChameleonFramework
-import SkeletonView
 import ProgressHUD
 
 class NewCellCollectionViewCell: UICollectionViewCell {
@@ -50,7 +49,7 @@ class NewCellCollectionViewCell: UICollectionViewCell {
        
         captionTextView.text = fact.captionText
 //        ProgressHUD.dismiss()
-        let factsRef = Database.database().reference().child("Facts").child(facts.factsId).child("likes")
+        let factsRef = Database.database().reference().child("Facts").child(fact.categories).child(facts.factsId).child("likes")
         factsRef.observeSingleEvent(of: .value) { (snapshot) in
             if fact.factsLikes.contains(self.currentUser!){
                 self.likeButton.isSelected = true
@@ -87,7 +86,7 @@ class NewCellCollectionViewCell: UICollectionViewCell {
     
     @IBAction func likeButtonPressed(_ sender: Any) {
         
-            let factsRef = Database.database().reference().child("Facts").child(facts.factsId).child("likes")
+            let factsRef = Database.database().reference().child("Facts").child(facts.categories).child(facts.factsId).child("likes")
             likeButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
 
             UIView.animate(withDuration: 3.0,

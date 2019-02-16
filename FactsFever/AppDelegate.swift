@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FBSDKCoreKit
 import OneSignal
 import PushKit
 import GoogleSignIn
@@ -34,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
 //        GIDSignIn.sharedInstance()?.clientID = "381776864970-lcii1cqlamngbhc34a1n4rli2sivb1f3.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
 //        GIDSignIn.sharedInstance()?.delegate = self
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
 
         func userDidLogin(userId: String){
@@ -113,7 +111,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         
-        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
