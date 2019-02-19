@@ -704,14 +704,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IRG-CK-NgJ">
-                                                    <rect key="frame" x="16" y="53" width="382" height="2"/>
+                                                    <rect key="frame" x="16" y="52.666666666666664" width="382" height="2"/>
                                                     <color key="backgroundColor" red="1" green="0.95074576529999999" blue="0.21793381580000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="OxH-fe-O7o"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Countries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2or-w3-S6X">
-                                                    <rect key="frame" x="88" y="14.666666666666664" width="138" height="28"/>
+                                                    <rect key="frame" x="76" y="14.333333333333336" width="138" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="JFk-Fu-nqD"/>
                                                         <constraint firstAttribute="width" constant="138" id="TQc-og-hFf"/>
@@ -739,14 +739,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77B-RH-9Up">
-                                                    <rect key="frame" x="16" y="53" width="382" height="2"/>
+                                                    <rect key="frame" x="16" y="52.666666666666664" width="382" height="2"/>
                                                     <color key="backgroundColor" red="1" green="0.95074576529999999" blue="0.21793381580000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="gXP-8Y-sHk"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monuments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84c-g8-MRH">
-                                                    <rect key="frame" x="88" y="14.666666666666664" width="138" height="28"/>
+                                                    <rect key="frame" x="76" y="14.333333333333336" width="138" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="0m2-YX-WeT"/>
                                                         <constraint firstAttribute="width" constant="138" id="cBK-fQ-xnl"/>
@@ -774,14 +774,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYx-E1-g3p">
-                                                    <rect key="frame" x="16" y="53" width="382" height="2"/>
+                                                    <rect key="frame" x="16" y="52.666666666666664" width="382" height="2"/>
                                                     <color key="backgroundColor" red="1" green="0.95074576529999999" blue="0.21793381580000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="qfR-TF-7Ab"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5G-4z-byU">
-                                                    <rect key="frame" x="88" y="14.666666666666664" width="138" height="28"/>
+                                                    <rect key="frame" x="76" y="14.333333333333336" width="138" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="2Rc-qJ-xuy"/>
                                                         <constraint firstAttribute="width" constant="138" id="6xN-pm-qCO"/>
@@ -1848,14 +1848,22 @@
                                                     <color key="textColor" red="1" green="0.95074576529999999" blue="0.21793381580000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cma-F1-feh">
+                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.01342590339" green="0.069231174889999997" blue="0.14676401019999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="1A8-Hk-Zab"/>
+                                                <constraint firstItem="Cma-F1-feh" firstAttribute="leading" secondItem="F1p-xH-LiC" secondAttribute="leading" id="6qQ-6L-NB8"/>
                                                 <constraint firstItem="WCC-hI-BWY" firstAttribute="leading" secondItem="F1p-xH-LiC" secondAttribute="leading" id="JUs-Iu-W8P"/>
+                                                <constraint firstItem="Cma-F1-feh" firstAttribute="top" secondItem="F1p-xH-LiC" secondAttribute="top" id="JzP-52-DnF"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cma-F1-feh" secondAttribute="trailing" id="Ok0-F0-Zlt"/>
                                                 <constraint firstAttribute="trailing" secondItem="WCC-hI-BWY" secondAttribute="trailing" id="Zyy-vV-3hU"/>
                                                 <constraint firstItem="WCC-hI-BWY" firstAttribute="centerY" secondItem="F1p-xH-LiC" secondAttribute="centerY" id="fX8-Zc-p9l"/>
                                                 <constraint firstAttribute="height" constant="90" id="nau-tS-gfu"/>
+                                                <constraint firstAttribute="bottom" secondItem="Cma-F1-feh" secondAttribute="bottom" id="xuj-PQ-yMm"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -1866,6 +1874,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="quizLevelLabelOutlet" destination="WCC-hI-BWY" id="cla-S8-Kir"/>
+                                    <outlet property="quizLevelLabelOverview" destination="Cma-F1-feh" id="ToH-DQ-bzD"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -1879,6 +1888,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WTE-fF-tx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4118.840579710145" y="1688.3152173913045"/>
+        </scene>
+        <!--Quiz Game View Controller-->
+        <scene sceneID="zlx-TL-LjC">
+            <objects>
+                <viewController id="3zH-lk-j3Q" customClass="QuizGameViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AbE-bk-qCJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="NrR-HU-Xee"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W36-hn-16d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4998.5507246376819" y="1679.3478260869567"/>
         </scene>
         <!--Settings-->
         <scene sceneID="zQ2-EJ-5Uh">

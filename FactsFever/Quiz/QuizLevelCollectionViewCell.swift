@@ -10,5 +10,6 @@ import UIKit
 
 class QuizLevelCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var quizLevelLabelOverview: UIView!
     @IBOutlet weak var quizLevelLabelOutlet: UILabel!
 }
