@@ -13,6 +13,8 @@
 		7A17E97921BFF4F500BA3A12 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A17E97221BFF4F500BA3A12 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A17E97D21BFF57500BA3A12 /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC76EAE9D45A153C02CCDE5 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		7A2C20E321A7C9D400E92641 /* NewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */; };
+		7A413B3E221EEAA700B00DC2 /* FinishQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A413B3D221EEAA700B00DC2 /* FinishQuizViewController.swift */; };
+		7A413B4C221F016700B00DC2 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */; };
 		7A81120421B28B67002058C5 /* UploadFactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81120321B28B67002058C5 /* UploadFactsViewController.swift */; };
 		7A93BBBF221BCEDF003DA20B /* QuizGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A93BBBE221BCEDF003DA20B /* QuizGameViewController.swift */; };
 		7A9CFCF621BE22B300EF010E /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CFCF521BE22B300EF010E /* Users.swift */; };
@@ -76,6 +78,8 @@
 		7A17E97621BFF4F500BA3A12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A17E97E21BFF5B100BA3A12 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		7A413B3D221EEAA700B00DC2 /* FinishQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishQuizViewController.swift; sourceTree = "<group>"; };
+		7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		7A81120321B28B67002058C5 /* UploadFactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFactsViewController.swift; sourceTree = "<group>"; };
 		7A93BBBE221BCEDF003DA20B /* QuizGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGameViewController.swift; sourceTree = "<group>"; };
 		7A9CFCF521BE22B300EF010E /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
@@ -152,13 +156,103 @@
 			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
+		7A413B3F221EFEBB00B00DC2 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7ABF419A221719E800B6CEBF /* SliderMenuTableViewController.swift */,
+				7AF879122217C00400976E85 /* SlideInTransition.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		7A413B40221EFEF700B00DC2 /* SettingsMenu */ = {
+			isa = PBXGroup;
+			children = (
+				7AC1F23321B54FB80039398F /* WhyWeDontSellAdsViewController.swift */,
+				D0D9D4F8216E07A200C6EBFB /* SetttingsTableViewController.swift */,
+				D0B7CD8021704B3400563707 /* AboutTableViewController.swift */,
+				D0B7CD8221704F2200563707 /* AboutDeveloperViewController.swift */,
+			);
+			path = SettingsMenu;
+			sourceTree = "<group>";
+		};
+		7A413B41221EFF3700B00DC2 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				7AB0836F221AB0730091AF8C /* QuizLevelCollumFlowLayout.swift */,
+				7AF9D90B21A57B8C00AA092F /* FactsFeverLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		7A413B42221EFF7100B00DC2 /* HelperClass */ = {
+			isa = PBXGroup;
+			children = (
+				7A124A1F21BE9E1B00EBC049 /* PushNotification.swift */,
+				7AA805EF21B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift */,
+				7AA805F121B035240022A2B3 /* UIImage+Gif.swift */,
+			);
+			path = HelperClass;
+			sourceTree = "<group>";
+		};
+		7A413B43221EFF9900B00DC2 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				7A413B45221EFFB800B00DC2 /* QuizCell */,
+				7A413B44221EFFAF00B00DC2 /* FactsCell */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		7A413B44221EFFAF00B00DC2 /* FactsCell */ = {
+			isa = PBXGroup;
+			children = (
+				7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */,
+				7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */,
+			);
+			path = FactsCell;
+			sourceTree = "<group>";
+		};
+		7A413B45221EFFB800B00DC2 /* QuizCell */ = {
+			isa = PBXGroup;
+			children = (
+				7AF8791A2218927000976E85 /* QuizLevelCollectionViewCell.swift */,
+			);
+			path = QuizCell;
+			sourceTree = "<group>";
+		};
+		7A413B46221F001500B00DC2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7A413B4A221F004200B00DC2 /* Facts */,
+				7A413B49221F003D00B00DC2 /* Quiz */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7A413B49221F003D00B00DC2 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				7AF8791522187E8500976E85 /* Quiz */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		7A413B4A221F004200B00DC2 /* Facts */ = {
+			isa = PBXGroup;
+			children = (
+				D067725D216CC4F100D4C774 /* ViewController.swift */,
+				7A81120321B28B67002058C5 /* UploadFactsViewController.swift */,
+			);
+			path = Facts;
+			sourceTree = "<group>";
+		};
 		7AF8791522187E8500976E85 /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
 				7AF8791822188AF200976E85 /* QuizLevelsCollectionViewController.swift */,
-				7AF8791A2218927000976E85 /* QuizLevelCollectionViewCell.swift */,
-				7AB0836F221AB0730091AF8C /* QuizLevelCollumFlowLayout.swift */,
 				7A93BBBE221BCEDF003DA20B /* QuizGameViewController.swift */,
+				7A413B3D221EEAA700B00DC2 /* FinishQuizViewController.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -166,7 +260,6 @@
 		7AFDA63D218353D100263F82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7AA805F121B035240022A2B3 /* UIImage+Gif.swift */,
 				7AFDA63B218353CB00263F82 /* Facts.swift */,
 				7A9CFCF521BE22B300EF010E /* Users.swift */,
 			);
@@ -207,20 +300,15 @@
 			isa = PBXGroup;
 			children = (
 				D0B7CD842170C53900563707 /* FactsFever.entitlements */,
-				D0D9D4EA216CD38D00C6EBFB /* Views */,
 				D067725B216CC4F100D4C774 /* AppDelegate.swift */,
-				7AF8791522187E8500976E85 /* Quiz */,
-				7AFDA63D218353D100263F82 /* Model */,
 				D0D9D4F6216DB68000C6EBFB /* LoginViewController.swift */,
-				D067725D216CC4F100D4C774 /* ViewController.swift */,
-				7ABF419A221719E800B6CEBF /* SliderMenuTableViewController.swift */,
-				7AF879122217C00400976E85 /* SlideInTransition.swift */,
-				7A81120321B28B67002058C5 /* UploadFactsViewController.swift */,
-				7AC1F23321B54FB80039398F /* WhyWeDontSellAdsViewController.swift */,
-				D0D9D4F8216E07A200C6EBFB /* SetttingsTableViewController.swift */,
-				D0B7CD8021704B3400563707 /* AboutTableViewController.swift */,
-				D0B7CD8221704F2200563707 /* AboutDeveloperViewController.swift */,
-				7A124A1F21BE9E1B00EBC049 /* PushNotification.swift */,
+				7AFDA63D218353D100263F82 /* Model */,
+				7A413B42221EFF7100B00DC2 /* HelperClass */,
+				7A413B41221EFF3700B00DC2 /* Layouts */,
+				7A413B43221EFF9900B00DC2 /* CustomCells */,
+				7A413B46221F001500B00DC2 /* Controllers */,
+				7A413B3F221EFEBB00B00DC2 /* Categories */,
+				7A413B40221EFEF700B00DC2 /* SettingsMenu */,
 				D067725F216CC4F100D4C774 /* Main.storyboard */,
 				D0677262216CC4F500D4C774 /* Assets.xcassets */,
 				D0677264216CC4F500D4C774 /* LaunchScreen.storyboard */,
@@ -231,16 +319,6 @@
 				D095D861216F676F00A8E7D5 /* FactsFever-Bridging-Header.h */,
 			);
 			path = FactsFever;
-			sourceTree = "<group>";
-		};
-		D0D9D4EA216CD38D00C6EBFB /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */,
-				7AF9D90B21A57B8C00AA092F /* FactsFeverLayout.swift */,
-				7AA805EF21B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,12 +580,14 @@
 				7AA805F221B035240022A2B3 /* UIImage+Gif.swift in Sources */,
 				7A93BBBF221BCEDF003DA20B /* QuizGameViewController.swift in Sources */,
 				7ABF419B221719E800B6CEBF /* SliderMenuTableViewController.swift in Sources */,
+				7A413B4C221F016700B00DC2 /* CategoriesTableViewCell.swift in Sources */,
 				7AB08370221AB0730091AF8C /* QuizLevelCollumFlowLayout.swift in Sources */,
 				D0B7CD8321704F2300563707 /* AboutDeveloperViewController.swift in Sources */,
 				7A9CFCF621BE22B300EF010E /* Users.swift in Sources */,
 				D0D9D4F7216DB68000C6EBFB /* LoginViewController.swift in Sources */,
 				7AA805F021B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift in Sources */,
 				7AF9D90C21A57B8C00AA092F /* FactsFeverLayout.swift in Sources */,
+				7A413B3E221EEAA700B00DC2 /* FinishQuizViewController.swift in Sources */,
 				D0B7CD8121704B3400563707 /* AboutTableViewController.swift in Sources */,
 				7AFDA63C218353CB00263F82 /* Facts.swift in Sources */,
 				7A124A2021BE9E1B00EBC049 /* PushNotification.swift in Sources */,
