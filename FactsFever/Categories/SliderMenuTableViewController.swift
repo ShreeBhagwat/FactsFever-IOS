@@ -32,7 +32,12 @@ enum MenuType: Int {
 
 class SliderMenuTableViewController: UITableViewController {
     
+    var categoriesImage = [#imageLiteral(resourceName: "categories"),#imageLiteral(resourceName: "animal"),#imageLiteral(resourceName: "countries"),#imageLiteral(resourceName: "food"),#imageLiteral(resourceName: "history"),#imageLiteral(resourceName: "human"),#imageLiteral(resourceName: "Interesting"),#imageLiteral(resourceName: "knowledge"),#imageLiteral(resourceName: "language"),#imageLiteral(resourceName: "hacks"),#imageLiteral(resourceName: "Love"),#imageLiteral(resourceName: "Movies"),#imageLiteral(resourceName: "science"),#imageLiteral(resourceName: "space"),#imageLiteral(resourceName: "sports"),#imageLiteral(resourceName: "trees"),#imageLiteral(resourceName: "weird"),#imageLiteral(resourceName: "Others")]
+    var categories = ["Categories","Animals","Country","Food","History","Human","Interesting","Knowledge","Language","LifeHack","Love","Movies","Science","Space","Sports","Trees","Weird","Other",]
     var didTappedMenuType: ((MenuType) -> Void)?
+    
+    let cellReuseIdentifies = "CategoriesCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,21 +52,46 @@ class SliderMenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 18
+        return categories.count
         
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: CategoriesTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifies, for: indexPath) as! CategoriesTableViewCell
+        cell.categoriesLabelOutlet.text = categories[indexPath.row]
+        cell.setUpLayout()
+        if indexPath.row == 0 {
+            cell.backgroundColor = #colorLiteral(red: 0.01342590339, green: 0.06923117489, blue: 0.1467640102, alpha: 1)
+        }else{
+            cell.backgroundColor = #colorLiteral(red: 0.01342590339, green: 0.06923117489, blue: 0.1467640102, alpha: 1)
+        }
+        cell.categoriesImageView.image = categoriesImage[indexPath.row]
+
+        return cell
+
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let menuType = MenuType(rawValue: indexPath.row) else {return}
+        
+        
         if indexPath.row == 0{
             tableView.deselectRow(at: indexPath, animated: false)
+            
         }else {
             dismiss(animated: true){ [weak self] in
-                print("Dissmissing Menu With \(menuType)")
+                print("Dissmissing Menu With \(indexPath.row)")
+                
                 self?.didTappedMenuType?(menuType)
         }
         
         }
+       
     }
 
     
