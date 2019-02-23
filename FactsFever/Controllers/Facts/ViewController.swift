@@ -106,6 +106,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //        observeFactsFromFirebase()
         let category = "\(menuType)"
         observeFactsFromFirebase(category: category)
+        
     }
 
    
@@ -131,6 +132,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     }
                 }
             }
+            self.title = "\(category)"
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
            
