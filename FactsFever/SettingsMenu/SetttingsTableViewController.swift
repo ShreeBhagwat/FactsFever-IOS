@@ -19,7 +19,7 @@ class SetttingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
-       tableView.backgroundColor = UIColor.black
+//       tableView.backgroundColor = UIColor.black
     }
 
     // MARK: - Table view data source
@@ -40,10 +40,33 @@ class SetttingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == 0 {
+            print(indexPath.row)
+            let storybord = UIStoryboard(name: "Main", bundle: nil)
+            let VC = storybord.instantiateViewController(withIdentifier: "AboutFactsFever")
+            navigationController?.pushViewController(VC, animated: true)
+        }else if indexPath.row == 1 {
+            let storybord = UIStoryboard(name: "Main", bundle: nil)
+            let VC = storybord.instantiateViewController(withIdentifier: "AboutDeveloper")
+            navigationController?.pushViewController(VC, animated: true)
+        }else if indexPath.row == 2 {
+            shareThisApp()
+        }else if indexPath.row == 3 {
+            let storybord = UIStoryboard(name: "Main", bundle: nil)
+            let VC = storybord.instantiateViewController(withIdentifier: "WhyWeDontSellAds")
+            navigationController?.pushViewController(VC, animated: true)
+        }else if indexPath.row == 4 {
+            rateTheAppOnAppStore()
+        }else if indexPath.row == 5 {
+            followUsOnInstagram()
+        }else {
+            logOut()
+        }
     }
     
     
-    @IBAction func shareThisAppButtonPressed(_ sender: Any) {
+
+    func shareThisApp(){
         let text = "Daily dose of amazing and mind boggling facts. Download this app to to increase your general knowledge \(appline)"
         let objectsToShare: [Any] = [text]
         let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
@@ -53,40 +76,34 @@ class SetttingsTableViewController: UITableViewController {
     }
     
     
-    
-    @IBAction func whyWeDontSellAdsButtonPressed(_ sender: Any) {
-        
-    }
-    
-  
-    @IBAction func reviewThisAppButtonPressed(_ sender: Any) {
+    func rateTheAppOnAppStore(){
         UIApplication.shared.openURL(URL(string: "https://itunes.apple.com/us/app/pingme/id1438849522?ls=1&mt=8")!)
+
     }
     
-    
-    @IBAction func instagramFollowButtonPressed(_ sender: Any) {
-        UIApplication.shared.openURL(URL(string: "https://instagram.com/_facts_fever_?utm_source=ig_profile_share&igshid=wtr2hhx82vu2")!)
+    func followUsOnInstagram(){
+         UIApplication.shared.openURL(URL(string: "https://instagram.com/_facts_fever_?utm_source=ig_profile_share&igshid=wtr2hhx82vu2")!)
     }
     
-    
-    
-    @IBAction func logOutButtonPressed(_ sender: Any) {
+    func logOut(){
         print("Logout Button pressed")
         if currentUser != nil {
             do {
-//                try firebaseAuth.signOut()
+                //                try firebaseAuth.signOut()
                 try Auth.auth().signOut()
-//                FBSDKAccessToken.setCurrent(nil)
+                //                FBSDKAccessToken.setCurrent(nil)
                 print("UserLogged out")
-                let loginVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginView") as! LoginViewController
+                let loginVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
                 UserDefaults.standard.removeObject(forKey: "user")
                 navigationController?.pushViewController(loginVC, animated: true)
-              
+                
             }catch {
                 ProgressHUD.showError("Error Login Out Try Again Later")
             }
         }
     }
+    
+
     
     
     

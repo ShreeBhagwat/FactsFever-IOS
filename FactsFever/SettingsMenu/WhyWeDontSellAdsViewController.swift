@@ -21,6 +21,10 @@ class WhyWeDontSellAdsViewController: UIViewController {
         let request = NSURLRequest(url: url!)
         webViewOutlet.loadRequest(request as URLRequest)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
 
 
 

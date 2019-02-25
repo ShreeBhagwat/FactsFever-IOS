@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A0F6F792222FEDD0012C6A8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F6F782222FEDD0012C6A8 /* SettingsViewController.swift */; };
 		7A124A2021BE9E1B00EBC049 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A124A1F21BE9E1B00EBC049 /* PushNotification.swift */; };
 		7A17E96D21BFDF8E00BA3A12 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A17E96C21BFDF8E00BA3A12 /* PushKit.framework */; };
 		7A17E97521BFF4F500BA3A12 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17E97421BFF4F500BA3A12 /* NotificationService.swift */; };
@@ -15,6 +16,7 @@
 		7A2C20E321A7C9D400E92641 /* NewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */; };
 		7A413B3E221EEAA700B00DC2 /* FinishQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A413B3D221EEAA700B00DC2 /* FinishQuizViewController.swift */; };
 		7A413B4C221F016700B00DC2 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */; };
+		7A7FA0452223B32100BCFEE0 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7FA0442223B32100BCFEE0 /* WelcomeViewController.swift */; };
 		7A81120421B28B67002058C5 /* UploadFactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81120321B28B67002058C5 /* UploadFactsViewController.swift */; };
 		7A829D4522216D0A00A0C997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A829D4422216D0900A0C997 /* Assets.xcassets */; };
 		7A93BBBF221BCEDF003DA20B /* QuizGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A93BBBE221BCEDF003DA20B /* QuizGameViewController.swift */; };
@@ -71,6 +73,7 @@
 		3E21E7D194752012E286A243 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		507F0074309CAA35763752CB /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		58F1A412C54C959DF2956BDD /* Pods-FactsFever.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FactsFever.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FactsFever/Pods-FactsFever.debug.xcconfig"; sourceTree = "<group>"; };
+		7A0F6F782222FEDD0012C6A8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7A124A1F21BE9E1B00EBC049 /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		7A17E96C21BFDF8E00BA3A12 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		7A17E97221BFF4F500BA3A12 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +83,7 @@
 		7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A413B3D221EEAA700B00DC2 /* FinishQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishQuizViewController.swift; sourceTree = "<group>"; };
 		7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
+		7A7FA0442223B32100BCFEE0 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7A81120321B28B67002058C5 /* UploadFactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFactsViewController.swift; sourceTree = "<group>"; };
 		7A829D4422216D0900A0C997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A93BBBE221BCEDF003DA20B /* QuizGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGameViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				D0D9D4F8216E07A200C6EBFB /* SetttingsTableViewController.swift */,
 				D0B7CD8021704B3400563707 /* AboutTableViewController.swift */,
 				D0B7CD8221704F2200563707 /* AboutDeveloperViewController.swift */,
+				7A0F6F782222FEDD0012C6A8 /* SettingsViewController.swift */,
 			);
 			path = SettingsMenu;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 			children = (
 				D067725D216CC4F100D4C774 /* ViewController.swift */,
 				7A81120321B28B67002058C5 /* UploadFactsViewController.swift */,
+				7A7FA0442223B32100BCFEE0 /* WelcomeViewController.swift */,
 			);
 			path = Facts;
 			sourceTree = "<group>";
@@ -469,6 +475,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/liquid-swipe/liquid_swipe.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
@@ -485,6 +492,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/liquid_swipe.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
@@ -576,6 +584,7 @@
 				7AF879132217C00400976E85 /* SlideInTransition.swift in Sources */,
 				D067725C216CC4F100D4C774 /* AppDelegate.swift in Sources */,
 				7AF8791B2218927000976E85 /* QuizLevelCollectionViewCell.swift in Sources */,
+				7A7FA0452223B32100BCFEE0 /* WelcomeViewController.swift in Sources */,
 				7AC1F23421B54FB80039398F /* WhyWeDontSellAdsViewController.swift in Sources */,
 				7AA805F221B035240022A2B3 /* UIImage+Gif.swift in Sources */,
 				7A93BBBF221BCEDF003DA20B /* QuizGameViewController.swift in Sources */,
@@ -593,6 +602,7 @@
 				7A124A2021BE9E1B00EBC049 /* PushNotification.swift in Sources */,
 				7A2C20E321A7C9D400E92641 /* NewCellCollectionViewCell.swift in Sources */,
 				7A81120421B28B67002058C5 /* UploadFactsViewController.swift in Sources */,
+				7A0F6F792222FEDD0012C6A8 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

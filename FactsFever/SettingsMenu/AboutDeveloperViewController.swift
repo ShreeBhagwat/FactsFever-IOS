@@ -22,6 +22,8 @@ class AboutDeveloperViewController: UIViewController {
         developerImage.layer.shadowRadius = 5
         view.backgroundColor = UIColor.black
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
 
 }

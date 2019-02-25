@@ -19,6 +19,7 @@ class AboutTableViewController: UITableViewController {
     @IBOutlet weak var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         circleProfileView()
         textView.isEditable = false
         textView.dataDetectorTypes = .link
@@ -26,6 +27,10 @@ class AboutTableViewController: UITableViewController {
 //        textView.backgroundColor = #colorLiteral(red: 0.1242010223, green: 0.1241877451, blue: 0.1290884067, alpha: 1)
         tableView.backgroundColor = UIColor.black
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
 
     // MARK: - Table view data source

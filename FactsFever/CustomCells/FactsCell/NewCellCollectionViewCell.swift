@@ -74,6 +74,7 @@ class NewCellCollectionViewCell: UICollectionViewCell {
         captionTextView.isSelectable = false
         captionTextView.isScrollEnabled = false
         
+        
         likeLable.backgroundColor = #colorLiteral(red: 0.1242010223, green: 0.1241877451, blue: 0.1290884067, alpha: 1)
         likeLable.textColor = UIColor.white
         

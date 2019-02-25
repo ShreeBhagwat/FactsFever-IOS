@@ -71,6 +71,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
       
 
          }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        UIGraphicsBeginImageContext(view.frame.size)
+        UIImage(named: "factsWallpaper")?.draw(in: self.view.bounds)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        view.backgroundColor = UIColor.init(patternImage: image!)
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
