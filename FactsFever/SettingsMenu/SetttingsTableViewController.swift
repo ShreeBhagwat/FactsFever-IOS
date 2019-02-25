@@ -95,7 +95,7 @@ class SetttingsTableViewController: UITableViewController {
                 print("UserLogged out")
                 let loginVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
                 UserDefaults.standard.removeObject(forKey: "user")
-                navigationController?.pushViewController(loginVC, animated: true)
+                present(loginVC, animated: true, completion: nil)
                 
             }catch {
                 ProgressHUD.showError("Error Login Out Try Again Later")
