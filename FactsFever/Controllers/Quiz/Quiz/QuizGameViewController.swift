@@ -260,6 +260,11 @@ class QuizGameViewController: UIViewController {
             Questions.remove(at: Qnumber)
         } else {
             print("Quiz end")
+            let FinishQuizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FinishQuizViewController") as! FinishQuizViewController
+            FinishQuizViewController.finalScore = score
+            FinishQuizViewController.currentLevelPlayed = selectedGameLevel
+            
+            present(FinishQuizViewController, animated: true, completion: nil)
             
         }
     }

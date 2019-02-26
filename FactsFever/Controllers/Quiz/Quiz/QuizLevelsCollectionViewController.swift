@@ -29,6 +29,11 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
         let defaults = UserDefaults.standard
         defaults.set(lastLevelwon, forKey: "lastLevelWon")
         
+        self.collectionView.backgroundColor = .clear
+        let imageView =  UIImageView(frame: UIScreen.main.bounds)
+        imageView.image = UIImage(named: "QuizStart")
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(imageView, at: 0)
         
     
     }
