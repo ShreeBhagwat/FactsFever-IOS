@@ -34,7 +34,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
     var keyboardAdjusted = false
     var lastKeyboardOffset = 0.0
     var allUsers: [String] = []
-    
+    var pushId : [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         categoriesPickerView.delegate = self
@@ -82,10 +82,11 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
             
             let dictionary = snapshot.value as? [String: AnyObject]
             let user = Users.init(dictionary: dictionary!)
-            if user.UserId == nil {
+            if user.UserId == nil{
                 return
             }else {
                  self.allUsers.append(user.UserId)
+                self.pushId.append(user.pushId)
             }
            
         }
@@ -123,7 +124,8 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
                     self.uploadFactButtonOutlet.isEnabled = false
                 }
                
-                 sendPushNotification(membersToPush: self.allUsers, category: self.categories)
+//                sendPushNotification(membersToPush: self.allUsers, category: self.categories, pushId: self.pushId)
+                sendPushNotification1(pushId: self.pushId)
             }
         }else {
         uploadFactButtonOutlet.isEnabled = true

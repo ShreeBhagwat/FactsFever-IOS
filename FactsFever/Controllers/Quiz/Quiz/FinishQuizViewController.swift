@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import SAConfettiView
 
 class FinishQuizViewController: UIViewController {
 
     var finalScore = Int()
     var currentLevelPlayed = Int()
     var levelWon = Bool()
-    
+//    var confittiView : SAConfettiView()
     override func viewDidLoad() {
         super.viewDidLoad()
 
        print("FinalScore = \(finalScore)/n Level Played = \(currentLevelPlayed)")
+        
+//        self.view.addSubview(confittiView)
         
     }
     
