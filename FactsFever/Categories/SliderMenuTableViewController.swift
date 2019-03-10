@@ -10,7 +10,7 @@ import UIKit
 
 enum MenuType: Int {
     case Categories
-    case Animals
+    case Animal
     case Country
     case Food
     case History
@@ -33,7 +33,7 @@ enum MenuType: Int {
 class SliderMenuTableViewController: UITableViewController {
     
     var categoriesImage = [#imageLiteral(resourceName: "categories"),#imageLiteral(resourceName: "animal"),#imageLiteral(resourceName: "countries"),#imageLiteral(resourceName: "food"),#imageLiteral(resourceName: "history"),#imageLiteral(resourceName: "human"),#imageLiteral(resourceName: "Interesting"),#imageLiteral(resourceName: "knowledge"),#imageLiteral(resourceName: "language"),#imageLiteral(resourceName: "hacks"),#imageLiteral(resourceName: "Love"),#imageLiteral(resourceName: "Movies"),#imageLiteral(resourceName: "science"),#imageLiteral(resourceName: "space"),#imageLiteral(resourceName: "sports"),#imageLiteral(resourceName: "trees"),#imageLiteral(resourceName: "weird"),#imageLiteral(resourceName: "Others")]
-    var categories = ["Categories","Animals","Country","Food","History","Human","Interesting","Knowledge","Language","LifeHack","Love","Movies","Science","Space","Sports","Trees","Weird","Other",]
+    var categories = ["Categories","Animal","Country","Food","History","Human","Interesting","Knowledge","Language","LifeHack","Love","Movies","Science","Space","Sports","Trees","Weird","Other",]
     var didTappedMenuType: ((MenuType) -> Void)?
     
     let cellReuseIdentifies = "CategoriesCell"

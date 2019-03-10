@@ -8,22 +8,154 @@
 
 import UIKit
 import SAConfettiView
+import ChameleonFramework
 
 class FinishQuizViewController: UIViewController {
 
+    @IBOutlet weak var ImageViewOutlet: UIImageView!
+    @IBOutlet weak var percentageScoreLable: UILabel!
+    @IBOutlet weak var scoreLabelOutlet: UILabel!
+    @IBOutlet weak var resultLabelOutlet: UILabel!
+    @IBOutlet weak var viewContainerOutlet: UIView!
     var finalScore = Int()
+    var totalQuestion = Int()
     var currentLevelPlayed = Int()
     var levelWon = Bool()
-//    var confittiView : SAConfettiView()
+    var percentageScore = Float()
+    let userDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       print("FinalScore = \(finalScore)/n Level Played = \(currentLevelPlayed)")
+      self.view.addSubview(confettiView)
+       print("FinalScore = \(finalScore)")
+        print("Total Question = \(totalQuestion)")
+        percentageScore = (Float(finalScore)) / (Float(totalQuestion)) * 100
+        setupView()
         
-//        self.view.addSubview(confittiView)
+        if percentageScore >= 75 {
+            levelWon = true
+            confettiView.startConfetti()
+            resultLabelOutlet.text = "Congratulation"
+            scoreLabelOutlet.text = "Score \n\(finalScore)/\(totalQuestion)"
+            percentageScoreLable.text = "Percentage Score \n\(percentageScore) %"
+            tryAgainButton.isHidden = true
+            tryAgainButton.isEnabled = false
+            nextLevelButton.isEnabled = true
+            nextLevelButton.isHidden = false
+//            tryAgainButton.bringSubviewToFront(nextLevelButton)
+            nextLevelButton.bringSubviewToFront(tryAgainButton)
+            confettiView.bringSubviewToFront(nextLevelButton)
+            
+        }else{
+            levelWon = false
+            resultLabelOutlet.text = "Failed"
+            scoreLabelOutlet.text = "Score \n\(finalScore)/\(totalQuestion)"
+            percentageScoreLable.text = "Percentage Score \n\(percentageScore) %"
+            tryAgainButton.isHidden = false
+            tryAgainButton.isEnabled = true
+            nextLevelButton.isEnabled = false
+            nextLevelButton.isHidden = true
+        }
+        print("Level result \(levelWon)")
+    }
+    
+    lazy var confettiView : SAConfettiView = {
+        let view = SAConfettiView(frame: self.view.bounds)
+        view.type = .Star
+        return view
+    }()
+    
+    var nextLevelButton : UIButton = {
+       let button = UIButton()
+        button.setTitle("Next Level", for: .normal)
+        button.addTarget(self, action: #selector(nextLevelButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.flatGreen()
+
+        return button
+    }()
+    
+    lazy var tryAgainButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("Try Again", for: .normal)
+        button.addTarget(self, action: #selector(tryAgainButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.flatRed()
+        
+        
+        return button
+    }()
+    
+    lazy var quizHomeScreen : UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(quizHomeScreenButtonPressed), for: .touchUpInside)
+        button.setTitle("Home Screen", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.flatBlue()
+        return button
+    }()
+    
+    func setupView(){
+        confettiView.addSubview(quizHomeScreen)
+        confettiView.addSubview(nextLevelButton)
+        confettiView.addSubview(tryAgainButton)
+        
+        let buttonWidth = viewContainerOutlet.frame.width / 2 - 30
+        
+        quizHomeScreen.leftAnchor.constraint(equalTo: viewContainerOutlet.leftAnchor, constant: 10).isActive = true
+        quizHomeScreen.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        quizHomeScreen.bottomAnchor.constraint(equalTo: viewContainerOutlet.bottomAnchor, constant: -10).isActive = true
+        quizHomeScreen.widthAnchor.constraint(equalToConstant: buttonWidth).isActive = true
+        
+        nextLevelButton.rightAnchor.constraint(equalTo: viewContainerOutlet.rightAnchor, constant: -10).isActive = true
+        nextLevelButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        nextLevelButton.bottomAnchor.constraint(equalTo: viewContainerOutlet.bottomAnchor, constant: -10).isActive = true
+        nextLevelButton.widthAnchor.constraint(equalToConstant: buttonWidth).isActive = true
+//
+        tryAgainButton.rightAnchor.constraint(equalTo: viewContainerOutlet.rightAnchor, constant: -10).isActive = true
+        tryAgainButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        tryAgainButton.bottomAnchor.constraint(equalTo: viewContainerOutlet.bottomAnchor, constant: -10).isActive = true
+        tryAgainButton.widthAnchor.constraint(equalToConstant: buttonWidth).isActive = true
+   
         
     }
     
+    @objc func nextLevelButtonPressed(){
+        print("Next ButtonPressed")
+        let lastLevelWon = currentLevelPlayed + 1
+        userDefaults.set(lastLevelWon, forKey: "lastlevelwon")
+        userDefaults.synchronize()
+        let VC = QuizGameViewController()
+        VC.selectedGameLevel = lastLevelWon
+        present(VC, animated: true, completion: nil)
+        
+    }
+    
+    @objc func tryAgainButtonPressed(){
+        print("try again Button Pressed")
+        let VC = QuizGameViewController()
+        VC.selectedGameLevel = currentLevelPlayed
+        present(VC, animated: true, completion: nil)
 
+        
+    }
+    
+    @objc func quizHomeScreenButtonPressed(){
+        print("Home Screen Button Pressed")
+        if levelWon {
+            let lastLevelWon = currentLevelPlayed + 1
+            userDefaults.set(lastLevelWon, forKey: "lastlevelwon")
+            userDefaults.synchronize()
+        
+            
+        }else{
+//            let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "quizlevel") as? QuizLevelsCollectionViewController
+//            present(VC!, animated: true, completion: nil)
+        }
+        
+    }
+    
+ 
+    
 
 }

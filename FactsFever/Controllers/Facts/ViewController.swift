@@ -28,7 +28,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var menuButtonOutlet: UIBarButtonItem!
     //MARK:- Properties
-    
+    var category:String!
     var images: [UIImage] = []
     var factsArray:[Facts] = [Facts]()
     var factsStraightArray: [Facts] = [Facts]()
@@ -87,7 +87,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-            self.observeFactsFromFirebase(category: "Science")
+            if self.category == nil {
+                self.category = "Science"
+            }
+            self.observeFactsFromFirebase(category: self.category)
 //            if self.factsArray.count == 0 {
 //                FactsFeverCustomLoader.instance.hideLoader()
 //            }
@@ -115,7 +118,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func changeCategories(_ menuType: MenuType){
 //        observeFactsFromFirebase()
         let category = "\(menuType)"
-        observeFactsFromFirebase(category: category)
+//        factsArray.removeAll()
+//        observeFactsFromFirebase(category: category)
+        let VC = storyboard?.instantiateViewController(withIdentifier: "factsViewController") as? ViewController
+        VC?.category = "\(menuType)"
+        navigationController?.pushViewController(VC!, animated: true)
+//        print("Number of facts in array \(factsArray.count)")
         
     }
 
@@ -144,10 +152,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
             self.title = "\(category)"
             self.collectionView.reloadData()
+            if self.factsArray.count > 0{
+                let indexPath = IndexPath(row: 0, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+            
+            }
             self.refreshControl.endRefreshing()
-           
+            print("inside observe facts method facts array count \(self.factsArray.count)")
   
         }
+
 
     }
     // Download Image From Database

@@ -64,7 +64,7 @@ import UserNotifications
 //
 //    }
 
-func sendPushNotification1(pushId:[String]){
+func sendPushNotification1(pushId:[String], category: String){
     var pushIds : [String] = []
     for push in pushId {
         if push != ""{
@@ -78,7 +78,7 @@ func sendPushNotification1(pushId:[String]){
        
     }
     print("<><><><><><><\(pushIds)")
-    OneSignal.postNotification(["contents" : ["en" : " Amazing New Facts uploaded in "],
+    OneSignal.postNotification(["contents" : ["en" : " Amazing New Facts uploaded in \(category) "],
                                 "ios_badgeCount" : 1,
                                 "ios_badgeType" : "Increase",
                                 "include_player_ids" : pushIds])

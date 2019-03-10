@@ -21,13 +21,13 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let collectinView = collectionView, let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {return}
-        flowLayout.minimumLineSpacing = margin
-        flowLayout.minimumInteritemSpacing = margin
-        flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.minimumInteritemSpacing = 5
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         collectinView.contentInsetAdjustmentBehavior = .always
         
         let defaults = UserDefaults.standard
-        defaults.set(lastLevelwon, forKey: "lastLevelWon")
+       
         
         self.collectionView.backgroundColor = .clear
         let imageView =  UIImageView(frame: UIScreen.main.bounds)
@@ -43,6 +43,15 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
         let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerRow)).rounded(.down)
         flowLayout.itemSize =  CGSize(width: itemWidth, height: itemWidth)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewDidAppear(true)
+//        self.navigationController?.setToolbarHidden(false, animated: true)
+        
+        
+    }
+    
+ 
 
    
 

@@ -8,6 +8,8 @@
 
 import UIKit
 import ChameleonFramework
+import UICircularProgressRing
+import PCLBlurEffectAlert
 
 struct Question {
     var Question: String!
@@ -23,49 +25,149 @@ class QuizGameViewController: UIViewController {
     var Qnumber = Int()
     var AnswerNumber = Int()
     var score = Int()
+    var levelQuestionNumber = Int()
     var totalQuestion = Int()
+    let shapeLayer = CAShapeLayer()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("QuizGameViewController ......\(selectedGameLevel)")
-        self.view.backgroundColor = UIColor.white
-        quizLevelLable.text = "Level \(selectedGameLevel)"
+        self.view.backgroundColor = .clear
+        let imageView =  UIImageView(frame: UIScreen.main.bounds)
+        imageView.image = UIImage(named: "FinishQuiz")
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(imageView, at: 0)
+        quizLevelLable.text = "Level\n\(selectedGameLevel)"
         buttonArray = [button1, button2, button3, button4]
         setupView()
         score = 0
+        levelQuestionNumber = 1
         
         quizQuestLable.text = ""
         nextButton.isHidden = true
         picQuestionSet(leveNumber: selectedGameLevel)
         pickQuestion()
-        quizScoreLable.text = "Score = \(score)/\(totalQuestion)"
+        quizScoreLable.text = "Score\n\(score)/\(totalQuestion)"
+//        timerCountDownLabel.text = "\(levelQuestionNumber)/\(totalQuestion)"
+        drawCircularTimerPath()
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        animateCircularStroke()
+        startTimer()
+    }
+    func drawCircularTimerPath(){
+        // Creating circle Timer
+        
+        let XValue = self.view.frame.width / 2
+        let center = CGPoint(x: XValue, y: 100 )
+        // Creating a Circular track Path
+        
+        let trackLayer = CAShapeLayer()
+        let path = UIBezierPath(arcCenter: .zero, radius: 50, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        trackLayer.path = path.cgPath
+        
+        trackLayer.strokeColor = UIColor.lightGray.cgColor
+        trackLayer.lineWidth = 5
+        trackLayer.lineCap = .round
+        trackLayer.fillColor = UIColor.clear.cgColor
+        trackLayer.position = CGPoint(x: XValue, y: 100)
+        view.layer.addSublayer(trackLayer)
+        
+        
+        // Creating circular motion
+        shapeLayer.path = path.cgPath
+        
+        shapeLayer.strokeColor = UIColor.red.cgColor
+        shapeLayer.lineWidth = 5
+        shapeLayer.strokeEnd = 0
+        shapeLayer.lineCap = .round
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.position = CGPoint(x: XValue, y: 100)
+        shapeLayer.transform = CATransform3DMakeRotation(-CGFloat.pi / 2, 0, 0, 1)
+        
+        view.layer.addSublayer(shapeLayer)
+   
+    }
+    
+    func animateCircularStroke(){
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.toValue = 1
+        basicAnimation.duration = 15
+        basicAnimation.fillMode = .forwards
+        basicAnimation.isRemovedOnCompletion = true
+        shapeLayer.add(basicAnimation, forKey: "basicAnimation")
+    }
+    
+    var timer : UICircularTimerRing = {
+        let view = UICircularTimerRing()
+        view.startAngle = -CGFloat.pi / 2
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    func startTimer(){
+        timer.startTimer(to: 15) { state in
+            switch state {
+            case .finished:
+                print("finished")
+            case .continued(let time):
+                print("continued: \(time)")
+            case .paused(let time):
+                print("paused: \(time)")
+            }
+        }
+    }
+    
+ 
+    // Question Number label
+    var timerCountDownLabel: UILabel = {
+        let label = UILabel()
+    
+        
+        label.numberOfLines = 1
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = UIColor.white
+        label.text = "20"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    // Level Number Label
     var quizLevelLable:UILabel = {
         let label = UILabel()
-        label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.textColor = UIColor.black
+        label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = UIColor.white
+//        label.backgroundColor = UIColor.white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
-    
+    // Score Number Label
+    var quizScoreLable:UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 2
+        label.textAlignment = .center
+//        label.backgroundColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = UIColor.white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+
+    // Question Label
     var quizQuestLable:UILabel = {
         let label = UILabel()
         label.numberOfLines = 5
         label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = UIColor.black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    var quizScoreLable:UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 1
-        label.textAlignment = .center
-//        label.text = "10/10"
-        label.font = UIFont.systemFont(ofSize: 20)
+       
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -115,8 +217,17 @@ class QuizGameViewController: UIViewController {
         return button
     }()
     
+    lazy var cancelQuizButton : UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("Cancel", for: .normal)
+        button.backgroundColor = UIColor.flatRed()
+        button.addTarget(self, action: #selector(cancelButtonPressed), for:.touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
   
     func setupView(){
+        
         self.view.addSubview(quizQuestLable)
         self.view.addSubview(quizLevelLable)
         self.view.addSubview(quizScoreLable)
@@ -125,21 +236,40 @@ class QuizGameViewController: UIViewController {
         self.view.addSubview(button3)
         self.view.addSubview(button4)
         self.view.addSubview(nextButton)
+        self.view.addSubview(timer)
+        self.view.addSubview(cancelQuizButton)
+        self.view.addSubview(timerCountDownLabel)
+        
+
         
         let buttonWidth = self.view.frame.width / 2 - 25
+        
+        quizScoreLable.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
+        quizScoreLable.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        quizScoreLable.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        quizScoreLable.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16).isActive = true
+        
         quizLevelLable.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16).isActive = true
-        quizLevelLable.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16).isActive = true
-        quizLevelLable.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
+        quizLevelLable.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        quizLevelLable.topAnchor.constraint(equalTo: self.quizScoreLable.topAnchor).isActive = true
         quizLevelLable.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        quizScoreLable.topAnchor.constraint(equalTo: quizLevelLable.bottomAnchor, constant: 20).isActive = true
-        quizScoreLable.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        quizScoreLable.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        quizScoreLable.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        timerCountDownLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        timerCountDownLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        timerCountDownLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        timerCountDownLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75).isActive = true
+        
+//        timer.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+////        timer.leftAnchor.constraint(equalTo: quizLevelLable.rightAnchor, constant: 10).isActive = true
+////        timer.rightAnchor.constraint(equalTo: quizScoreLable.leftAnchor, constant: -10).isActive = true
+//        timer.widthAnchor.constraint(equalToConstant: 100).isActive = true
+//        timer.heightAnchor.constraint(equalToConstant: 100).isActive = true
+//        timer.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        
         
         quizQuestLable.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16).isActive = true
         quizQuestLable.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16).isActive = true
-        quizQuestLable.topAnchor.constraint(equalTo: quizScoreLable.bottomAnchor, constant: 16).isActive = true
+        quizQuestLable.topAnchor.constraint(equalTo: quizScoreLable.bottomAnchor, constant: 100).isActive = true
         quizQuestLable.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         button1.leftAnchor.constraint(equalTo: quizQuestLable.leftAnchor).isActive = true
@@ -167,7 +297,14 @@ class QuizGameViewController: UIViewController {
         nextButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         nextButton.widthAnchor.constraint(equalToConstant: CGFloat(buttonWidth)).isActive = true
         
+        cancelQuizButton.topAnchor.constraint(equalTo: nextButton.topAnchor).isActive = true
+        cancelQuizButton.leftAnchor.constraint(equalTo: quizQuestLable.leftAnchor).isActive = true
+        cancelQuizButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        cancelQuizButton.widthAnchor.constraint(equalToConstant: CGFloat(buttonWidth)).isActive = true
+
     }
+
+    
    @objc func button1Pressed(){
     if AnswerNumber == 0 {
         button1.backgroundColor = UIColor.flatGreen()
@@ -219,11 +356,47 @@ class QuizGameViewController: UIViewController {
         
     }
     @objc func nextButtonPressed(){
+        
+        if levelQuestionNumber <= (totalQuestion - 1) {
+            levelQuestionNumber += 1
+           
+        }else {
+            
+        }
+        
         nextButton.isHidden = true
         enableButtonClick()
         resetButtonColour()
         pickQuestion()
     }
+    
+    @objc func cancelButtonPressed(){
+        // Stop Timmer here, (Pending)
+        print("Cancel Button Pressed")
+        let alert = PCLBlurEffectAlert.Controller(title: "Cancel Quiz", message: "Are you sure you want cancel quiz ", effect: UIBlurEffect(style: .dark), style: .alert)
+//        let cancelButton = PCLBlurEffectAlertAction.init(title: "Cancel", style: .destructive, handler: nil)
+        let cancelButton = PCLBlurEffectAlertAction.init(title: "Cancel", style: .destructive) { (alert) in
+            // Continew Timer here.(Pending)
+            
+            print("Cancel Button Pressed inside cancel alert")
+        }
+        alert.addAction(cancelButton)
+        
+        let yesButton = PCLBlurEffectAlertAction.init(title: "Yes", style: .default) { (alert) in
+            // Stop Timer(Pending)
+            print("Quiz cancled")
+            // Navigate to finish quiz page
+            self.navigateToFinishQuizPage()
+        }
+        alert.addAction(yesButton)
+        alert.configure(cornerRadius: 30)
+        alert.configure(titleColor: UIColor.orange)
+        alert.configure(messageColor: UIColor.white)
+        
+        alert.show()
+        
+    }
+    
     func resetButtonColour(){
 //        enableButtonClick()
         button1.backgroundColor = UIColor.flatBlue()
@@ -260,19 +433,23 @@ class QuizGameViewController: UIViewController {
             Questions.remove(at: Qnumber)
         } else {
             print("Quiz end")
-            let FinishQuizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FinishQuizViewController") as! FinishQuizViewController
-            FinishQuizViewController.finalScore = score
-            FinishQuizViewController.currentLevelPlayed = selectedGameLevel
-            
-            present(FinishQuizViewController, animated: true, completion: nil)
+            navigateToFinishQuizPage()
             
         }
     }
     
     func updateScoreValue(){
         score += 1
-        quizScoreLable.text = "Score = \(score)/\(totalQuestion)"
+        quizScoreLable.text = "Score\n\(score)/\(totalQuestion)"
         
+    }
+    func navigateToFinishQuizPage(){
+        print("Navigate to finish quiz function start")
+        let FinishQuizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FinishQuizViewController") as! FinishQuizViewController
+        FinishQuizViewController.finalScore = score
+        FinishQuizViewController.currentLevelPlayed = selectedGameLevel
+        FinishQuizViewController.totalQuestion = self.totalQuestion
+        present(FinishQuizViewController, animated: true, completion: nil)
     }
     
     func picQuestionSet(leveNumber : Int){
@@ -389,6 +566,12 @@ class QuizGameViewController: UIViewController {
         totalQuestion = Questions.count
     }
     func questionLevel1(){
+        Questions = [Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
         
     }
     

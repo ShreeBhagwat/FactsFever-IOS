@@ -125,7 +125,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
                 }
                
 //                sendPushNotification(membersToPush: self.allUsers, category: self.categories, pushId: self.pushId)
-                sendPushNotification1(pushId: self.pushId)
+                sendPushNotification1(pushId: self.pushId, category: self.categories)
             }
         }else {
         uploadFactButtonOutlet.isEnabled = true
@@ -233,4 +233,14 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
         return categoriesOption[row]
     }
     
+    @IBAction func clearButtonPressed(_ sender: Any) {
+        if imageViewOutlet.image != nil {
+            imageViewOutlet.image = nil
+
+        }
+        if captionViewOutlet.text != nil {
+            captionViewOutlet.text = nil
+        }
+        
+    }
 }
