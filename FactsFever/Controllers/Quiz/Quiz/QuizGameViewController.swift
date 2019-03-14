@@ -8,7 +8,6 @@
 
 import UIKit
 import ChameleonFramework
-import UICircularProgressRing
 import PCLBlurEffectAlert
 
 struct Question {
@@ -28,7 +27,13 @@ class QuizGameViewController: UIViewController {
     var levelQuestionNumber = Int()
     var totalQuestion = Int()
     let shapeLayer = CAShapeLayer()
-    
+    var pulsatingLayer : CAShapeLayer!
+    let pulsuatingAnimation = CABasicAnimation(keyPath: "transform.scale")
+    let circularAnimation = CABasicAnimation(keyPath: "strokeEnd")
+    var seconds = 20
+    var timer = Timer()
+    var isTimeRunning : Bool!
+    var timerpaused = false
     
     
     override func viewDidLoad() {
@@ -44,13 +49,11 @@ class QuizGameViewController: UIViewController {
         setupView()
         score = 0
         levelQuestionNumber = 1
-        
         quizQuestLable.text = ""
         nextButton.isHidden = true
         picQuestionSet(leveNumber: selectedGameLevel)
         pickQuestion()
         quizScoreLable.text = "Score\n\(score)/\(totalQuestion)"
-//        timerCountDownLabel.text = "\(levelQuestionNumber)/\(totalQuestion)"
         drawCircularTimerPath()
         
     }
@@ -58,31 +61,42 @@ class QuizGameViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         animateCircularStroke()
-        startTimer()
+        animatepulsatingLayer()
+//        runTimer()
     }
+    
+    
     func drawCircularTimerPath(){
         // Creating circle Timer
         
         let XValue = self.view.frame.width / 2
-        let center = CGPoint(x: XValue, y: 100 )
+        let center = CGPoint(x: XValue, y: 100)
         // Creating a Circular track Path
-        
-        let trackLayer = CAShapeLayer()
         let path = UIBezierPath(arcCenter: .zero, radius: 50, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
-        trackLayer.path = path.cgPath
         
-        trackLayer.strokeColor = UIColor.lightGray.cgColor
+        // Pulsating Layer
+        pulsatingLayer = CAShapeLayer()
+        pulsatingLayer.path = path.cgPath
+        
+        pulsatingLayer.strokeColor = UIColor(hexString: "#d80f19", withAlpha: 0.6)?.cgColor
+        pulsatingLayer.lineWidth = 7
+        pulsatingLayer.lineCap = .round
+        pulsatingLayer.fillColor = UIColor.clear.cgColor
+        pulsatingLayer.position = CGPoint(x: XValue, y: 100)
+        view.layer.addSublayer(pulsatingLayer)
+
+        let trackLayer = CAShapeLayer()
+        trackLayer.path = path.cgPath
+        trackLayer.strokeColor = UIColor(hexString: "#7c080e", withAlpha: 0.5)?.cgColor
         trackLayer.lineWidth = 5
         trackLayer.lineCap = .round
         trackLayer.fillColor = UIColor.clear.cgColor
         trackLayer.position = CGPoint(x: XValue, y: 100)
         view.layer.addSublayer(trackLayer)
-        
-        
+
         // Creating circular motion
         shapeLayer.path = path.cgPath
-        
-        shapeLayer.strokeColor = UIColor.red.cgColor
+        shapeLayer.strokeColor = UIColor(hexString: "#ff020f", withAlpha: 1)?.cgColor
         shapeLayer.lineWidth = 5
         shapeLayer.strokeEnd = 0
         shapeLayer.lineCap = .round
@@ -91,44 +105,71 @@ class QuizGameViewController: UIViewController {
         shapeLayer.transform = CATransform3DMakeRotation(-CGFloat.pi / 2, 0, 0, 1)
         
         view.layer.addSublayer(shapeLayer)
-   
+       
+    }
+    
+    func animatepulsatingLayer(){
+        
+        pulsuatingAnimation.toValue = 1.2
+        pulsuatingAnimation.duration = 0.5
+        pulsuatingAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        pulsuatingAnimation.autoreverses = true
+        pulsuatingAnimation.repeatCount = 20.0
+        pulsatingLayer.add(pulsuatingAnimation, forKey: "pulsatingAnimation")
     }
     
     func animateCircularStroke(){
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimation.toValue = 1
-        basicAnimation.duration = 15
-        basicAnimation.fillMode = .forwards
-        basicAnimation.isRemovedOnCompletion = true
-        shapeLayer.add(basicAnimation, forKey: "basicAnimation")
+        
+        circularAnimation.toValue = 1
+        circularAnimation.duration = 20
+        circularAnimation.fillMode = .forwards
+        circularAnimation.isRemovedOnCompletion = true
+        shapeLayer.add(circularAnimation, forKey: "basicAnimation")
     }
     
-    var timer : UICircularTimerRing = {
-        let view = UICircularTimerRing()
-        view.startAngle = -CGFloat.pi / 2
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+
+    func runTimer() {
+            isTimeRunning = true
+            timerpaused = false
+              timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: #selector(updateTimer) , userInfo: nil, repeats: true)
+      
+      
+    }
     
-    func startTimer(){
-        timer.startTimer(to: 15) { state in
-            switch state {
-            case .finished:
-                print("finished")
-            case .continued(let time):
-                print("continued: \(time)")
-            case .paused(let time):
-                print("paused: \(time)")
-            }
+    @objc func updateTimer(){
+        if seconds != 0 {
+            seconds -= 1
+            timerCountDownLabel.text = "\(seconds)"
+        }else{
+            isTimeRunning = false
+            timerpaused = true
+            timer.invalidate()
+            disableButtonClick()
+            nextButton.isEnabled = true
+            nextButton.isHidden = false
+            timer.invalidate()
         }
+        
+       
     }
+    
+ 
+    
+    func resetTimer(){
+        
+    }
+    
+    func stopTimerAndAnimatin(){
+        timer.invalidate()
+        shapeLayer.stopAnimation(forKey: "basicAnimation")
+        pulsatingLayer.stopAnimation(forKey: "pulsatingAnimation")
+    }
+    
     
  
     // Question Number label
     var timerCountDownLabel: UILabel = {
         let label = UILabel()
-    
-        
         label.numberOfLines = 1
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.white
@@ -167,8 +208,7 @@ class QuizGameViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 5
         label.font = UIFont.systemFont(ofSize: 20)
-       
-        label.textColor = UIColor.black
+        label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -177,6 +217,8 @@ class QuizGameViewController: UIViewController {
    lazy var button1: UIButton = {
        let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.flatBlue()
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
         button.setTitle("Answer 1", for: .normal)
         button.titleLabel?.textColor = UIColor.black
         button.addTarget(self, action: #selector(button1Pressed), for:.touchUpInside)
@@ -186,6 +228,8 @@ class QuizGameViewController: UIViewController {
    lazy var button2: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.flatBlue()
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
         button.setTitle("Answer 2", for: .normal)
         button.addTarget(self, action: #selector(button2Pressed), for:.touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -195,6 +239,8 @@ class QuizGameViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Answer 3", for: .normal)
         button.backgroundColor = UIColor.flatBlue()
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
         button.addTarget(self, action: #selector(button3Pressed), for:.touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -202,6 +248,8 @@ class QuizGameViewController: UIViewController {
    lazy var button4: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Answer 4", for: .normal)
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
         button.backgroundColor = UIColor.flatBlue()
         button.addTarget(self, action: #selector(button4Pressed), for:.touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -212,6 +260,8 @@ class QuizGameViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Next", for: .normal)
         button.backgroundColor = UIColor.flatGreen()
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
         button.addTarget(self, action: #selector(nextButtonPressed), for:.touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -221,6 +271,8 @@ class QuizGameViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Cancel", for: .normal)
         button.backgroundColor = UIColor.flatRed()
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
         button.addTarget(self, action: #selector(cancelButtonPressed), for:.touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -236,7 +288,6 @@ class QuizGameViewController: UIViewController {
         self.view.addSubview(button3)
         self.view.addSubview(button4)
         self.view.addSubview(nextButton)
-        self.view.addSubview(timer)
         self.view.addSubview(cancelQuizButton)
         self.view.addSubview(timerCountDownLabel)
         
@@ -258,14 +309,6 @@ class QuizGameViewController: UIViewController {
         timerCountDownLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         timerCountDownLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         timerCountDownLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75).isActive = true
-        
-//        timer.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
-////        timer.leftAnchor.constraint(equalTo: quizLevelLable.rightAnchor, constant: 10).isActive = true
-////        timer.rightAnchor.constraint(equalTo: quizScoreLable.leftAnchor, constant: -10).isActive = true
-//        timer.widthAnchor.constraint(equalToConstant: 100).isActive = true
-//        timer.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//        timer.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        
         
         quizQuestLable.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16).isActive = true
         quizQuestLable.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16).isActive = true
@@ -317,6 +360,7 @@ class QuizGameViewController: UIViewController {
         button1.backgroundColor = UIColor.flatRed()
     }
         disableButtonClick()
+        stopTimerAndAnimatin()
     }
     @objc func button2Pressed(){
         
@@ -329,6 +373,7 @@ class QuizGameViewController: UIViewController {
             button2.backgroundColor = UIColor.flatRed()
         }
         disableButtonClick()
+        stopTimerAndAnimatin()
         
     }
     @objc func button3Pressed(){
@@ -341,6 +386,7 @@ class QuizGameViewController: UIViewController {
             button3.backgroundColor = UIColor.flatRed()
         }
         disableButtonClick()
+        stopTimerAndAnimatin()
         
     }
     @objc func button4Pressed(){
@@ -353,21 +399,25 @@ class QuizGameViewController: UIViewController {
             button4.backgroundColor = UIColor.flatRed()
         }
         disableButtonClick()
+        stopTimerAndAnimatin()
         
     }
     @objc func nextButtonPressed(){
+        timer.invalidate()
+        
         
         if levelQuestionNumber <= (totalQuestion - 1) {
             levelQuestionNumber += 1
-           
+            timerCountDownLabel.text = "20"
         }else {
             
         }
-        
         nextButton.isHidden = true
         enableButtonClick()
         resetButtonColour()
         pickQuestion()
+        animateCircularStroke()
+        animatepulsatingLayer()
     }
     
     @objc func cancelButtonPressed(){
@@ -418,10 +468,10 @@ class QuizGameViewController: UIViewController {
         button4.isEnabled = true
     }
     
- 
-    
     func pickQuestion(){
         resetButtonColour()
+        seconds = 20
+        runTimer()
         if Questions.count > 0 {
             Qnumber = 0
             quizQuestLable.text = Questions[Qnumber].Question
@@ -434,6 +484,8 @@ class QuizGameViewController: UIViewController {
         } else {
             print("Quiz end")
             navigateToFinishQuizPage()
+            stopTimerAndAnimatin()
+            
             
         }
     }
