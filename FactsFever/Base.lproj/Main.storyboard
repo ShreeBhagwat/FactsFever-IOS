@@ -795,7 +795,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7et-yL-q2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6769" y="1713"/>
+            <point key="canvasLocation" x="8763.75" y="1712.323943661972"/>
         </scene>
         <!--About FactsFever-->
         <scene sceneID="ROT-GT-srk">
@@ -1260,7 +1260,7 @@
         <!--Quiz Game View Controller-->
         <scene sceneID="zlx-TL-LjC">
             <objects>
-                <viewController id="3zH-lk-j3Q" customClass="QuizGameViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="3zH-lk-j3Q" customClass="QuizGameViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AbE-bk-qCJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1275,7 +1275,7 @@
         <!--Finish Quiz View Controller-->
         <scene sceneID="lCp-Fj-QbI">
             <objects>
-                <viewController storyboardIdentifier="FinishQuizViewController" id="wfg-Nq-5NW" customClass="FinishQuizViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FinishQuizViewController" hidesBottomBarWhenPushed="YES" id="wfg-Nq-5NW" customClass="FinishQuizViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qzh-q4-aW1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1297,7 +1297,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GMP-El-6kb">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GMP-El-6kb">
                                         <rect key="frame" x="87" y="94" width="106" height="106"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="GMP-El-6kb" secondAttribute="height" multiplier="1:1" id="yc1-Mp-f2P"/>
@@ -1338,6 +1338,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="htu-E1-vZa"/>
                     </view>
+                    <navigationItem key="navigationItem" id="k78-CR-ZeI"/>
                     <connections>
                         <outlet property="ImageViewOutlet" destination="GMP-El-6kb" id="u5a-OW-DcB"/>
                         <outlet property="percentageScoreLable" destination="rnr-M8-aSi" id="Wlt-8e-0gp"/>
@@ -1348,7 +1349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ga1-l2-kNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5602.898550724638" y="1687.5000000000002"/>
+            <point key="canvasLocation" x="8025" y="1695.4225352112676"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="AWN-dJ-hNp">
@@ -1647,7 +1648,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96V-2T-O6i">
-                                                    <rect key="frame" x="8" y="11" width="50" height="50"/>
+                                                    <rect key="frame" x="16" y="14" width="50" height="50"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rating" translatesAutoresizingMaskIntoConstraints="NO" id="3cS-qq-IZQ">
                                                             <rect key="frame" x="5" y="5" width="40" height="40"/>
@@ -1664,14 +1665,14 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xX-1t-3g2">
-                                                    <rect key="frame" x="16" y="75.5" width="256" height="2"/>
+                                                    <rect key="frame" x="16" y="76" width="256" height="2"/>
                                                     <color key="backgroundColor" red="0.93347412350000003" green="0.86840754750000004" blue="0.28702533250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="Hzm-J8-leS"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate us on App Store" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cts-FR-kxa">
-                                                    <rect key="frame" x="66" y="19" width="201" height="38"/>
+                                                    <rect key="frame" x="74" y="22" width="185" height="35.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

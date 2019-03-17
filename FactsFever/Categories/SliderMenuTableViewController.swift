@@ -16,7 +16,7 @@ enum MenuType: Int {
     case History
     case Human
     case Interesting
-    case Knowledge
+    case Game
     case Language
     case LifeHack
     case Love
@@ -32,8 +32,8 @@ enum MenuType: Int {
 
 class SliderMenuTableViewController: UITableViewController {
     
-    var categoriesImage = [#imageLiteral(resourceName: "categories"),#imageLiteral(resourceName: "animal"),#imageLiteral(resourceName: "countries"),#imageLiteral(resourceName: "food"),#imageLiteral(resourceName: "history"),#imageLiteral(resourceName: "human"),#imageLiteral(resourceName: "Interesting"),#imageLiteral(resourceName: "knowledge"),#imageLiteral(resourceName: "language"),#imageLiteral(resourceName: "hacks"),#imageLiteral(resourceName: "Love"),#imageLiteral(resourceName: "Movies"),#imageLiteral(resourceName: "science"),#imageLiteral(resourceName: "space"),#imageLiteral(resourceName: "sports"),#imageLiteral(resourceName: "trees"),#imageLiteral(resourceName: "weird"),#imageLiteral(resourceName: "Others")]
-    var categories = ["Categories","Animal","Country","Food","History","Human","Interesting","Knowledge","Language","LifeHack","Love","Movies","Science","Space","Sports","Trees","Weird","Other",]
+    var categoriesImage = [#imageLiteral(resourceName: "categories"),#imageLiteral(resourceName: "animal"),#imageLiteral(resourceName: "countries"),#imageLiteral(resourceName: "food"),#imageLiteral(resourceName: "history"),#imageLiteral(resourceName: "human"),#imageLiteral(resourceName: "Interesting"),#imageLiteral(resourceName: "game2"),#imageLiteral(resourceName: "language"),#imageLiteral(resourceName: "hacks"),#imageLiteral(resourceName: "Love"),#imageLiteral(resourceName: "Movies"),#imageLiteral(resourceName: "science"),#imageLiteral(resourceName: "space"),#imageLiteral(resourceName: "sports"),#imageLiteral(resourceName: "trees"),#imageLiteral(resourceName: "weird"),#imageLiteral(resourceName: "Others")]
+    var categories = ["Categories","Animal","Country","Food","History","Human","Interesting","Game","Language","LifeHack","Love","Movies","Science","Space","Sports","Trees","Weird","Other",]
     var didTappedMenuType: ((MenuType) -> Void)?
     
     let cellReuseIdentifies = "CategoriesCell"

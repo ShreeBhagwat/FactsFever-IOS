@@ -60,9 +60,19 @@ class QuizGameViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         animateCircularStroke()
         animatepulsatingLayer()
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
 //        runTimer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
     }
     
     
@@ -206,7 +216,7 @@ class QuizGameViewController: UIViewController {
     // Question Label
     var quizQuestLable:UILabel = {
         let label = UILabel()
-        label.numberOfLines = 5
+        label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -217,6 +227,7 @@ class QuizGameViewController: UIViewController {
    lazy var button1: UIButton = {
        let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.flatBlue()
+        button.tag = 1
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         button.setTitle("Answer 1", for: .normal)
@@ -228,6 +239,7 @@ class QuizGameViewController: UIViewController {
    lazy var button2: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.flatBlue()
+        button.tag = 2
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         button.setTitle("Answer 2", for: .normal)
@@ -238,6 +250,7 @@ class QuizGameViewController: UIViewController {
    lazy var button3: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Answer 3", for: .normal)
+        button.tag = 3
         button.backgroundColor = UIColor.flatBlue()
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
@@ -248,6 +261,7 @@ class QuizGameViewController: UIViewController {
    lazy var button4: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Answer 4", for: .normal)
+        button.tag = 4
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         button.backgroundColor = UIColor.flatBlue()
@@ -356,7 +370,8 @@ class QuizGameViewController: UIViewController {
        
     }else{
         NSLog("Wrong")
-        
+        let rightButton = buttonArray[AnswerNumber]
+        rightButton.backgroundColor = UIColor.flatGreen()
         button1.backgroundColor = UIColor.flatRed()
     }
         disableButtonClick()
@@ -370,6 +385,8 @@ class QuizGameViewController: UIViewController {
             
         }else{
             NSLog("Wrong")
+            let rightButton = buttonArray[AnswerNumber]
+            rightButton.backgroundColor = UIColor.flatGreen()
             button2.backgroundColor = UIColor.flatRed()
         }
         disableButtonClick()
@@ -383,6 +400,8 @@ class QuizGameViewController: UIViewController {
             
         }else{
             NSLog("Wrong")
+            let rightButton = buttonArray[AnswerNumber]
+            rightButton.backgroundColor = UIColor.flatGreen()
             button3.backgroundColor = UIColor.flatRed()
         }
         disableButtonClick()
@@ -396,12 +415,17 @@ class QuizGameViewController: UIViewController {
             
         }else{
             NSLog("Wrong")
+            let rightButton = buttonArray[AnswerNumber]
+            rightButton.backgroundColor = UIColor.flatGreen()
             button4.backgroundColor = UIColor.flatRed()
         }
         disableButtonClick()
         stopTimerAndAnimatin()
         
     }
+    
+
+    
     @objc func nextButtonPressed(){
         timer.invalidate()
         
@@ -422,9 +446,9 @@ class QuizGameViewController: UIViewController {
     
     @objc func cancelButtonPressed(){
         // Stop Timmer here, (Pending)
+       
         print("Cancel Button Pressed")
         let alert = PCLBlurEffectAlert.Controller(title: "Cancel Quiz", message: "Are you sure you want cancel quiz ", effect: UIBlurEffect(style: .dark), style: .alert)
-//        let cancelButton = PCLBlurEffectAlertAction.init(title: "Cancel", style: .destructive, handler: nil)
         let cancelButton = PCLBlurEffectAlertAction.init(title: "Cancel", style: .destructive) { (alert) in
             // Continew Timer here.(Pending)
             
@@ -483,6 +507,7 @@ class QuizGameViewController: UIViewController {
             Questions.remove(at: Qnumber)
         } else {
             print("Quiz end")
+            
             navigateToFinishQuizPage()
             stopTimerAndAnimatin()
             
@@ -501,7 +526,10 @@ class QuizGameViewController: UIViewController {
         FinishQuizViewController.finalScore = score
         FinishQuizViewController.currentLevelPlayed = selectedGameLevel
         FinishQuizViewController.totalQuestion = self.totalQuestion
-        present(FinishQuizViewController, animated: true, completion: nil)
+        navigationController?.pushViewController(FinishQuizViewController, animated: true)
+        
+        
+       
     }
     
     func picQuestionSet(leveNumber : Int){
@@ -610,7 +638,7 @@ class QuizGameViewController: UIViewController {
     }
     
     func questionLevel0(){
-        Questions = [Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+        Questions = [Question(Question: "", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
         Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
         Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
         Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
@@ -628,7 +656,12 @@ class QuizGameViewController: UIViewController {
     }
     
     func questionLevel2(){
-        
+        Questions = [Question(Question: "This is third Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel3(){
         

@@ -13,7 +13,8 @@ import PCLBlurEffectAlert
 
 class QuizLevelsCollectionViewController: UICollectionViewController {
     
-    var lastLevelwon = 0
+    var lastLevelwon = 1
+    var higestLevelWon = 1
     @IBOutlet weak var levelNumberLabelOutlet: UILabel!
     
     let margin : CGFloat = 10
@@ -26,7 +27,8 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         collectinView.contentInsetAdjustmentBehavior = .always
         
-        let defaults = UserDefaults.standard
+     
+        print("HigestLevelWon \(higestLevelWon)")
        
         
         self.collectionView.backgroundColor = .clear
@@ -46,9 +48,13 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewDidAppear(true)
-//        self.navigationController?.setToolbarHidden(false, animated: true)
+        let defaults = UserDefaults.standard
         
-        
+        higestLevelWon = defaults.integer(forKey: "higestLevelWon")
+        defaults.synchronize()
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
+   
     }
     
  
@@ -71,7 +77,7 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
             as? QuizLevelCollectionViewCell
         cell!.quizLevelLabelOutlet.text = "\(indexPath.row)"
 
-        if (indexPath.row  <= lastLevelwon){
+        if (indexPath.row  <= higestLevelWon){
             cell?.quizLevelLabelOverview.alpha = 0
         }else{
             cell?.quizLevelLabelOverview.alpha = 0.7
@@ -82,21 +88,9 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if (indexPath.row <= lastLevelwon){
+        if (indexPath.row <= higestLevelWon){
             let cell = collectionView.cellForItem(at: indexPath)
-//            UIView.animate(withDuration: 0.5,
-//                           animations: {
-//                            //Fade-out
-//                            cell?.alpha = 0.5
-//            }) { (completed) in
-//                UIView.animate(withDuration: 0.5,
-//                               animations: {
-//                                //Fade-out
-//                                cell?.alpha = 1
-//                })
-//            }
-//            print("\(indexPath.row)")
-            sendToQuizLevel(quizLevel: indexPath.row)
+            NavigateToQuizLevel(quizLevel: indexPath.row)
         }else{
             collectionView.deselectItem(at: indexPath, animated: false)
         }
@@ -106,6 +100,13 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
         let VC = QuizGameViewController()
         VC.selectedGameLevel = quizLevel
         present(VC, animated: true, completion: nil)
+
+    }
+    
+    func NavigateToQuizLevel(quizLevel: Int){
+        let VC = QuizGameViewController()
+        VC.selectedGameLevel = quizLevel
+        navigationController?.pushViewController(VC, animated: true)
     }
     
 //    override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {

@@ -22,7 +22,7 @@ import SkeletonView
 
 class UploadFactsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     
-    private let categoriesOption = ["Animal","Country","Food","History","Human","Interesting","Knowledge","Language","LifeHack","Love","Movie","Science","Space","Sports","Trees","Weird","Other",]
+    private let categoriesOption = ["Animal","Country","Food","History","Human","Interesting","Game","Language","LifeHack","Love","Movie","Science","Space","Sports","Trees","Weird","Other",]
     var categories = ""
     @IBOutlet weak var imageViewOutlet: UIImageView!
     @IBOutlet weak var captionViewOutlet: UITextView!
