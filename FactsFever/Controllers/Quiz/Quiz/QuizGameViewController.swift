@@ -638,171 +638,748 @@ class QuizGameViewController: UIViewController {
     }
     
     func questionLevel0(){
-        Questions = [Question(Question: "", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-        Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-        Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-        Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+        Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+        Question(Question: "The new word added to Oxford Dictionary at the end was ?", Answers: ["zymogens","Zyzzyva","zymosans","Zeda"], Answer: 1),
+        Question(Question: "Chewing gum is illegal in what country ?", Answers: ["Nigeria","Switzerland","Singapore","China"], Answer: 2),
+        Question(Question: "Which is the country with maximum number of people suffering from depression?", Answers: ["USA","China","indonesia","India"], Answer: 3),
+        Question(Question: "Which animals will eat themselves if no other food source is available?", Answers: ["Humans","Ribbon worms","Earthworms","Snakes"], Answer: 1),
+        Question(Question: "Name the dead gene that came back to life, prevents cancer by killing cells with DNA damage.", Answers: ["LIF6","Abraxne","Cytoxan","Doxil"], Answer: 0),
+        Question(Question: "Number of recognised words for Vagina.", Answers: ["2000","500","10","1000"], Answer: 3),
+        Question(Question: "The Lion King  was actually considered a class B movie as all the producers were working on different movie, What movie was that?", Answers: ["Mary Poppins","Sword Stone","Pocahontas","Toy Story"], Answer: 2)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
     }
     func questionLevel1(){
-        Questions = [Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        Questions = [Question(Question: "In 1973, which space station turned off all communications with NASA after being over-worked and spent the day relaxing and looking at the Earth. It is the only strike to occur in space.", Answers: ["Skylab space","International Space","Kosmos","Mir Space"], Answer: 0),
+         Question(Question: "Dark Energy is Incompatible with what theory", Answers: ["Quantum Theory","Relativity","String Theory","Big Bang"], Answer: 2),
+         Question(Question: "People who are aroused by teeth - looking at them, licking them, caressing them lovingly are called as", Answers: ["Haemophiliacs","Odontophiliacs","Podophilia","Paraphilia"], Answer: 1),
+         Question(Question: "Where was The Eiffel Tower originally supposed to be ?", Answers: ["Denmark","Spain","Holland","Barcelona"], Answer: 3),
+         Question(Question: "Based on landmass, is the smallest country in the world, measuring just 0.2 square miles.", Answers: ["Amsterdam","Vatican City","St Asaph","Maza"], Answer: 1),
+         Question(Question: "The first proposal for space travel in English history was made by whose brother in law ?", Answers: ["Oliver Cromwell","Leonardo da Vinci","Galileo Galilei","Avicenna"], Answer: 0),
+         Question(Question: "How much time do Sloths take  to digest their food?", Answers: ["4 Hours","2 days","1 week","2 weeks"], Answer: 3),
+         Question(Question: "The president of Poland awards a medal to couples that remain married for how many years ?", Answers: ["25","50","40","60+"], Answer: 1),
+         Question(Question: "The first man to urinate on the moon was ?", Answers: ["Niel Armstrong","Michael Collins ","Buzz aldrin","Yuri Gagrin"], Answer: 2),
+         Question(Question: "Which software is use by movie makers to create fake actors through AI ?", Answers: ["MASSIVE","HOUDINI","SOFTIMAGE","ZBrush"], Answer: 0)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
         
     }
     
     func questionLevel2(){
-        Questions = [Question(Question: "This is third Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "This is Second Level", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        Questions = [Question(Question: "What was Johnny Depp addicted to as a child ?", Answers: ["Chocolate","Cola","Ice Cream","Sugar"], Answer: 0),
+                     Question(Question: "If Bill Gates was a country on number the country come in being rich ?", Answers: ["10th","18th","37th","43rd"], Answer: 2),
+                     Question(Question: "World's smallest flowering plant is ? ", Answers: ["Poinsettia","Wolffia","Bromeliads","Peace Lily"], Answer: 1),
+                     Question(Question: "On any given time what is the number of people having Sex", Answers: ["120 M","200 M","80 M ","450 M"], Answer: 0),
+                     Question(Question: "Where will be the cheapest items be found, while shopping ?", Answers: ["Top","Middle","Bottom","Mixed"], Answer: 2),
+                     Question(Question: "How much time does it takes for food to completely digest?", Answers: ["8 hrs","12 hrs","16 hrs","24 hrs"], Answer: 1),
+                     Question(Question: "Storm clouds hold about how much rain drops in trillions ", Answers: ["2","4","6","8"], Answer: 2),
+                     Question(Question: "Which is the only country to stop it's nuclear program voluntarily?", Answers: ["Israel","Japan","Germany","Africa"], Answer: 3),
+                     Question(Question: "Jm was the oldest man ever to travel into space, as a passenger on the Discovery STS-95 mission in 1998. What was his age ?", Answers: ["77","80","83","91"], Answer: 0),
+                     Question(Question: "What Does the D in D-Day stands for ?", Answers: ["Do","Doom","Din","Day"], Answer: 3)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
     }
     func questionLevel3(){
-        
+        Questions = [Question(Question: "Which ancient priests would pluck every hair from their bodies.", Answers: ["Indian","Greek","African","Egyptian"], Answer: 3),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Name the first fruit to be eaten on the moon.", Answers: ["Peach","Mango","Cherry","Avacado"], Answer: 0),
+                     Question(Question: "Which is the food most stolen in the world ?", Answers: ["Meat","Nutella","Chocolate","Cheese"], Answer: 3),
+                     Question(Question: "Amount of cups of spit does an healthy individual acumulates ? ", Answers: [">1","1 - 2","2 - 4","6 "], Answer: 2),
+                     Question(Question: "Which bird is known to eat more than 1000 items", Answers: ["Eagle","Crow","Vulture","Falcon"], Answer: 1),
+                     Question(Question: "What was the size of the entire Super Mario Bro", Answers: ["13 kb","5 mb","32 kb","40 kb"], Answer: 2),
+                     Question(Question: "How many days can sperm live inside of woman", Answers: ["1-3 days","5-7 days","7 - 9 days","<9 days"], Answer: 1),
+                     Question(Question: "Which tree is most fireproof", Answers: ["Redwood","Conkers","Japanes Elm","Ponderosa"], Answer: 0),
+                     Question(Question: "Date of the oldest use of Condums", Answers: ["1590","1600","1640","1710"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel4(){
-        
+        Questions = [Question(Question: "Who scored the first goal in football history", Answers: ["Raoul Diagne","Lucien Laurent","Larbi Benbarek","Jean Vincent"], Answer: 1),
+                     Question(Question: "Guys fall in love after 3 dates, How many dates it takes for a girl to fall in love", Answers: ["2","10","14","20"], Answer: 2),
+                     Question(Question: "Its important for the food to mix in saliva, for it to", Answers: ["Taste","Digest","cheewed","Swallowed"], Answer: 0),
+                     Question(Question: "Name the village/City in India which plants a tree behind every female child birth", Answers: ["Wadgaon","Kerla","Pune","Piplantri"], Answer: 3),
+                     Question(Question: "Which is the first country in the world to allow the creation of babies from the DNA of three people", Answers: ["America","UK","Africa","Japan"], Answer: 1),
+                     Question(Question: "How many hours will be there in day on Earth after million years", Answers: ["10","20","30","40"], Answer: 2),
+                     Question(Question: "NASAs new mission will study the border of Earths atmosphere and space, what is that mission is called", Answers: ["BORDER","GOLD","HORIZON","MEET"], Answer: 1),
+                     Question(Question: "Rupert Grint (Ron from Harry Potter) what was his dream ambition ?", Answers: ["Actor","Ice Cream Seller","Fireman","Sports person"], Answer: 1),
+                     Question(Question: "Name the love hormone", Answers: ["Serotonin","Testosteron","corticotropin","Oxytcin"], Answer: 3),
+                     Question(Question: "Longest cell in humans ?", Answers: ["Motor Neurons","myocytes","oligodendrocytes","ependymal cells"], Answer:0)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel5(){
-        
+        Questions = [Question(Question: "How much can an astronaut increase in height after returning from space", Answers: ["> 1 inch","1 inch","2 inches","2+ inches"], Answer: 2),
+     Question(Question: "We identify banana as a tree, but what are they really ?", Answers: ["Shrubs","Grass","Herbs","Non of Above"], Answer: 3),
+     Question(Question: "Which country sprouted a a plant on moon?", Answers: ["America","China","India","Russia"], Answer: 1),
+     Question(Question: "If you could drive your car straight to the space how long will it take to reach space ?", Answers: ["30 min","1 hr","10 hr","1 day"], Answer: 1 ),
+     Question(Question: "Which is the only country without mosquitoes?", Answers: ["iceland","Antartica","Greenland","Russia"], Answer: 0),
+     Question(Question: "How many peanuts does to take make a 12 ounce penut butter", Answers: ["400","500","600","700"], Answer: 1),
+     Question(Question: "Weirdly interesting thing is that the word “hundred” is derived from another word hundrath, how much is hundrath ", Answers: ["80","100","120","101"], Answer: 2),
+     Question(Question: "Which river flows for north to south half year, and south to north rest of the year", Answers: ["Tonle Sap","Ganga","Thames","Mississippi"], Answer: 0),
+     Question(Question: "Which alcohol can reduce the acne breakout after applying it to face", Answers: ["Wiskey","Taquila","Gin","Vodka"], Answer: 3),
+     Question(Question: "What was the slowest speed of light observed", Answers: ["30km/s","40km/s","50km/s","60km/s"], Answer: 1)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel6(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel7(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel8(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel9(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel10(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel11(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel12(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel13(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel14(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel15(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel16(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel17(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel18(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel19(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel20(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel21(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel22(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel23(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel24(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel25(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel26(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel27(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel28(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel29(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel30(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel31(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel32(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel33(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel34(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel35(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel36(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel37(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel38(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel39(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel40(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel41(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel42(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel43(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel44(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel45(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel46(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel47(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel48(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
     func questionLevel49(){
-        
+        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
+                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
+                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        quizScoreLable.text = "\(score)/\(Questions.count)"
+        totalQuestion = Questions.count
     }
    
     
