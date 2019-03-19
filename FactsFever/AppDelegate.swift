@@ -15,6 +15,10 @@ import ProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
+    
+    static var menu_bool = true
+    
+    
 //    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
 //
 //    }

@@ -36,20 +36,43 @@ class SliderMenuTableViewController: UITableViewController {
     var categories = ["Categories","Animal","Country","Food","History","Human","Interesting","Game","Language","LifeHack","Love","Movies","Science","Space","Sports","Trees","Weird","Other",]
     var didTappedMenuType: ((MenuType) -> Void)?
     
-    @IBOutlet var leftSwipeGesture: UISwipeGestureRecognizer!
     let cellReuseIdentifies = "CategoriesCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
+        swipeLeft.direction = .left
+        
+        self.view.addGestureRecognizer(swipeLeft)
+        
             }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
-        super .viewDidAppear(animated)
+        super.viewWillAppear(animated)
+
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
+        swipeLeft.direction = .left
+
+        self.view.addGestureRecognizer(swipeLeft)
+       
      
     }
-    @objc func swipeCategoryOut(){
-        print("Swipe Working")
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+       
+    }
+    
+    @objc func respondToGesture(gesture: UISwipeGestureRecognizer){
+        switch gesture.direction {
+        case UISwipeGestureRecognizer.Direction.left:
+            print("left Side Swipe")
+            self.dismiss(animated: true, completion: nil)
+        default:
+            break
+        }
     }
     // MARK: - Table view data source
 

@@ -41,12 +41,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if factsArray.isEmpty {
-//            FactsFeverCustomLoader.instance.hideLoader()
-//        } else {
-//             FactsFeverCustomLoader.instance.showLoader()
-//        }
-//     FactsFeverCustomLoader.instance.showLoader()
+        if factsArray.isEmpty {
+            FactsFeverCustomLoader.instance.hideLoader()
+        } else {
+             FactsFeverCustomLoader.instance.showLoader()
+        }
+     FactsFeverCustomLoader.instance.showLoader()
         // Do any additional setup after loading the view, typically from a nib.
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
@@ -68,8 +68,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //            btn.title = ""
 //        }
    
-      
-
+      //////Swipe Gesture for categories
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
+        swipeRight.direction = .right
+        
+        self.view.addGestureRecognizer(swipeRight)
+        
          }
     
     override func viewDidLayoutSubviews() {
@@ -85,15 +89,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        self.tabBarController?.tabBar.isHidden = false
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             if self.category == nil {
                 self.category = "Science"
             }
             self.observeFactsFromFirebase(category: self.category)
-//            if self.factsArray.count == 0 {
-//                FactsFeverCustomLoader.instance.hideLoader()
-//            }
         }
 
     }
@@ -105,30 +106,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let transition = SlideInTransition()
 
     @IBAction func menuButtonTapped(_ sender: UIBarButtonItem) {
+
+        slideCategoryMenu()
+    }
+    
+    func changeCategories(_ menuType: MenuType){
+        let category = "\(menuType)"
+        let VC = storyboard?.instantiateViewController(withIdentifier: "factsViewController") as? ViewController
+        VC?.category = "\(menuType)"
+        navigationController?.pushViewController(VC!, animated: true)
+        
+    }
+    @objc func respondToGesture(gesture: UISwipeGestureRecognizer){
+        switch gesture.direction {
+        case UISwipeGestureRecognizer.Direction.right:
+            print("Right Side Swipe")
+            slideCategoryMenu()
+        default:
+            break
+        }
+    }
+
+    func slideCategoryMenu(){
         guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? SliderMenuTableViewController else {return}
-      
+        
         menuViewController.didTappedMenuType = {menuType in
             print(menuType)
             self.changeCategories(menuType)
         }
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
+  
         present(menuViewController, animated: true, completion: nil)
     }
-    
-    func changeCategories(_ menuType: MenuType){
-//        observeFactsFromFirebase()
-        let category = "\(menuType)"
-//        factsArray.removeAll()
-//        observeFactsFromFirebase(category: category)
-        let VC = storyboard?.instantiateViewController(withIdentifier: "factsViewController") as? ViewController
-        VC?.category = "\(menuType)"
-        navigationController?.pushViewController(VC!, animated: true)
-//        print("Number of facts in array \(factsArray.count)")
-        
-    }
- 
-
    
     var imageUrl: [String] = []
     func observeFactsFromFirebase(category: String){
