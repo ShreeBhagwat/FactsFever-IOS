@@ -724,90 +724,87 @@ class QuizGameViewController: UIViewController {
         totalQuestion = Questions.count
     }
     func questionLevel6(){
-        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
-                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
-                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        Questions = [Question(Question: "Which is the most poisonous tree", Answers: ["Atropa","manchineel","Taxus Baccata","Aconite"], Answer: 1),
+                     Question(Question: "If all the carbon is extracted from human body how many lead pencil can be made?", Answers: ["5000","7000","9000","11000"], Answer: 2),
+                     Question(Question: "Which continent has maximum countries?", Answers: ["America","Asia","Europe","Africa"], Answer: 3),
+                     Question(Question: "How many years old was the first chewing gum", Answers: ["9000","8000","7000","6000"], Answer: 0),
+                     Question(Question: "Which animals evidance is addmisible in court", Answers: ["Sniffers","Begles","German Shepards","Bloodhounds"], Answer: 3),
+                     Question(Question: "who is deadpools heartmate", Answers: ["Spiderman","Iron Man","Wolvorine","Cpt America"], Answer: 0),
+                     Question(Question: "Which is the most traded food or drink commodity in the world?", Answers: ["Cheese","Coffee","Tea","alcohols"], Answer: 1),
+                     Question(Question: "Most fetish people have is of", Answers: ["Roll play","Cuckold","Foot","armpits"], Answer: 2),
+                     Question(Question: "Which country has the most doughnut shops?", Answers: ["London","Australia","Africa","Canada"], Answer: 3),
+                     Question(Question: "Which drug did coca-cola contained at the start", Answers: ["Cocaine","Heroin","Marijuana","Meth"], Answer: 0)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
     }
     func questionLevel7(){
-        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
-                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
-                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        Questions = [Question(Question: "Collective noun for a group of pugs ?", Answers: ["Tumble","Mumble","Grumble.","Pupper"], Answer: 2),
+                     Question(Question: "Name the animale which went extinct twice ? ", Answers: ["Mammoth", "Pyrenean ibex","Scart","Tooth Tiger"], Answer: 1),
+                     Question(Question: "National animal of Scotland", Answers: ["Mermaid","Dragon","Unicorn","Dinasaur"], Answer: 2),
+                     Question(Question: "Squids have an eyeball of what size ?", Answers: ["Volleyball","Nickle","Marble","Golf ball"], Answer: 0),
+                     Question(Question: "Who was director Gore Verbinksi's first choice to play the legendary pirate", Answers: ["Tom Cruise","Jim Carry","Rowan Atkinson","Bradly Cooper"], Answer:1),
+                     Question(Question: "Which bird can remember faces and can even attack people, if mistreated ?", Answers: ["Kingfisher","Crow","Eagle","Kite"], Answer: 1),
+                     Question(Question: "Total number of blood groups in humans identified by International Society of Blood Transfusion ?", Answers: ["4","8","24","35"], Answer: 3),
+                     Question(Question: "Which plant is more closely related to humans than other plants ?", Answers: ["Vines","Banana","Mushrooms","alge"], Answer: 2),
+                     Question(Question: "whhich is the animal/insect with largest brain in comparison with its body ?", Answers: ["Elephant","Musquiteo","Monkey","Ant",], Answer: 3),
+                     Question(Question: "How long it takes a photon to travel from the core of the sun to surface of the sun ?", Answers: ["10,000 yrs","20,000 yrs","30,000 yrs","40,000 yrs"], Answer: 3)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
     }
     func questionLevel8(){
-        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
-                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
-                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        Questions = [Question(Question: "What was the first animal that humans domesticated for food ?", Answers: ["Goat","Hare","Dog","Donkey"], Answer: 0),
+                     Question(Question: "When was the first virus found both in animals and plants ?", Answers: ["50 yrs ago","100 yrs ago","150 yrs ago","200 yrs ago"], Answer: 1),
+                     Question(Question: "Which bird can only eat with their heads upside down ?", Answers: ["Emu","Kiwi","Ostrich","Flamingos"], Answer: 3),
+                     Question(Question: "Which is the worlds fourth staple food ?", Answers: ["Rice","Wheat","Potato","Corn"], Answer: 2),
+                     Question(Question: "Which genetic mutation made some people from Europe resistance to HIV", Answers: ["CCR5-Alpha1,","CCR5-Delta32,","CCR5-Charli34,","CCR5-Roger10,"], Answer: 1),
+                     Question(Question: "Which metal is antibacterial ?", Answers: ["Gold","Iron","Silver","Copper"], Answer: 3),
+                     Question(Question: "Which letter does not apper in the periodic table ?", Answers: ["A","J","Z","D"], Answer: 1),
+                     Question(Question: "Which was supposed to be the first MCU instead of Iron Man", Answers: ["Dr. Strange","Capt America","Thor","Hulk"], Answer: 0),
+                     Question(Question: "What was Jesus Christ's called in greek language ?", Answers: ["Xcristos","Hesus","Kretos","Xistos"], Answer: 3),
+                     Question(Question: "Which element was also refered to as Devil's Element", Answers: ["Phosphorus","Potassium","Uranium","Radium"], Answer: 0)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
     }
     func questionLevel9(){
-        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
-                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
-                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        Questions = [Question(Question: "Which metal is used for making chip boards", Answers: ["Silicon","Gold","Copper","Silver"], Answer: 0),
+                     Question(Question: "What year did the Spanish Civil War end ?", Answers: ["1930","1941","1931","1939"], Answer: 3),
+                     Question(Question: "How many imaginary languages are there in The Lord of the Rings", Answers: ["11","12","13","14"], Answer: 1),
+                     Question(Question: "The only chocolate in the world which also has salad named after it ?", Answers: ["Toblerone","Kit-Kat","Snicker","Munch"], Answer: 2),
+                     Question(Question: "How many species of Viper are there ? ", Answers: ["150","400","350","200"], Answer: 3),
+                     Question(Question: "In which country did pigeon racing begin as a sport ?", Answers: ["Poland","Brazil","Belgium","Canada"], Answer: 2),
+                     Question(Question: "Before flying, what temperature a butterfly attends ?", Answers: ["79 F","81 F","89 F","92 F"], Answer: 1),
+                     Question(Question: "Which Living creature is true carnivore ?", Answers: ["Lion","Snake","Shark","Alligator"], Answer: 2),
+                     Question(Question: "How much the Eiffel Tower increases in summer due to heat expansion", Answers: ["5cm","10cm","15cm","20cm"], Answer: 2),
+                     Question(Question: "How big is a Giraffe's heart", Answers: ["0.5 foot","1 foot"," 1.5 feet","2 feet"], Answer: 3)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
     }
     func questionLevel10(){
-        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
-                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
-                     Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+        Questions = [Question(Question: "Which country has the higgest unemployment rate", Answers: ["Nigeria","Zimbabwe","Japan","China"], Answer: 1),
+                     Question(Question: "What is the female equivalent word for Dude?", Answers: ["Dudi","Dudine","Dudini","Dudoni"], Answer: 2),
+                     Question(Question: "What is the shape of the pupil of an octopus", Answers: ["Rectangle","Cicle","Squar","triangle"], Answer: 0),
+                     Question(Question: "Snail breaths through ?", Answers: ["Nose","Arms","Foot","Skin"], Answer: 2),
+                     Question(Question: "Which living creater except humans, navigate and orrient themselves according the mily way.", Answers: ["Moths","Bees","Beatles","Wasps"], Answer: 2),
+                     Question(Question: "Which company bymistakely made cameras which could see through clothes ?", Answers: ["Kodak","Sony","Nikkon","Cannon"], Answer: 1),
+                     Question(Question: "Which country give death penalty for killing an elephant ?", Answers: ["Sri Lanaka","India","Malasia","Nepal"], Answer: 0),
+                     Question(Question: "Which fruit has more trade regulation than AK-47", Answers: ["Apple","Mango","Berry","Banana"], Answer: 3),
+                     Question(Question: "The Coefficient friction of ice is 1.05. What is the Coefficient friction of banana making is slippary ?", Answers: ["1.05","1.06","1.07","1,08"], Answer: 3),
+                     Question(Question: "What colour is Abysynth", Answers: ["Green","Blue","Red","Yellow"], Answer: 0)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
     }
     func questionLevel11(){
-        Questions = [Question(Question: "The Smallest living bird is ?", Answers: ["weebill","pardolate","bee hummingbird","Cisticola"], Answer: 2),
-                     Question(Question: "The longest street in world is ?", Answers: ["Yonge street","Second street","First street","Wang street"], Answer: 0),
+        Questions = [Question(Question: "Which countries National Anthem contains 5 language", Answers: ["America","Australia","South Africa","Russia"], Answer: 2),
+                     Question(Question: "What is the minimum number of the musican a band must have to consider it self has a Big Band", Answers: ["5","7","9","11"], Answer: 3),
                      Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2),
-                     Question(Question: "What app is this", Answers: ["Game","Fact","Quiz","Golf"], Answer: 2)]
+                     Question(Question: "What size of sandles does Statue of Liberty wear ?", Answers: ["967","879","578","1432"], Answer: 1),
+                     Question(Question: "What was the original meaning of the word stupid", Answers: ["Dumb","Crazy","Surprised","Startled"], Answer: 2),
+                     Question(Question: "How long can beavers hold  their breath underwater ?", Answers: ["10 min","45 min","50 min","65 min"], Answer: 1),
+                     Question(Question: "What part of her mate’s body does a female sagebrush cricket eat?", Answers: ["Wings","Legs","Oviposters","Head"], Answer: 0),
+                     Question(Question: "How much mass does Sun losses(trillion tons) every second in Fusion reaction ?", Answers: ["6","8","10","11"], Answer: 0),
+                     Question(Question: "How many tweets per second mention Starbucks ?", Answers: ["1","5","10","50"], Answer: 2),
+                     Question(Question: "which creature eats its sibbling in the womb till one is left, which takes birth ?", Answers: ["Snake","Anteater","Shark","Whale"], Answer: 2),
+                     Question(Question: "Which insect has 5 assholes", Answers: ["Cockraches ","Spider","Abalones","Draidos"], Answer: 2)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
     }

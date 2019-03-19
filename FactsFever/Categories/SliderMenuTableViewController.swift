@@ -36,13 +36,21 @@ class SliderMenuTableViewController: UITableViewController {
     var categories = ["Categories","Animal","Country","Food","History","Human","Interesting","Game","Language","LifeHack","Love","Movies","Science","Space","Sports","Trees","Weird","Other",]
     var didTappedMenuType: ((MenuType) -> Void)?
     
+    @IBOutlet var leftSwipeGesture: UISwipeGestureRecognizer!
     let cellReuseIdentifies = "CategoriesCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-            }
 
+            }
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewDidAppear(animated)
+     
+    }
+    @objc func swipeCategoryOut(){
+        print("Swipe Working")
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

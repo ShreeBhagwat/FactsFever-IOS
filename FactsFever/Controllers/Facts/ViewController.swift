@@ -106,6 +106,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     @IBAction func menuButtonTapped(_ sender: UIBarButtonItem) {
         guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? SliderMenuTableViewController else {return}
+      
         menuViewController.didTappedMenuType = {menuType in
             print(menuType)
             self.changeCategories(menuType)
@@ -126,6 +127,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //        print("Number of facts in array \(factsArray.count)")
         
     }
+ 
 
    
     var imageUrl: [String] = []

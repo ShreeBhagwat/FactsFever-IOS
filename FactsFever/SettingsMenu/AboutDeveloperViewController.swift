@@ -10,18 +10,17 @@ import UIKit
 
 class AboutDeveloperViewController: UIViewController {
 
-    @IBOutlet weak var developerImage: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        developerImage.clipsToBounds = true
-        developerImage.layer.masksToBounds = false
-        developerImage.layer.cornerRadius = 20
-        developerImage.layer.shadowColor = UIColor.white.cgColor
-        developerImage.layer.shadowOffset = CGSize(width: 2, height: 2)
-        developerImage.layer.shadowOpacity = 1
-        developerImage.layer.shadowRadius = 5
-        view.backgroundColor = UIColor.black
+        imageView.layer.cornerRadius = 100
+        imageView.layer.borderWidth = 5.0
+        imageView.layer.borderColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
+        imageView.clipsToBounds = true
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
     }

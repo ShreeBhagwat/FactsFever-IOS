@@ -18,7 +18,7 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
     @IBOutlet weak var levelNumberLabelOutlet: UILabel!
     
     let margin : CGFloat = 10
-    let cellsPerRow = 4
+    let cellsPerRow = 2
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let collectinView = collectionView, let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {return}
@@ -69,7 +69,7 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 50
+        return 11
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
