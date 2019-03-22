@@ -190,6 +190,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
     
     func addToDatabase(imageUrl:String, caption: String, image: UIImage){
         let Id = NSUUID().uuidString
+        
         likeUsers.append(currentUserUId!)
         let timeStamp = NSNumber(value: Int(NSDate().timeIntervalSince1970))
         let factsDB = Database.database().reference().child("Facts").child(categories)
@@ -200,13 +201,13 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
             if error != nil {
                 print(error)
                 ProgressHUD.showError("Image Upload Failed")
-               
+               self.likeUsers.removeAll()
                 return
                 
             } else{
                 print("Message Saved In DB")
                 ProgressHUD.showSuccess("image Uploded Successfully")
-             
+                self.likeUsers.removeAll()
                 
 
             }
@@ -234,6 +235,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func clearButtonPressed(_ sender: Any) {
+        likeUsers.removeAll()
         if imageViewOutlet.image != nil {
             imageViewOutlet.image = nil
 

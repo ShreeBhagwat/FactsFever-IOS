@@ -17,7 +17,9 @@ import ProgressHUD
 class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
     
     static var menu_bool = true
-    
+    let admobAppId = "ca-app-pub-8893803128543470~2150583409"
+    let bannerAdUnitId = "ca-app-pub-8893803128543470/8258016120"
+    let testAddUnitId = "ca-app-pub-3940256099942544/2934735716"
     
 //    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
 //
@@ -37,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
 //        GIDSignIn.sharedInstance()?.clientID = "381776864970-lcii1cqlamngbhc34a1n4rli2sivb1f3.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
 //        GIDSignIn.sharedInstance()?.delegate = self
+        
+        GADMobileAds.configure(withApplicationID: admobAppId)
 
 
         func userDidLogin(userId: String){

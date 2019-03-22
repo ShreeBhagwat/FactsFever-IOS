@@ -14,7 +14,7 @@ class AboutDeveloperViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.layer.cornerRadius = 100
+        imageView.layer.cornerRadius = imageView.frame.width * 0.5
         imageView.layer.borderWidth = 5.0
         imageView.layer.borderColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
         imageView.clipsToBounds = true

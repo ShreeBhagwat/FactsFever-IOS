@@ -41,12 +41,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if factsArray.isEmpty {
-            FactsFeverCustomLoader.instance.hideLoader()
-        } else {
-             FactsFeverCustomLoader.instance.showLoader()
-        }
-     FactsFeverCustomLoader.instance.showLoader()
+//        if factsArray.isEmpty {
+//            FactsFeverCustomLoader.instance.hideLoader()
+//        } else {
+//             FactsFeverCustomLoader.instance.showLoader()
+//        }
+//     FactsFeverCustomLoader.instance.showLoader()
         // Do any additional setup after loading the view, typically from a nib.
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
@@ -122,6 +122,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         case UISwipeGestureRecognizer.Direction.right:
             print("Right Side Swipe")
             slideCategoryMenu()
+            
         default:
             break
         }
