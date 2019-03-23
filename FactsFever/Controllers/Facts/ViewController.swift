@@ -18,14 +18,16 @@ import ProgressHUD
 import IDMPhotoBrowser
 import ChameleonFramework
 import PCLBlurEffectAlert
+import GoogleMobileAds
 
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, GADBannerViewDelegate {
     //MARK: Outlets
     
+
+
     @IBOutlet weak var uploadButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var menuButtonOutlet: UIBarButtonItem!
     //MARK:- Properties
     var category:String!
@@ -35,19 +37,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var likeUsers:[String] = []
     let currentUser = Auth.auth().currentUser?.uid
     let activityView = UIActivityIndicatorView(style: .whiteLarge)
-
     var factsLayout = FactsFeverLayout()
     private let refreshControl = UIRefreshControl()
+/////////////////////////////////
+    var tableViewItems = [AnyObject]()
+    var adsToLoad = [GADBannerView]()
+    var loadStateForAds = [GADBannerView: Bool]()
+    let adUnitID = "ca-app-pub-3940256099942544/2934735716"
+    // A banner ad is placed in the UITableView once per `adInterval`. iPads will have a
+    // larger ad interval to avoid mutliple ads being on screen at the same time.
+    let adInterval = UIDevice.current.userInterfaceIdiom == .pad ? 16 : 8
+    // The banner ad height.
+    let adViewHeight = CGFloat(100)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       collectionView.register(UINib(nibName: "AdBannerCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdBannerCollectionViewCell")
+
 //        if factsArray.isEmpty {
 //            FactsFeverCustomLoader.instance.hideLoader()
 //        } else {
 //             FactsFeverCustomLoader.instance.showLoader()
 //        }
 //     FactsFeverCustomLoader.instance.showLoader()
+        
+
         // Do any additional setup after loading the view, typically from a nib.
+
+   
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
         } else {
@@ -60,21 +78,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
         }
         collectionView.backgroundColor = UIColor.black
+        
 
-      
+
 //        if let btn = self.navigationItem.rightBarButtonItem {
 //            btn.isEnabled = false
 //            btn.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 //            btn.title = ""
-//        }
+        //        }collectionView.addSubview(addView)
+
    
       //////Swipe Gesture for categories
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
         swipeRight.direction = .right
-        
+
         self.view.addGestureRecognizer(swipeRight)
-        
+////
          }
+    
+  
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -82,13 +104,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIImage(named: "factsWallpaper")?.draw(in: self.view.bounds)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         view.backgroundColor = UIColor.init(patternImage: image!)
+        
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.tabBarController?.tabBar.isHidden = false
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             if self.category == nil {
@@ -102,27 +124,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @objc func refreshView(){
 //        observeFactsFromFirebase()
     }
+ 
     
     let transition = SlideInTransition()
-
+//
     @IBAction func menuButtonTapped(_ sender: UIBarButtonItem) {
 
         slideCategoryMenu()
     }
-    
+
     func changeCategories(_ menuType: MenuType){
         let category = "\(menuType)"
         let VC = storyboard?.instantiateViewController(withIdentifier: "factsViewController") as? ViewController
         VC?.category = "\(menuType)"
         navigationController?.pushViewController(VC!, animated: true)
-        
+
     }
     @objc func respondToGesture(gesture: UISwipeGestureRecognizer){
         switch gesture.direction {
         case UISwipeGestureRecognizer.Direction.right:
             print("Right Side Swipe")
             slideCategoryMenu()
-            
+
         default:
             break
         }
@@ -130,14 +153,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     func slideCategoryMenu(){
         guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? SliderMenuTableViewController else {return}
-        
+
         menuViewController.didTappedMenuType = {menuType in
             print(menuType)
             self.changeCategories(menuType)
         }
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
-  
+
         present(menuViewController, animated: true, completion: nil)
     }
    
@@ -251,6 +274,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
     
+    
+    
+
+    
 }
 
 
@@ -258,7 +285,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 extension ViewController: UICollectionViewDataSource{
  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return factsArray.count
+     return factsArray.count
+     
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -314,6 +342,7 @@ extension ViewController: UICollectionViewDataSource{
     
         alert.show()
         
+        
     }
     func thankYouForReporting(){
         let picker = UIImagePickerController()
@@ -327,6 +356,22 @@ extension ViewController: UICollectionViewDataSource{
         alert.present(picker, animated: true, completion: nil)
     }
     
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath)
+        headerView.backgroundColor = UIColor.red
+        headerView.frame.size.height = 100
+        
+        return headerView
+    }
+    
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
+    return CGSize(width: collectionView.frame.size.width, height: 100)
+    
+    }
+    
+  
+    
 }
 extension ViewController: UICollectionViewDelegate {
     
@@ -337,6 +382,9 @@ extension ViewController: UICollectionViewDelegate {
         browser?.setInitialPageIndex(UInt(indexPath.row))
         self.present(browser!, animated: true, completion: nil)
     }
+    
+
+    
     
 }
 extension ViewController: FactsFeverLayoutDelegate {

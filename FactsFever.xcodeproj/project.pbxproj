@@ -14,6 +14,9 @@
 		7A17E97921BFF4F500BA3A12 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A17E97221BFF4F500BA3A12 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A17E97D21BFF57500BA3A12 /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC76EAE9D45A153C02CCDE5 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		7A2C20E321A7C9D400E92641 /* NewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */; };
+		7A3774E32244869C00B77B66 /* MyFooterClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3774E22244869C00B77B66 /* MyFooterClass.swift */; };
+		7A3E75E022464A31001F53EE /* AdBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3E75DE22464A31001F53EE /* AdBannerCollectionViewCell.swift */; };
+		7A3E75E122464A31001F53EE /* AdBannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A3E75DF22464A31001F53EE /* AdBannerCollectionViewCell.xib */; };
 		7A413B3E221EEAA700B00DC2 /* FinishQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A413B3D221EEAA700B00DC2 /* FinishQuizViewController.swift */; };
 		7A413B4C221F016700B00DC2 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */; };
 		7A7FA0452223B32100BCFEE0 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7FA0442223B32100BCFEE0 /* WelcomeViewController.swift */; };
@@ -81,6 +84,9 @@
 		7A17E97621BFF4F500BA3A12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A17E97E21BFF5B100BA3A12 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		7A3774E22244869C00B77B66 /* MyFooterClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFooterClass.swift; sourceTree = "<group>"; };
+		7A3E75DE22464A31001F53EE /* AdBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdBannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		7A3E75DF22464A31001F53EE /* AdBannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdBannerCollectionViewCell.xib; sourceTree = "<group>"; };
 		7A413B3D221EEAA700B00DC2 /* FinishQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishQuizViewController.swift; sourceTree = "<group>"; };
 		7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		7A7FA0442223B32100BCFEE0 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 			children = (
 				7AB0836F221AB0730091AF8C /* QuizLevelCollumFlowLayout.swift */,
 				7AF9D90B21A57B8C00AA092F /* FactsFeverLayout.swift */,
+				7A3774E22244869C00B77B66 /* MyFooterClass.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -214,6 +221,8 @@
 			children = (
 				7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */,
 				7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */,
+				7A3E75DE22464A31001F53EE /* AdBannerCollectionViewCell.swift */,
+				7A3E75DF22464A31001F53EE /* AdBannerCollectionViewCell.xib */,
 			);
 			path = FactsCell;
 			sourceTree = "<group>";
@@ -448,6 +457,7 @@
 				D0677266216CC4F500D4C774 /* LaunchScreen.storyboard in Resources */,
 				7AC1F23221B54F770039398F /* ads.html in Resources */,
 				7ABF419D2217275F00B6CEBF /* logo1.gif in Resources */,
+				7A3E75E122464A31001F53EE /* AdBannerCollectionViewCell.xib in Resources */,
 				D0D9D4F5216CFA9800C6EBFB /* GoogleService-Info.plist in Resources */,
 				7A829D4522216D0A00A0C997 /* Assets.xcassets in Resources */,
 				D0677261216CC4F100D4C774 /* Main.storyboard in Resources */,
@@ -586,11 +596,13 @@
 				D067725E216CC4F100D4C774 /* ViewController.swift in Sources */,
 				D0D9D4F9216E07A200C6EBFB /* SetttingsTableViewController.swift in Sources */,
 				7AF879132217C00400976E85 /* SlideInTransition.swift in Sources */,
+				7A3E75E022464A31001F53EE /* AdBannerCollectionViewCell.swift in Sources */,
 				D067725C216CC4F100D4C774 /* AppDelegate.swift in Sources */,
 				7AF8791B2218927000976E85 /* QuizLevelCollectionViewCell.swift in Sources */,
 				7A7FA0452223B32100BCFEE0 /* WelcomeViewController.swift in Sources */,
 				7AC1F23421B54FB80039398F /* WhyWeDontSellAdsViewController.swift in Sources */,
 				7AA805F221B035240022A2B3 /* UIImage+Gif.swift in Sources */,
+				7A3774E32244869C00B77B66 /* MyFooterClass.swift in Sources */,
 				7A93BBBF221BCEDF003DA20B /* QuizGameViewController.swift in Sources */,
 				7ABF419B221719E800B6CEBF /* SliderMenuTableViewController.swift in Sources */,
 				7A413B4C221F016700B00DC2 /* CategoriesTableViewCell.swift in Sources */,

@@ -76,6 +76,8 @@ class FactsFeverLayout: UICollectionViewLayout {
         }
         return layoutAttributes
     }
+    
+    
 
 }
 // UICollectionView FlowLayout
