@@ -14,9 +14,6 @@
 		7A17E97921BFF4F500BA3A12 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A17E97221BFF4F500BA3A12 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A17E97D21BFF57500BA3A12 /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC76EAE9D45A153C02CCDE5 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		7A2C20E321A7C9D400E92641 /* NewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */; };
-		7A3774E32244869C00B77B66 /* MyFooterClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3774E22244869C00B77B66 /* MyFooterClass.swift */; };
-		7A3E75E022464A31001F53EE /* AdBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3E75DE22464A31001F53EE /* AdBannerCollectionViewCell.swift */; };
-		7A3E75E122464A31001F53EE /* AdBannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A3E75DF22464A31001F53EE /* AdBannerCollectionViewCell.xib */; };
 		7A413B3E221EEAA700B00DC2 /* FinishQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A413B3D221EEAA700B00DC2 /* FinishQuizViewController.swift */; };
 		7A413B4C221F016700B00DC2 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */; };
 		7A7FA0452223B32100BCFEE0 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7FA0442223B32100BCFEE0 /* WelcomeViewController.swift */; };
@@ -24,6 +21,8 @@
 		7A829D4522216D0A00A0C997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A829D4422216D0900A0C997 /* Assets.xcassets */; };
 		7A93BBBF221BCEDF003DA20B /* QuizGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A93BBBE221BCEDF003DA20B /* QuizGameViewController.swift */; };
 		7A9CFCF621BE22B300EF010E /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CFCF521BE22B300EF010E /* Users.swift */; };
+		7AA28E992248CC0F00B6AD69 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA28E982248CC0F00B6AD69 /* StoreKit.framework */; };
+		7AA28E9F2248DB5B00B6AD69 /* RemoveAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA28E9E2248DB5B00B6AD69 /* RemoveAdsViewController.swift */; };
 		7AA805F021B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA805EF21B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift */; };
 		7AA805F221B035240022A2B3 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA805F121B035240022A2B3 /* UIImage+Gif.swift */; };
 		7AB08370221AB0730091AF8C /* QuizLevelCollumFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB0836F221AB0730091AF8C /* QuizLevelCollumFlowLayout.swift */; };
@@ -84,9 +83,6 @@
 		7A17E97621BFF4F500BA3A12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A17E97E21BFF5B100BA3A12 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCellCollectionViewCell.swift; sourceTree = "<group>"; };
-		7A3774E22244869C00B77B66 /* MyFooterClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFooterClass.swift; sourceTree = "<group>"; };
-		7A3E75DE22464A31001F53EE /* AdBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdBannerCollectionViewCell.swift; sourceTree = "<group>"; };
-		7A3E75DF22464A31001F53EE /* AdBannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdBannerCollectionViewCell.xib; sourceTree = "<group>"; };
 		7A413B3D221EEAA700B00DC2 /* FinishQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishQuizViewController.swift; sourceTree = "<group>"; };
 		7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		7A7FA0442223B32100BCFEE0 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +90,8 @@
 		7A829D4422216D0900A0C997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A93BBBE221BCEDF003DA20B /* QuizGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGameViewController.swift; sourceTree = "<group>"; };
 		7A9CFCF521BE22B300EF010E /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		7AA28E982248CC0F00B6AD69 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		7AA28E9E2248DB5B00B6AD69 /* RemoveAdsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAdsViewController.swift; sourceTree = "<group>"; };
 		7AA805EF21B00BFA0022A2B3 /* FactsFeverActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsFeverActivityIndicator.swift; sourceTree = "<group>"; };
 		7AA805F121B035240022A2B3 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		7AB0836F221AB0730091AF8C /* QuizLevelCollumFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLevelCollumFlowLayout.swift; sourceTree = "<group>"; };
@@ -137,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AA28E992248CC0F00B6AD69 /* StoreKit.framework in Frameworks */,
 				7A17E96D21BFDF8E00BA3A12 /* PushKit.framework in Frameworks */,
 				EDEBB4B01B1CBBC0D554F211 /* Pods_FactsFever.framework in Frameworks */,
 			);
@@ -179,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				7AC1F23321B54FB80039398F /* WhyWeDontSellAdsViewController.swift */,
+				7AA28E9E2248DB5B00B6AD69 /* RemoveAdsViewController.swift */,
 				D0D9D4F8216E07A200C6EBFB /* SetttingsTableViewController.swift */,
 				D0B7CD8021704B3400563707 /* AboutTableViewController.swift */,
 				D0B7CD8221704F2200563707 /* AboutDeveloperViewController.swift */,
@@ -192,7 +192,6 @@
 			children = (
 				7AB0836F221AB0730091AF8C /* QuizLevelCollumFlowLayout.swift */,
 				7AF9D90B21A57B8C00AA092F /* FactsFeverLayout.swift */,
-				7A3774E22244869C00B77B66 /* MyFooterClass.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -221,8 +220,6 @@
 			children = (
 				7A2C20E221A7C9D400E92641 /* NewCellCollectionViewCell.swift */,
 				7A413B4B221F016700B00DC2 /* CategoriesTableViewCell.swift */,
-				7A3E75DE22464A31001F53EE /* AdBannerCollectionViewCell.swift */,
-				7A3E75DF22464A31001F53EE /* AdBannerCollectionViewCell.xib */,
 			);
 			path = FactsCell;
 			sourceTree = "<group>";
@@ -284,6 +281,7 @@
 		860933BC0E3FD60C702EE511 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7AA28E982248CC0F00B6AD69 /* StoreKit.framework */,
 				7A17E96C21BFDF8E00BA3A12 /* PushKit.framework */,
 				ACF27C2E873ED375417E5C89 /* Pods_FactsFever.framework */,
 				CCC76EAE9D45A153C02CCDE5 /* Pods_OneSignalNotificationServiceExtension.framework */,
@@ -413,6 +411,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -457,7 +458,6 @@
 				D0677266216CC4F500D4C774 /* LaunchScreen.storyboard in Resources */,
 				7AC1F23221B54F770039398F /* ads.html in Resources */,
 				7ABF419D2217275F00B6CEBF /* logo1.gif in Resources */,
-				7A3E75E122464A31001F53EE /* AdBannerCollectionViewCell.xib in Resources */,
 				D0D9D4F5216CFA9800C6EBFB /* GoogleService-Info.plist in Resources */,
 				7A829D4522216D0A00A0C997 /* Assets.xcassets in Resources */,
 				D0677261216CC4F100D4C774 /* Main.storyboard in Resources */,
@@ -596,16 +596,15 @@
 				D067725E216CC4F100D4C774 /* ViewController.swift in Sources */,
 				D0D9D4F9216E07A200C6EBFB /* SetttingsTableViewController.swift in Sources */,
 				7AF879132217C00400976E85 /* SlideInTransition.swift in Sources */,
-				7A3E75E022464A31001F53EE /* AdBannerCollectionViewCell.swift in Sources */,
 				D067725C216CC4F100D4C774 /* AppDelegate.swift in Sources */,
 				7AF8791B2218927000976E85 /* QuizLevelCollectionViewCell.swift in Sources */,
 				7A7FA0452223B32100BCFEE0 /* WelcomeViewController.swift in Sources */,
 				7AC1F23421B54FB80039398F /* WhyWeDontSellAdsViewController.swift in Sources */,
 				7AA805F221B035240022A2B3 /* UIImage+Gif.swift in Sources */,
-				7A3774E32244869C00B77B66 /* MyFooterClass.swift in Sources */,
 				7A93BBBF221BCEDF003DA20B /* QuizGameViewController.swift in Sources */,
 				7ABF419B221719E800B6CEBF /* SliderMenuTableViewController.swift in Sources */,
 				7A413B4C221F016700B00DC2 /* CategoriesTableViewCell.swift in Sources */,
+				7AA28E9F2248DB5B00B6AD69 /* RemoveAdsViewController.swift in Sources */,
 				7AB08370221AB0730091AF8C /* QuizLevelCollumFlowLayout.swift in Sources */,
 				D0B7CD8321704F2300563707 /* AboutDeveloperViewController.swift in Sources */,
 				7A9CFCF621BE22B300EF010E /* Users.swift in Sources */,

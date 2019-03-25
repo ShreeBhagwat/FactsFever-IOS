@@ -16,6 +16,9 @@ class SetttingsTableViewController: UITableViewController {
     let appline = "https://itunes.apple.com/us/app/pingme/id1438849522?ls=1&mt=8"
     let firebaseAuth = Auth.auth()
     let currentUser = Auth.auth().currentUser
+    
+    
+    @IBOutlet weak var removeAdLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
@@ -53,7 +56,7 @@ class SetttingsTableViewController: UITableViewController {
             shareThisApp()
         }else if indexPath.row == 3 {
             let storybord = UIStoryboard(name: "Main", bundle: nil)
-            let VC = storybord.instantiateViewController(withIdentifier: "WhyWeDontSellAds")
+            let VC = storybord.instantiateViewController(withIdentifier: "removeAds")
             navigationController?.pushViewController(VC, animated: true)
         }else if indexPath.row == 4 {
             rateTheAppOnAppStore()

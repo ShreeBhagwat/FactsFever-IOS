@@ -18,14 +18,9 @@ import ProgressHUD
 import IDMPhotoBrowser
 import ChameleonFramework
 import PCLBlurEffectAlert
-import GoogleMobileAds
 
-
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, GADBannerViewDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK: Outlets
-    
-
-
     @IBOutlet weak var uploadButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var menuButtonOutlet: UIBarButtonItem!
@@ -38,41 +33,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let currentUser = Auth.auth().currentUser?.uid
     let activityView = UIActivityIndicatorView(style: .whiteLarge)
     var factsLayout = FactsFeverLayout()
-    private let refreshControl = UIRefreshControl()
-/////////////////////////////////
-    var tableViewItems = [AnyObject]()
-    var adsToLoad = [GADBannerView]()
-    var loadStateForAds = [GADBannerView: Bool]()
-    let adUnitID = "ca-app-pub-3940256099942544/2934735716"
-    // A banner ad is placed in the UITableView once per `adInterval`. iPads will have a
-    // larger ad interval to avoid mutliple ads being on screen at the same time.
-    let adInterval = UIDevice.current.userInterfaceIdiom == .pad ? 16 : 8
-    // The banner ad height.
-    let adViewHeight = CGFloat(100)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       collectionView.register(UINib(nibName: "AdBannerCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdBannerCollectionViewCell")
 
-//        if factsArray.isEmpty {
-//            FactsFeverCustomLoader.instance.hideLoader()
-//        } else {
-//             FactsFeverCustomLoader.instance.showLoader()
-//        }
-//     FactsFeverCustomLoader.instance.showLoader()
-        
-
-        // Do any additional setup after loading the view, typically from a nib.
-
-   
-        if #available(iOS 10.0, *) {
-            collectionView.refreshControl = refreshControl
+        if factsArray.isEmpty {
+            FactsFeverCustomLoader.instance.hideLoader()
         } else {
-            collectionView.addSubview(refreshControl)
+             FactsFeverCustomLoader.instance.showLoader()
         }
-        refreshControl.addTarget(self, action: #selector(refreshView), for: .valueChanged)
-        refreshControl.tintColor = UIColor.white
+     FactsFeverCustomLoader.instance.showLoader()
+
         if let layout = collectionView?.collectionViewLayout as? FactsFeverLayout {
             layout.delegate = self
             
@@ -81,13 +51,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
 
 
-//        if let btn = self.navigationItem.rightBarButtonItem {
-//            btn.isEnabled = false
-//            btn.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//            btn.title = ""
-        //        }collectionView.addSubview(addView)
-
-   
+        if let btn = self.navigationItem.rightBarButtonItem {
+            btn.isEnabled = false
+            btn.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            btn.title = ""
+                }
       //////Swipe Gesture for categories
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
         swipeRight.direction = .right
@@ -100,11 +68,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        UIGraphicsBeginImageContext(view.frame.size)
-        UIImage(named: "factsWallpaper")?.draw(in: self.view.bounds)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        view.backgroundColor = UIColor.init(patternImage: image!)
         
         
     }
@@ -122,7 +85,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @objc func refreshView(){
-//        observeFactsFromFirebase()
+        collectionView.reloadData()
     }
  
     
@@ -193,7 +156,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
             
             }
-            self.refreshControl.endRefreshing()
+
             print("inside observe facts method facts array count \(self.factsArray.count)")
   
         }
@@ -274,10 +237,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
     
-    
-    
-
-    
+   
 }
 
 
@@ -295,7 +255,7 @@ extension ViewController: UICollectionViewDataSource{
         
         cell?.configureCell(fact: facts)
         cell?.infoButton.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
-//       ProgressHUD.dismiss()
+       ProgressHUD.dismiss()
         FactsFeverCustomLoader.instance.hideLoader()
         return cell!
     }

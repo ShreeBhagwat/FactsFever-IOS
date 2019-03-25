@@ -13,13 +13,16 @@ import PushKit
 import GoogleSignIn
 import ProgressHUD
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
     
     static var menu_bool = true
-    let admobAppId = "ca-app-pub-8893803128543470~2150583409"
-    let bannerAdUnitId = "ca-app-pub-8893803128543470/8258016120"
-    let testAddUnitId = "ca-app-pub-3940256099942544/2934735716"
+//    let admobAppId = "ca-app-pub-8893803128543470~2150583409"
+//    let bannerAdUnitId = "ca-app-pub-8893803128543470/8258016120"
+//    let testBannerAddUnitId = "ca-app-pub-3940256099942544/2934735716"
+//      let interstitalAd = "ca-app-pub-8893803128543470/2149409947"
+//      let testInterstitalAdd = "ca-app-pub-3940256099942544/4411468910"
     
 //    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
 //
@@ -40,8 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
 //        GIDSignIn.sharedInstance()?.delegate = self
         
-        GADMobileAds.configure(withApplicationID: admobAppId)
-
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-8893803128543470~2150583409")
 
         func userDidLogin(userId: String){
             self.startOneSignal()

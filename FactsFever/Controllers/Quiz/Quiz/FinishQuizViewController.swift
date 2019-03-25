@@ -9,6 +9,7 @@
 import UIKit
 import SAConfettiView
 import ChameleonFramework
+import GoogleMobileAds
 
 class FinishQuizViewController: UIViewController {
 
@@ -24,6 +25,7 @@ class FinishQuizViewController: UIViewController {
     var percentageScore = Float()
     let userDefaults = UserDefaults.standard
     var higestLevelWon = 0
+    var interstitial: GADInterstitial!
     override func viewDidLoad() {
         super.viewDidLoad()
       self.view.addSubview(confettiView)
@@ -34,7 +36,7 @@ class FinishQuizViewController: UIViewController {
     
         higestLevelWon = userDefaults.integer(forKey: "higestLevelWon")
 
-        
+       
         
         if percentageScore >= 75 {
             levelWon = true
@@ -71,6 +73,16 @@ class FinishQuizViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
+        
+        let save = UserDefaults.standard
+        if save.value(forKey: "purchase") == nil {
+            interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910" )
+            let request = GADRequest()
+            request.testDevices = [kGADSimulatorID]
+            interstitial.load(request)
+        } else {
+        
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -149,33 +161,55 @@ class FinishQuizViewController: UIViewController {
         
     }
     
+//    func loadInterstitialAdd(){
+//        if (interstitial.isReady){
+//            print("Presenting add")
+//            interstitial.present(fromRootViewController: self)
+//        }
+//    }
+    
     @objc func nextLevelButtonPressed(){
         print("Next ButtonPressed")
-        let lastLevelWon = currentLevelPlayed + 1
-        if currentLevelPlayed == higestLevelWon {
-            higestLevelWon += 1
-            userDefaults.set(lastLevelWon, forKey: "higestLevelWon")
-            userDefaults.synchronize()
+        let save = UserDefaults.standard
+        
+        if (interstitial.isReady && (save.value(forKey: "purchase") == nil)) {
+            interstitial.present(fromRootViewController: self)
+        }else {
+            let lastLevelWon = currentLevelPlayed + 1
+            if currentLevelPlayed == higestLevelWon {
+                higestLevelWon += 1
+                userDefaults.set(lastLevelWon, forKey: "higestLevelWon")
+                userDefaults.synchronize()
+            }
+
+                    let VC = QuizGameViewController()
+                    VC.selectedGameLevel = lastLevelWon
+                    navigationController?.pushViewController(VC, animated: true)
+
         }
-        
-        let VC = QuizGameViewController()
-        VC.selectedGameLevel = lastLevelWon
-        navigationController?.pushViewController(VC, animated: true)
-        
+       
     }
     
     @objc func tryAgainButtonPressed(){
         print("try again Button Pressed")
+         let save = UserDefaults.standard
+        if (interstitial.isReady && (save.value(forKey: "purchase") == nil)) {
+            interstitial.present(fromRootViewController: self)
+        }else {
         let VC = QuizGameViewController()
         VC.selectedGameLevel = currentLevelPlayed
         navigationController?.pushViewController(VC, animated: true)
-        
-
+        }
         
     }
     
     @objc func quizHomeScreenButtonPressed(){
         print("Home Screen Button Pressed")
+        
+        let save = UserDefaults.standard
+        if (interstitial.isReady && (save.value(forKey: "purchase") == nil)) {
+            interstitial.present(fromRootViewController: self)
+        }else {
         if levelWon {
             let lastLevelWon = currentLevelPlayed
             if lastLevelWon == higestLevelWon {
@@ -196,10 +230,24 @@ class FinishQuizViewController: UIViewController {
                 navigationController?.pushViewController(FinishQuizViewController, animated: true)
             
         }
-        
+        }
     }
     
  
+    func won(){
+        let lastLevelWon = currentLevelPlayed
+        if lastLevelWon == higestLevelWon {
+            higestLevelWon += 1
+            print(higestLevelWon)
+            userDefaults.set(higestLevelWon, forKey: "higestLevelWon")
+            userDefaults.synchronize()
+        }
+    }
     
+    func navigateToHomeScreen(){
+        let FinishQuizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "quizlevel") as! QuizLevelsCollectionViewController
+        
+        navigationController?.pushViewController(FinishQuizViewController, animated: true)
+    }
 
 }
