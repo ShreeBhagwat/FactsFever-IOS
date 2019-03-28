@@ -74,11 +74,19 @@ class FinishQuizViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
+        viewContainerOutlet.layer.cornerRadius = 20
+        viewContainerOutlet.clipsToBounds = true
+        nextLevelButton.layer.cornerRadius = 10
+        nextLevelButton.clipsToBounds = true
+        tryAgainButton.layer.cornerRadius = 10
+        tryAgainButton.clipsToBounds = true
+        quizHomeScreen.layer.cornerRadius = 10
+        quizHomeScreen.clipsToBounds = true
         
         let save = UserDefaults.standard
         if save.value(forKey: "purchase") == nil {
-            adPlayed = false
-            interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910" )
+//            adPlayed = false
+            interstitial = GADInterstitial(adUnitID: "ca-app-pub-8893803128543470/2149409947" )
             let request = GADRequest()
             request.testDevices = [kGADSimulatorID]
             interstitial.load(request)
@@ -91,6 +99,7 @@ class FinishQuizViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = false
+        
     }
     
     lazy var confettiView : SAConfettiView = {
@@ -163,52 +172,60 @@ class FinishQuizViewController: UIViewController {
         
     }
     
+    
+    
     func loadInterstitialAdd(){
         if (interstitial.isReady && adPlayed == false){
             print("Presenting add")
             interstitial.present(fromRootViewController: self)
             adPlayed = true
-        }else{
-            return
         }
     }
     
     @objc func nextLevelButtonPressed(){
         print("Next ButtonPressed")
-            loadInterstitialAdd()
+        if adPlayed == false && interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+            adPlayed = true
+        }else {
             let lastLevelWon = currentLevelPlayed + 1
             if currentLevelPlayed == higestLevelWon {
                 higestLevelWon += 1
                 userDefaults.set(lastLevelWon, forKey: "higestLevelWon")
                 userDefaults.synchronize()
             }
-
-                    let VC = QuizGameViewController()
-                    VC.selectedGameLevel = lastLevelWon
-                    navigationController?.pushViewController(VC, animated: true)
-
+            
+            let VC = QuizGameViewController()
+            VC.selectedGameLevel = lastLevelWon
+            navigationController?.pushViewController(VC, animated: true)
+        }
     }
     
     @objc func tryAgainButtonPressed(){
         print("try again Button Pressed")
-         loadInterstitialAdd()
-     
-        let VC = QuizGameViewController()
-        VC.selectedGameLevel = currentLevelPlayed
-        navigationController?.pushViewController(VC, animated: true)
-        
-        
+        if adPlayed == false && interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+            adPlayed = true
+        }else{
+            let VC = QuizGameViewController()
+            VC.selectedGameLevel = currentLevelPlayed
+            navigationController?.pushViewController(VC, animated: true)
+        }
+
     }
     
     @objc func quizHomeScreenButtonPressed(){
         print("Home Screen Button Pressed")
-        loadInterstitialAdd()
-        if levelWon {
-            won()
+        if adPlayed == false && interstitial.isReady{
+            interstitial.present(fromRootViewController: self)
+            adPlayed = true
         }else{
-            navigateToHomeScreen()
+            if levelWon {
+                won()
+            }else{
+                navigateToHomeScreen()
+            }
         }
-
     }
     
  

@@ -56,7 +56,7 @@ class SliderMenuTableViewController: UITableViewController {
         swipeLeft.direction = .left
 
         self.view.addGestureRecognizer(swipeLeft)
-       
+      
      
     }
     
@@ -70,6 +70,7 @@ class SliderMenuTableViewController: UITableViewController {
         case UISwipeGestureRecognizer.Direction.left:
             print("left Side Swipe")
             self.dismiss(animated: true, completion: nil)
+            
         default:
             break
         }
@@ -113,6 +114,7 @@ class SliderMenuTableViewController: UITableViewController {
         
         if indexPath.row == 0{
             tableView.deselectRow(at: indexPath, animated: false)
+            dismiss(animated: true, completion: nil)
             
         }else {
             dismiss(animated: true){ [weak self] in

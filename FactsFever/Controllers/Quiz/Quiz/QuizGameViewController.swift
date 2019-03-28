@@ -467,7 +467,20 @@ class QuizGameViewController: UIViewController {
         alert.configure(titleColor: UIColor.orange)
         alert.configure(messageColor: UIColor.white)
         
-        alert.show()
+        // For Ipad Alert Controller
+        if (UI_USER_INTERFACE_IDIOM() == .pad){
+            if let currentPopoverpresentationController = alert.popoverPresentationController {
+                currentPopoverpresentationController.sourceView = cancelQuizButton
+                currentPopoverpresentationController.sourceRect = cancelQuizButton.bounds
+                
+                currentPopoverpresentationController.permittedArrowDirections = .up
+                self.present(alert, animated: true, completion: nil)
+            }
+        }else {
+             alert.show()
+        }
+        
+       
         
     }
     

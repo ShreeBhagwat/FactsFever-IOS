@@ -24,16 +24,29 @@ class RemoveAdsViewController: UIViewController, SKPaymentTransactionObserver, S
         super.viewDidLoad()
         
         purchaseButtonOutlet.isEnabled = false
-        restorePurchaseButtonOutlet.isEnabled = false
-        restorePurchaseButtonOutlet.isHidden = true
-        SKPaymentQueue.default().add(self)
-        getPurchaseInfo()
-        ProgressHUD.show("Getting Payment Data. Hold on")
+        let save =  UserDefaults.standard
+        if save.value(forKey: "purchase") == nil {
+            SKPaymentQueue.default().add(self)
+            getPurchaseInfo()
+            ProgressHUD.show("Getting Payment Data. Hold on")
+
+        }else{
+            removeAdsLabelOutlet.text = "Thank You"
+            descriptionLabelOutlet.text = "Enjoy the app with ad free experience"
+            removeAdsImageView.image = #imageLiteral(resourceName: "crown")
+            purchaseButtonOutlet.isEnabled = false
+            purchaseButtonOutlet.setTitle("Already Purchased", for: .normal)
+            restorePurchaseButtonOutlet.isEnabled = false
+         
+        }
+        
       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+      
         restorePurchaseButtonOutlet.layer.cornerRadius = restorePurchaseButtonOutlet.frame.height * 0.5
         restorePurchaseButtonOutlet.clipsToBounds = true
         purchaseButtonOutlet.layer.cornerRadius = purchaseButtonOutlet.frame.height * 0.5
@@ -45,12 +58,15 @@ class RemoveAdsViewController: UIViewController, SKPaymentTransactionObserver, S
         navigationController?.isNavigationBarHidden = true
     }
     @IBAction func purchaseButtonPressed(_ sender: Any) {
+        
+        removeAdsLabelOutlet.text = "Getting Info..."
+        descriptionLabelOutlet.text = "Please Wait......"
         let payment = SKPayment(product: product!)
         SKPaymentQueue.default().add(payment)
     }
     
     @IBAction func restorePurchaseButtonPressed(_ sender: Any) {
-        
+        SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
     func getPurchaseInfo(){
@@ -90,6 +106,7 @@ class RemoveAdsViewController: UIViewController, SKPaymentTransactionObserver, S
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        ProgressHUD.dismiss()
         for transaction in transactions {
             
             switch transaction.transactionState {
@@ -97,12 +114,15 @@ class RemoveAdsViewController: UIViewController, SKPaymentTransactionObserver, S
                 SKPaymentQueue.default().finishTransaction(transaction)
                 removeAdsLabelOutlet.text = "Purchase Successfull"
                 descriptionLabelOutlet.text = "Thank you for your support !"
+                removeAdsImageView.image = #imageLiteral(resourceName: "crown")
                 purchaseButtonOutlet.isEnabled = false
                 purchaseButtonOutlet.isHidden = true
                 let save = UserDefaults.standard
                 save.set(true, forKey: "purchase")
                 save.synchronize()
             case .purchasing:
+                removeAdsLabelOutlet.text = "Purchasing......"
+                descriptionLabelOutlet.text = " Please Wait......."
                 break
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
@@ -110,6 +130,15 @@ class RemoveAdsViewController: UIViewController, SKPaymentTransactionObserver, S
                 descriptionLabelOutlet.text = "There was some error in payment. Try again"
                 break
             case .restored:
+                SKPaymentQueue.default().finishTransaction(transaction)
+                removeAdsLabelOutlet.text = "App Restored"
+                descriptionLabelOutlet.text = "Your app has been restored with all the in app purchases"
+                removeAdsImageView.image = #imageLiteral(resourceName: "crown")
+                purchaseButtonOutlet.isEnabled = false
+                purchaseButtonOutlet.isHidden = true
+                let save = UserDefaults.standard
+                save.set(true, forKey: "purchase")
+                save.synchronize()
                 break
             case .deferred:
                 break

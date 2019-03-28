@@ -18,8 +18,9 @@ import ProgressHUD
 import IDMPhotoBrowser
 import ChameleonFramework
 import PCLBlurEffectAlert
+import GoogleMobileAds
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, GADBannerViewDelegate {
     //MARK: Outlets
     @IBOutlet weak var uploadButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -33,6 +34,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let currentUser = Auth.auth().currentUser?.uid
     let activityView = UIActivityIndicatorView(style: .whiteLarge)
     var factsLayout = FactsFeverLayout()
+     var adbannerView = GADBannerView()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -61,7 +63,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         swipeRight.direction = .right
 
         self.view.addGestureRecognizer(swipeRight)
-////
+        adBannerConstraints()
+       
          }
     
   
@@ -75,14 +78,34 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        adbannerView.isHidden = true
+        let save = UserDefaults.standard
+        if save.value(forKey: "purchase") == nil {
+            print("ad run")
+            adbannerView.delegate = self
+            adbannerView.adUnitID = "ca-app-pub-8893803128543470/8258016120"
+            adbannerView.adSize = kGADAdSizeSmartBannerPortrait
+            adbannerView.rootViewController = self
+            adbannerView.load(GADRequest())
+        }else{
+            adbannerView.isHidden = true
+        }
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             if self.category == nil {
                 self.category = "Science"
             }
             self.observeFactsFromFirebase(category: self.category)
+            self.tabBarController?.tabBarItem.title = "\(self.category)"
         }
-
+        
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        adbannerView.isHidden = true
+    
+    }
+
 
     @objc func refreshView(){
         collectionView.reloadData()
@@ -113,8 +136,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             break
         }
     }
+    
 
     func slideCategoryMenu(){
+
         guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? SliderMenuTableViewController else {return}
 
         menuViewController.didTappedMenuType = {menuType in
@@ -237,6 +262,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
     
+    
+    // MARK: ADBanner Delegate
+    func adBannerConstraints(){
+        adbannerView.translatesAutoresizingMaskIntoConstraints = false
+        adbannerView.backgroundColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
+        navigationController?.view.addSubview(adbannerView)
+        adbannerView.leftAnchor.constraint(equalTo: (navigationController?.view.leftAnchor)!).isActive = true
+        adbannerView.rightAnchor.constraint(equalTo: (navigationController?.view.rightAnchor)!).isActive = true
+        adbannerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        let bottom = CGFloat((tabBarController?.tabBar.frame.height)!)
+        adbannerView.bottomAnchor.constraint(equalTo: (navigationController?.view.bottomAnchor)!, constant: -bottom).isActive = true
+    }
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        adbannerView.isHidden = false
+    }
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        adbannerView.isHidden = true
+    }
    
 }
 
@@ -272,6 +316,7 @@ extension ViewController: UICollectionViewDataSource{
         alert.configure(cornerRadius: 30)
         alert.configure(titleColor: UIColor.orange)
         alert.configure(messageColor: UIColor.white)
+        
         
         alert.show()
     }
@@ -313,6 +358,8 @@ extension ViewController: UICollectionViewDataSource{
         alert.configure(titleColor: UIColor.orange)
         alert.configure(messageColor: UIColor.white)
         alert.addAction(button)
+        
+        
         alert.present(picker, animated: true, completion: nil)
     }
     
