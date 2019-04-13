@@ -21,6 +21,8 @@ class SetttingsTableViewController: UITableViewController {
     @IBOutlet weak var removeAdLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 0.8258904602, blue: 0.08854053572, alpha: 1)
+
         tableView.tableFooterView = UIView()
 //       tableView.backgroundColor = UIColor.black
     }

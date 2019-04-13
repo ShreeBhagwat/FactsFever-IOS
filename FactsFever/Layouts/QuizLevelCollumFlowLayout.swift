@@ -30,9 +30,18 @@ class QuizLevelColumnFlowlayout : UICollectionViewFlowLayout {
         super.prepare()
         
         guard let collectionView = collectionView else { return }
-        let marginsAndInsets = sectionInset.left + sectionInset.right + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + minimumInteritemSpacing * CGFloat(cellPerRow - 1)
-        let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellPerRow)).rounded(.down)
-        itemSize = CGSize(width: itemWidth, height: itemWidth)
+        if #available(iOS 11.0, *) {
+            let marginsAndInsets = sectionInset.left + sectionInset.right + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + minimumInteritemSpacing * CGFloat(cellPerRow - 1)
+        } else {
+            // Fallback on earlier versions
+        }
+        if #available(iOS 11.0, *) {
+            let marginsAndInsets = sectionInset.left + sectionInset.right + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + minimumInteritemSpacing * CGFloat(cellPerRow - 1)
+            let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellPerRow)).rounded(.down)
+            itemSize = CGSize(width: itemWidth, height: itemWidth)
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {

@@ -20,9 +20,10 @@ import ChameleonFramework
 import PCLBlurEffectAlert
 import GoogleMobileAds
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, GADBannerViewDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, GADBannerViewDelegate, FactsCellDelegate {
     //MARK: Outlets
     @IBOutlet weak var uploadButtonOutlet: UIBarButtonItem!
+
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var menuButtonOutlet: UIBarButtonItem!
     //MARK:- Properties
@@ -33,8 +34,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var likeUsers:[String] = []
     let currentUser = Auth.auth().currentUser?.uid
     let activityView = UIActivityIndicatorView(style: .whiteLarge)
+    var likeButton : UIButton!
     var factsLayout = FactsFeverLayout()
-     var adbannerView = GADBannerView()
+//     var adbannerView = GADBannerView()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,20 +52,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
         }
         collectionView.backgroundColor = UIColor.black
-        
 
-
-        if let btn = self.navigationItem.rightBarButtonItem {
-            btn.isEnabled = false
-            btn.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            btn.title = ""
-                }
-      //////Swipe Gesture for categories
+//        navigationItem.setRightBarButton(nil, animated: false)
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
         swipeRight.direction = .right
 
         self.view.addGestureRecognizer(swipeRight)
-        adBannerConstraints()
+//        adBannerConstraints()
        
          }
     
@@ -78,18 +73,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        adbannerView.isHidden = true
-        let save = UserDefaults.standard
-        if save.value(forKey: "purchase") == nil {
-            print("ad run")
-            adbannerView.delegate = self
-            adbannerView.adUnitID = "ca-app-pub-8893803128543470/8258016120"
-            adbannerView.adSize = kGADAdSizeSmartBannerPortrait
-            adbannerView.rootViewController = self
-            adbannerView.load(GADRequest())
-        }else{
-            adbannerView.isHidden = true
-        }
+//        adbannerView.isHidden = true
+//        let save = UserDefaults.standard
+//        if save.value(forKey: "purchase") == nil {
+//            print("ad run")
+//            adbannerView.delegate = self
+//            adbannerView.adUnitID = "ca-app-pub-8893803128543470/8258016120"
+//            adbannerView.adSize = kGADAdSizeSmartBannerPortrait
+//            adbannerView.rootViewController = self
+//            adbannerView.load(GADRequest())
+//        }else{
+//            adbannerView.isHidden = true
+//        }
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             if self.category == nil {
                 self.category = "Science"
@@ -98,15 +93,86 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.tabBarController?.tabBarItem.title = "\(self.category)"
         }
         
+        if Reachability.isConnectedToNetwork(){
+            
+        }else{
+            FactsFeverCustomLoader.instance.hideLoader()
+            let alert = PCLBlurEffectAlert.Controller(title: "No Internet Connection", message: "LOST IN THE JUNGLE", effect: UIBlurEffect(style: .dark), style: .alert)
+            alert.addImageView(with: #imageLiteral(resourceName: "pandsTran"))
+            
+            let yesButton = PCLBlurEffectAlertAction.init(title: "OK", style: .default) { (alert) in
+            }
+            alert.addAction(yesButton)
+            alert.configure(cornerRadius: 30)
+            alert.configure(titleColor: UIColor.red)
+            alert.configure(messageColor: UIColor.white)
+            alert.show()
+        }
+        
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    } 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        adbannerView.isHidden = true
+//        adbannerView.isHidden = true
     
     }
 
+    func likeButtonPressed(cell: NewCellCollectionViewCell) {
+//        collectionView.isScrollEnabled = false
+        let indexPath = self.collectionView.indexPath(for: cell)
+        print("Like Button Pressed...\(indexPath?.row)")
+        var facts = factsArray[(indexPath?.item)!]
+        
+        ///////////////
+        let factsRef = Database.database().reference().child("Facts").child(facts.categories).child(facts.factsId).child("likes")
+                    likeButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        
+                    UIView.animate(withDuration: 3.0,
+                                   delay: 0,
+                                   usingSpringWithDamping: CGFloat(0.30),
+                                   initialSpringVelocity: CGFloat(5.0),
+                                   options: UIView.AnimationOptions.allowUserInteraction,
+                                   animations: {
+                                    self.likeButton.transform = CGAffineTransform.identity
+                    },
+                                   completion: { Void in()  }
+                    )
+        
+        
+                    factsRef.observeSingleEvent(of: .value) { (snapshot) in
+                        if self.likeButton.isSelected == true {
+                            self.likeButton.isSelected = false
+                            self.addSubtractLike(addLike: false,indexPath: indexPath!)
+                        } else {
+                            self.likeButton.isSelected = true
+                            self.addSubtractLike(addLike: true,indexPath: indexPath!)
+        
+                        }
+                    }
 
+        //////////
+        
+    }
+    
+    func addSubtractLike(addLike: Bool, indexPath: IndexPath){
+        var facts = factsArray[indexPath.item]
+        let currentUser = Auth.auth().currentUser?.uid
+        if addLike{
+            facts.factsLikes.append(currentUser!)
+        } else {
+            facts.factsLikes.removeAll{$0 == currentUser}
+        }
+        let factsRef = Database.database().reference().child("Facts").child(facts.categories).child(facts.factsId).child("likes")
+        
+        factsRef.setValue(facts.factsLikes)
+        collectionView.reloadData()
+        
+        
+    }
+    
     @objc func refreshView(){
         collectionView.reloadData()
     }
@@ -265,21 +331,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: ADBanner Delegate
     func adBannerConstraints(){
-        adbannerView.translatesAutoresizingMaskIntoConstraints = false
-        adbannerView.backgroundColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
-        navigationController?.view.addSubview(adbannerView)
-        adbannerView.leftAnchor.constraint(equalTo: (navigationController?.view.leftAnchor)!).isActive = true
-        adbannerView.rightAnchor.constraint(equalTo: (navigationController?.view.rightAnchor)!).isActive = true
-        adbannerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        let bottom = CGFloat((tabBarController?.tabBar.frame.height)!)
-        adbannerView.bottomAnchor.constraint(equalTo: (navigationController?.view.bottomAnchor)!, constant: -bottom).isActive = true
+//        adbannerView.translatesAutoresizingMaskIntoConstraints = false
+//        adbannerView.backgroundColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
+//        navigationController?.view.addSubview(adbannerView)
+//        adbannerView.leftAnchor.constraint(equalTo: (navigationController?.view.leftAnchor)!).isActive = true
+//        adbannerView.rightAnchor.constraint(equalTo: (navigationController?.view.rightAnchor)!).isActive = true
+//        adbannerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//        let bottom = CGFloat((tabBarController?.tabBar.frame.height)!)
+//        adbannerView.bottomAnchor.constraint(equalTo: (navigationController?.view.bottomAnchor)!, constant: -bottom).isActive = true
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        adbannerView.isHidden = false
+//        adbannerView.isHidden = false
     }
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        adbannerView.isHidden = true
+//        adbannerView.isHidden = true
     }
    
 }
@@ -287,6 +353,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     //MARK: Data Source
 extension ViewController: UICollectionViewDataSource{
+   
+    
  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
      return factsArray.count
@@ -297,12 +365,18 @@ extension ViewController: UICollectionViewDataSource{
         let facts = factsArray[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newCellTrial", for: indexPath) as? NewCellCollectionViewCell
         
-        cell?.configureCell(fact: facts)
+        cell?.configureCell(fact: facts, IndexPath: indexPath)
         cell?.infoButton.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
+        likeButton = cell?.likeButton
+        cell?.delegate = self
+//        likeButton.tag = indexPath.row
+//        cell?.likeButton.addTarget(self, action: #selector(likeButtonPressed(indexPath:)), for: .touchUpInside)
        ProgressHUD.dismiss()
+        
         FactsFeverCustomLoader.instance.hideLoader()
         return cell!
     }
+
 
     @objc func reportButtonPressed(){
         let alert = PCLBlurEffectAlert.Controller(title: "Report This Fact?", message: "Do you want to report this fact? ", effect: UIBlurEffect(style: .dark), style: .alert)
@@ -320,6 +394,9 @@ extension ViewController: UICollectionViewDataSource{
         
         alert.show()
     }
+
+    
+    
     func showAlert(){
         let alert = PCLBlurEffectAlert.Controller(title: "Report Fact", message: "Click on the Below Option To report the problem", effect: UIBlurEffect(style: .dark), style: .alertVertical)
         let reportImageButton = PCLBlurEffectAlertAction.init(title: "Inappropriate Image", style: .default) { (alert) in

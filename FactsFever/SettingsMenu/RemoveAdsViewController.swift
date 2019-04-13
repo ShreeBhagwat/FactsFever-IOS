@@ -13,7 +13,7 @@ import ProgressHUD
 class RemoveAdsViewController: UIViewController, SKPaymentTransactionObserver, SKProductsRequestDelegate {
     
     var product: SKProduct?
-    var ProductID = "com.shreebhagwat.factsfever.RemoveAds"
+    var ProductID = "com.shreebhagwat.factsfever.RemoveAds1"
     @IBOutlet weak var descriptionLabelOutlet: UILabel!
     @IBOutlet weak var removeAdsLabelOutlet: UILabel!
     @IBOutlet weak var restorePurchaseButtonOutlet: UIButton!
@@ -23,6 +23,9 @@ class RemoveAdsViewController: UIViewController, SKPaymentTransactionObserver, S
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 0.8258904602, blue: 0.08854053572, alpha: 1)
+
         purchaseButtonOutlet.isEnabled = false
         let save =  UserDefaults.standard
         if save.value(forKey: "purchase") == nil {
@@ -97,11 +100,20 @@ class RemoveAdsViewController: UIViewController, SKPaymentTransactionObserver, S
             product = products[0]
             removeAdsLabelOutlet.text = "Remove Ads"
             purchaseButtonOutlet.isEnabled = true
+            let numberFormatter = NumberFormatter()
+            numberFormatter.formatterBehavior = .behavior10_4
+            numberFormatter.numberStyle = .currency
+            numberFormatter.locale = product!.priceLocale
+            let price = numberFormatter.string(from: product!.price)
+            purchaseButtonOutlet.setTitle("\(price!)", for: .normal)
         }
         let invalids = response.invalidProductIdentifiers
         for product in invalids {
             removeAdsLabelOutlet.text = "Error"
             descriptionLabelOutlet.text = "Invalid Product"
+            
+            print("Products........\(products)")
+            print(" Invalid......\(invalids)")
         }
     }
     

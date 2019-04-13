@@ -46,12 +46,13 @@ class SliderMenuTableViewController: UITableViewController {
         
         self.view.addGestureRecognizer(swipeLeft)
         
+        
             }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        FactsFeverCustomLoader.instance.hideLoader()
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
         swipeLeft.direction = .left
 
@@ -62,6 +63,7 @@ class SliderMenuTableViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        dismiss(animated: false, completion: nil)
        
     }
     
@@ -70,6 +72,7 @@ class SliderMenuTableViewController: UITableViewController {
         case UISwipeGestureRecognizer.Direction.left:
             print("left Side Swipe")
             self.dismiss(animated: true, completion: nil)
+            
             
         default:
             break
@@ -126,6 +129,7 @@ class SliderMenuTableViewController: UITableViewController {
         }
        
     }
+
 
     
 }

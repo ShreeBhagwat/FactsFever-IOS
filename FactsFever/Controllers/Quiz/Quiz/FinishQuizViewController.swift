@@ -93,6 +93,8 @@ class FinishQuizViewController: UIViewController {
         } else {
         adPlayed = true
         }
+        
+        FactsFeverCustomLoader.instance.hideLoader()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -244,9 +246,15 @@ class FinishQuizViewController: UIViewController {
     }
     
     func navigateToHomeScreen(){
-        let FinishQuizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "quizlevel") as! QuizLevelsCollectionViewController
+        if #available(iOS 11.0, *) {
+            let FinishQuizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "quizlevel") as! QuizLevelsCollectionViewController
+            self.hidesBottomBarWhenPushed = false
+                navigationController?.pushViewController(FinishQuizViewController, animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
         
-        navigationController?.pushViewController(FinishQuizViewController, animated: true)
+        
     }
 
 }

@@ -66,6 +66,7 @@ class QuizGameViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
 //        runTimer()
+        FactsFeverCustomLoader.instance.hideLoader()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -477,9 +478,9 @@ class QuizGameViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }else {
-             alert.show()
+//             alert.show()
         }
-        
+        alert.show()
        
         
     }

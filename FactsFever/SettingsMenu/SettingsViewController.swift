@@ -16,6 +16,8 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 0.8258904602, blue: 0.08854053572, alpha: 1)
+
         tableViewControllerContainerOutlet.layer.cornerRadius = 20
         tableViewControllerContainerOutlet.clipsToBounds = true
       

@@ -30,16 +30,16 @@ class Facts{
         categories = dictionary["categories"] as? String
     }
     
-    func addSubtractLike(addLike: Bool){
-        let currentUser = Auth.auth().currentUser?.uid
-        if addLike{
-            factsLikes.append(currentUser!)
-        } else {
-            factsLikes.removeAll{$0 == currentUser}
-        }
-        let factsRef = Database.database().reference().child("Facts").child(categories).child(factsId).child("likes")
-
-        factsRef.setValue(factsLikes)
-        
-    }
+//    func addSubtractLike(addLike: Bool){
+//        let currentUser = Auth.auth().currentUser?.uid
+//        if addLike{
+//            factsLikes.append(currentUser!)
+//        } else {
+//            factsLikes.removeAll{$0 == currentUser}
+//        }
+//        let factsRef = Database.database().reference().child("Facts").child(categories).child(factsId).child("likes")
+//
+//        factsRef.setValue(factsLikes)
+//        
+//    }
 }

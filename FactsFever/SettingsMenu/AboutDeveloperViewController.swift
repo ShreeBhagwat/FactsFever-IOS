@@ -18,6 +18,8 @@ class AboutDeveloperViewController: UIViewController {
         imageView.layer.borderWidth = 5.0
         imageView.layer.borderColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
         imageView.clipsToBounds = true
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 0.8274509804, blue: 0.09019607843, alpha: 1)
+
     }
     
     

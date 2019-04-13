@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NDx-tH-GZm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NDx-tH-GZm">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,7 +121,7 @@
         <!--Facts-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="factsViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="factsViewController" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" id="ZSI-a1-wOL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -160,7 +160,7 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" image="noLike"/>
                                                     <connections>
-                                                        <action selector="likeButtonPressed:" destination="piK-AD-ti6" eventType="touchUpInside" id="qIw-2S-TLL"/>
+                                                        <action selector="likeButtonTapped:" destination="piK-AD-ti6" eventType="touchUpInside" id="Piu-cD-xVb"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P57-5K-AfF">
@@ -216,7 +216,7 @@
                                     <outlet property="imageHeightConstraint" destination="XWn-rl-4lM" id="yje-Ud-smW"/>
                                     <outlet property="imageView" destination="xGF-Bt-Zks" id="Ju5-MZ-ESO"/>
                                     <outlet property="infoButton" destination="P57-5K-AfF" id="nmb-ih-0cJ"/>
-                                    <outlet property="likeButton" destination="phL-CU-dXa" id="ksB-eu-YPG"/>
+                                    <outlet property="likeButton" destination="phL-CU-dXa" id="8Fu-wS-22i"/>
                                     <outlet property="likeLable" destination="toR-nK-NTQ" id="XYe-hO-r6f"/>
                                 </connections>
                             </collectionViewCell>
@@ -378,8 +378,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FactsFevere" translatesAutoresizingMaskIntoConstraints="NO" id="eX9-nD-97m">
                                 <rect key="frame" x="20" y="70" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="73s-TM-Rh0"/>
-                                    <constraint firstAttribute="width" constant="200" id="Vcq-JO-oVq"/>
+                                    <constraint firstAttribute="height" constant="200" id="VR7-hC-NaX"/>
+                                    <constraint firstAttribute="width" constant="200" id="jMO-p9-kAq"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBound" value="YES"/>
@@ -393,12 +393,12 @@
                         <constraints>
                             <constraint firstItem="Imh-h1-a31" firstAttribute="leading" secondItem="x8m-Hl-GeA" secondAttribute="leading" constant="20" id="1mp-2s-aWL"/>
                             <constraint firstItem="x8m-Hl-GeA" firstAttribute="bottom" secondItem="job-er-doc" secondAttribute="bottom" constant="20" id="44V-Pj-O6G"/>
-                            <constraint firstItem="eX9-nD-97m" firstAttribute="top" secondItem="x8m-Hl-GeA" secondAttribute="top" constant="50" id="EnM-gr-Odu"/>
                             <constraint firstItem="lPb-p3-73c" firstAttribute="top" secondItem="Imh-h1-a31" secondAttribute="bottom" constant="5" id="NaH-lF-58B"/>
                             <constraint firstItem="job-er-doc" firstAttribute="top" secondItem="lPb-p3-73c" secondAttribute="bottom" constant="70" id="QeU-9q-2jc"/>
                             <constraint firstItem="8ta-tI-8ZN" firstAttribute="leading" secondItem="x8m-Hl-GeA" secondAttribute="leading" constant="20" id="Qxp-1f-kTy"/>
-                            <constraint firstItem="eX9-nD-97m" firstAttribute="leading" secondItem="x8m-Hl-GeA" secondAttribute="leading" constant="20" id="Wou-EJ-Vzy"/>
                             <constraint firstItem="job-er-doc" firstAttribute="leading" secondItem="x8m-Hl-GeA" secondAttribute="leading" constant="20" id="jqd-kK-zq7"/>
+                            <constraint firstItem="eX9-nD-97m" firstAttribute="leading" secondItem="x8m-Hl-GeA" secondAttribute="leading" constant="20" id="kTN-EI-WeY"/>
+                            <constraint firstItem="eX9-nD-97m" firstAttribute="top" secondItem="x8m-Hl-GeA" secondAttribute="top" constant="50" id="tET-W9-3ae"/>
                             <constraint firstItem="Imh-h1-a31" firstAttribute="top" secondItem="8ta-tI-8ZN" secondAttribute="bottom" id="uMo-jO-SBl"/>
                             <constraint firstItem="lPb-p3-73c" firstAttribute="leading" secondItem="x8m-Hl-GeA" secondAttribute="leading" constant="20" id="yZ8-3r-Oq2"/>
                         </constraints>
@@ -578,6 +578,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG1111" translatesAutoresizingMaskIntoConstraints="NO" id="T69-lE-E9t">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group" translatesAutoresizingMaskIntoConstraints="NO" id="Hpf-cu-ZtB">
                                 <rect key="frame" x="38" y="143" width="338" height="450"/>
                                 <constraints>
@@ -634,14 +637,18 @@
                                 <viewLayoutGuide key="safeArea" id="27s-hx-8cr"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.2991751269035533" green="0.092383380096176068" blue="0.14598255719253928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="T69-lE-E9t" firstAttribute="centerX" secondItem="2tb-wt-dRH" secondAttribute="centerX" id="0cL-bv-P8P"/>
+                            <constraint firstItem="T69-lE-E9t" firstAttribute="centerY" secondItem="Hpf-cu-ZtB" secondAttribute="centerY" id="2N5-H8-dme"/>
                             <constraint firstItem="o5D-3F-AI1" firstAttribute="top" secondItem="2tb-wt-dRH" secondAttribute="bottom" constant="13" id="EcY-BS-3UO"/>
                             <constraint firstItem="2tb-wt-dRH" firstAttribute="top" secondItem="VdZ-jO-Ly4" secondAttribute="bottom" constant="42" id="IZE-t1-abJ"/>
+                            <constraint firstItem="T69-lE-E9t" firstAttribute="leading" secondItem="edN-Bp-P7P" secondAttribute="leading" id="JfH-3a-DZX"/>
                             <constraint firstItem="o5D-3F-AI1" firstAttribute="centerX" secondItem="Hpf-cu-ZtB" secondAttribute="centerX" id="Kat-nL-hMN"/>
                             <constraint firstItem="Hpf-cu-ZtB" firstAttribute="centerY" secondItem="edN-Bp-P7P" secondAttribute="centerY" id="Q30-nd-uhH"/>
                             <constraint firstItem="VdZ-jO-Ly4" firstAttribute="centerX" secondItem="Hpf-cu-ZtB" secondAttribute="centerX" id="QW8-aW-NFR"/>
                             <constraint firstItem="Hpf-cu-ZtB" firstAttribute="centerX" secondItem="edN-Bp-P7P" secondAttribute="centerX" id="eZh-gZ-LmP"/>
+                            <constraint firstItem="T69-lE-E9t" firstAttribute="top" secondItem="edN-Bp-P7P" secondAttribute="top" id="lrC-M3-q6r"/>
                             <constraint firstItem="2tb-wt-dRH" firstAttribute="centerX" secondItem="Hpf-cu-ZtB" secondAttribute="centerX" id="rys-r1-6zI"/>
                             <constraint firstItem="Hpf-cu-ZtB" firstAttribute="top" secondItem="VdZ-jO-Ly4" secondAttribute="bottom" constant="-216" id="ypM-uu-SoU"/>
                         </constraints>
@@ -657,7 +664,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9U-lq-gHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1881" y="651"/>
+            <point key="canvasLocation" x="1879.7101449275365" y="650.54347826086962"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="TNj-sy-Y0i">
@@ -842,36 +849,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KoF-Fy-vja" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8866.6666666666679" y="1002.7173913043479"/>
-        </scene>
-        <!--Why We Dont Sell Ads View Controller-->
-        <scene sceneID="arw-Ac-UV6">
-            <objects>
-                <viewController storyboardIdentifier="WhyWeDontSellAds" id="vlU-WN-cNC" customClass="WhyWeDontSellAdsViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jzo-Bz-g5z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVS-QX-dbX">
-                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="BVS-QX-dbX" firstAttribute="leading" secondItem="9wT-Fg-ds2" secondAttribute="leading" id="ELp-VE-OsD"/>
-                            <constraint firstItem="9wT-Fg-ds2" firstAttribute="bottom" secondItem="BVS-QX-dbX" secondAttribute="bottom" id="Y0t-3d-ahY"/>
-                            <constraint firstItem="BVS-QX-dbX" firstAttribute="top" secondItem="9wT-Fg-ds2" secondAttribute="top" id="YJ8-et-XMk"/>
-                            <constraint firstItem="9wT-Fg-ds2" firstAttribute="trailing" secondItem="BVS-QX-dbX" secondAttribute="trailing" id="xtv-hp-lNZ"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="9wT-Fg-ds2"/>
-                    </view>
-                    <connections>
-                        <outlet property="webViewOutlet" destination="BVS-QX-dbX" id="9S1-Qh-dx8"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7et-yL-q2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="8763.75" y="1712.323943661972"/>
         </scene>
         <!--About FactsFever-->
         <scene sceneID="ROT-GT-srk">
@@ -1170,7 +1147,7 @@
         <!--Quiz-->
         <scene sceneID="A2r-bi-9qX">
             <objects>
-                <viewController id="NLn-Mr-ar9" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="quizWelcome" id="NLn-Mr-ar9" customClass="WelcomeQuizViewController" customModule="FactsFever" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zyg-dg-9DT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1320,7 +1297,17 @@
                             <outlet property="delegate" destination="oHT-Qo-6GR" id="GUA-eI-fJg"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Quiz Levels" id="Q47-BZ-FBr"/>
+                    <navigationItem key="navigationItem" title="Quiz Levels" id="Q47-BZ-FBr">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="Back" id="7GS-5l-oV5">
+                            <color key="tintColor" red="1" green="0.82589046020000001" blue="0.088540535719999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="backButtonPressed:" destination="oHT-Qo-6GR" id="af7-SA-dBD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backButtonOutlet" destination="7GS-5l-oV5" id="uea-H1-BN2"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WTE-fF-tx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1410,7 +1397,7 @@
                                     <constraint firstAttribute="height" constant="43" id="HBo-vG-hmP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-MediumItalic" family="Avenir Next" pointSize="21"/>
-                                <state key="normal" title="Purchase ($ 1.99 / ₹ 159)">
+                                <state key="normal" title="Purchase">
                                     <color key="titleColor" red="0.01084895124" green="0.068848610290000001" blue="0.14497540880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -2063,36 +2050,38 @@
     <resources>
         <image name="1-1" width="958" height="960"/>
         <image name="Anonymous-PNG-Pic" width="51" height="62"/>
-        <image name="FactsFevere" width="400" height="400"/>
+        <image name="BG1111" width="360" height="640"/>
+        <image name="Back" width="25" height="25"/>
+        <image name="FactsFevere" width="133.33332824707031" height="133.33332824707031"/>
         <image name="FactsFeverelogo3" width="93" height="93"/>
         <image name="FirstPage" width="47" height="9"/>
         <image name="Group" width="338" height="450"/>
-        <image name="Hinata" width="1024" height="768"/>
-        <image name="Jiraiya" width="1080" height="810"/>
-        <image name="Quiz1" width="463.67999267578125" height="404.6400146484375"/>
-        <image name="RemoveAds" width="737.280029296875" height="737.280029296875"/>
+        <image name="Hinata" width="85.333335876464844" height="64"/>
+        <image name="Jiraiya" width="85.333335876464844" height="64"/>
+        <image name="Quiz1" width="214.66667175292969" height="187.33332824707031"/>
+        <image name="RemoveAds" width="341.33334350585938" height="341.33334350585938"/>
         <image name="SecondPagePager" width="47" height="9"/>
-        <image name="Shikamaru" width="273.75" height="247.5"/>
+        <image name="Shikamaru" width="85.333335876464844" height="77"/>
         <image name="ThirdPagePager" width="47" height="9"/>
-        <image name="aboutus" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="aboutus" width="42.666667938232422" height="42.666667938232422"/>
         <image name="avatarPlaceholder" width="101" height="101"/>
         <image name="facts" width="15.333333015441895" height="25"/>
-        <image name="goku" width="1280" height="704"/>
-        <image name="info" width="56.25" height="56.25"/>
-        <image name="instagramlogo" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="kakshi" width="640" height="640"/>
-        <image name="logout" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="menu" width="72" height="72"/>
-        <image name="noLike" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="quizIcon" width="48" height="48"/>
-        <image name="rating" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="goku" width="170.66667175292969" height="94"/>
+        <image name="info" width="25" height="25"/>
+        <image name="instagramlogo" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="kakshi" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="logout" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="menu" width="32" height="32"/>
+        <image name="noLike" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="quizIcon" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="rating" width="42.666667938232422" height="42.666667938232422"/>
         <image name="settingImage" width="166.66667175292969" height="66.666664123535156"/>
-        <image name="settings" width="56.25" height="56.25"/>
-        <image name="settingsWhite" width="56.25" height="56.25"/>
-        <image name="share" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="smartBearFinal" width="253.44000244140625" height="309.60000610351562"/>
-        <image name="telegram" width="512" height="512"/>
-        <image name="vegata" width="350" height="350"/>
-        <image name="wrongaccess" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="settings" width="25" height="25"/>
+        <image name="settingsWhite" width="25" height="25"/>
+        <image name="share" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="smartBearFinal" width="117.33333587646484" height="143.33332824707031"/>
+        <image name="telegram" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="vegata" width="175" height="175"/>
+        <image name="wrongaccess" width="42.666667938232422" height="42.666667938232422"/>
     </resources>
 </document>

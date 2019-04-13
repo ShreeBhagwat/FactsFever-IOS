@@ -12,10 +12,16 @@ import FirebaseDatabase
 import ChameleonFramework
 import ProgressHUD
 
+protocol FactsCellDelegate: AnyObject {
+    func likeButtonPressed(cell: NewCellCollectionViewCell)
+}
+
 class NewCellCollectionViewCell: UICollectionViewCell {
     
     var facts: Facts!
     var currentUser = Auth.auth().currentUser?.uid
+    var indexP: IndexPath!
+   
     
     // IBOutlets
     @IBOutlet weak var imageView: UIImageView!
@@ -26,6 +32,7 @@ class NewCellCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var captionTextView: UITextView!
+     weak var delegate: FactsCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,8 +43,9 @@ class NewCellCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func configureCell(fact: Facts){
+    func configureCell(fact: Facts, IndexPath: IndexPath){
         facts = fact
+        indexP = IndexPath
         imageView.sd_setShowActivityIndicatorView(true)
         imageView.sd_setImage(with: URL(string: fact.factsLink))
         let likes = fact.factsLikes
@@ -85,34 +93,44 @@ class NewCellCollectionViewCell: UICollectionViewCell {
         likeButton.tintColor = UIColor.white
     }
     
-    @IBAction func likeButtonPressed(_ sender: Any) {
+    @IBAction func likeButtonTapped(_ sender: Any) {
+        if delegate != nil {
+            delegate?.likeButtonPressed(cell: self)
+        }
         
-            let factsRef = Database.database().reference().child("Facts").child(facts.categories).child(facts.factsId).child("likes")
-            likeButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
-
-            UIView.animate(withDuration: 3.0,
-                           delay: 0,
-                           usingSpringWithDamping: CGFloat(0.30),
-                           initialSpringVelocity: CGFloat(5.0),
-                           options: UIView.AnimationOptions.allowUserInteraction,
-                           animations: {
-                            self.likeButton.transform = CGAffineTransform.identity
-            },
-                           completion: { Void in()  }
-            )
-
-
-            factsRef.observeSingleEvent(of: .value) { (snapshot) in
-                if self.likeButton.isSelected == true {
-                    self.likeButton.isSelected = false
-                    self.facts.addSubtractLike(addLike: false)
-                } else {
-                    self.likeButton.isSelected = true
-                    self.facts.addSubtractLike(addLike: true)
-
-                }
-            }
+        
     }
+    //    @IBAction func likeButtonPressed(_ sender: Any) {
+//        
+//            let factsRef = Database.database().reference().child("Facts").child(facts.categories).child(facts.factsId).child("likes")
+//            likeButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+//
+//            UIView.animate(withDuration: 3.0,
+//                           delay: 0,
+//                           usingSpringWithDamping: CGFloat(0.30),
+//                           initialSpringVelocity: CGFloat(5.0),
+//                           options: UIView.AnimationOptions.allowUserInteraction,
+//                           animations: {
+//                            self.likeButton.transform = CGAffineTransform.identity
+//            },
+//                           completion: { Void in()  }
+//            )
+//
+//
+//            factsRef.observeSingleEvent(of: .value) { (snapshot) in
+//                if self.likeButton.isSelected == true {
+//                    self.likeButton.isSelected = false
+//                    self.facts.addSubtractLike(addLike: false)
+//                } else {
+//                    self.likeButton.isSelected = true
+//                    self.facts.addSubtractLike(addLike: true)
+//
+//                }
+//            }
+//        
+//    }
+    
+    
     
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)

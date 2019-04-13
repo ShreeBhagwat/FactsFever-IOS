@@ -2,12 +2,10 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "RemoveAds.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "RemoveAds-1.png",
       "scale" : "2x"
     },
     {

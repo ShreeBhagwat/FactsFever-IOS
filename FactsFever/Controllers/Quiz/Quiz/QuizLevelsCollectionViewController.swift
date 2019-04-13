@@ -11,12 +11,14 @@ import PCLBlurEffectAlert
 
 
 
+@available(iOS 11.0, *)
 class QuizLevelsCollectionViewController: UICollectionViewController {
     
     var lastLevelwon = 1
     var higestLevelWon = 1
     @IBOutlet weak var levelNumberLabelOutlet: UILabel!
     
+    @IBOutlet weak var backButtonOutlet: UIBarButtonItem!
     let margin : CGFloat = 10
     let cellsPerRow = 2
     override func viewDidLoad() {
@@ -25,11 +27,16 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 5
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        collectinView.contentInsetAdjustmentBehavior = .always
+        if #available(iOS 11.0, *) {
+            collectinView.contentInsetAdjustmentBehavior = .always
+        } else {
+            // Fallback on earlier versions
+        }
         
      
         print("HigestLevelWon \(higestLevelWon)")
-       
+               
+//        self.navigationItem.setHidesBackButton(true, animated: false)
         
         self.collectionView.backgroundColor = .clear
         let imageView =  UIImageView(frame: UIScreen.main.bounds)
@@ -39,6 +46,7 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
         
     
     }
+  
     override func viewWillLayoutSubviews() {
         guard let collectionView = collectionView, let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         let marginsAndInsets = flowLayout.sectionInset.left + flowLayout.sectionInset.right + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + flowLayout.minimumInteritemSpacing * CGFloat(cellsPerRow - 1)
@@ -46,20 +54,32 @@ class QuizLevelsCollectionViewController: UICollectionViewController {
         flowLayout.itemSize =  CGSize(width: itemWidth, height: itemWidth)
     }
     
+    @IBAction func backButtonPressed(_ sender: Any) {
+        print("Back Button Pressed")
+        let storyboardID = "quizWelcome"
+        let transition = CATransition()
+        transition.duration = 0.45
+        transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        transition.type = .moveIn
+        transition.subtype = .fromLeft
+        self.navigationController?.view.layer.add(transition, forKey: "kCATransition")
+        let FinishQuizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: storyboardID) as! WelcomeQuizViewController
+     
+        
+    
+        navigationController?.pushViewController(FinishQuizViewController, animated: false)
+    }
     override func viewWillAppear(_ animated: Bool) {
-        super .viewDidAppear(true)
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
         let defaults = UserDefaults.standard
         
         higestLevelWon = defaults.integer(forKey: "higestLevelWon")
         defaults.synchronize()
-        navigationController?.navigationBar.isHidden = false
-        tabBarController?.tabBar.isHidden = false
+       FactsFeverCustomLoader.instance.hideLoader()
    
     }
-    
- 
-
-   
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections

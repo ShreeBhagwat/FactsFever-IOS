@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>FactsFever</string>
+	<string>Facts Fever</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4</string>
+	<string>5</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -38,7 +38,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>1.8</string>
 	<key>FacebookAppID</key>
 	<string>1530168130462171</string>
 	<key>FacebookDisplayName</key>
@@ -58,6 +58,10 @@
 	<string>Allow FactsFever To Access Media Library for Saving Media</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow FactsFever To Access Camera to click pickture.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Allow FactsFever to access location settings for country identification</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow FactsFever to access location Settings for country Identification</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow FactsFever To Access Photos To Save Photos</string>
 	<key>UIBackgroundModes</key>
@@ -73,6 +77,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
