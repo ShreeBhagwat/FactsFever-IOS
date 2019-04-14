@@ -20,7 +20,7 @@ import ChameleonFramework
 import PCLBlurEffectAlert
 import GoogleMobileAds
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, GADBannerViewDelegate, FactsCellDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, GADBannerViewDelegate {
     //MARK: Outlets
     @IBOutlet weak var uploadButtonOutlet: UIBarButtonItem!
 
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let activityView = UIActivityIndicatorView(style: .whiteLarge)
     var likeButton : UIButton!
     var factsLayout = FactsFeverLayout()
-//     var adbannerView = GADBannerView()
+     var adbannerView = GADBannerView()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,12 +53,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         collectionView.backgroundColor = UIColor.black
 
-//        navigationItem.setRightBarButton(nil, animated: false)
+        navigationItem.setRightBarButton(nil, animated: false)
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
         swipeRight.direction = .right
 
         self.view.addGestureRecognizer(swipeRight)
-//        adBannerConstraints()
+        adBannerConstraints()
        
          }
     
@@ -72,34 +72,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("View Will Appear")
         self.tabBarController?.tabBar.isHidden = false
-//        adbannerView.isHidden = true
-//        let save = UserDefaults.standard
-//        if save.value(forKey: "purchase") == nil {
-//            print("ad run")
-//            adbannerView.delegate = self
-//            adbannerView.adUnitID = "ca-app-pub-8893803128543470/8258016120"
-//            adbannerView.adSize = kGADAdSizeSmartBannerPortrait
-//            adbannerView.rootViewController = self
-//            adbannerView.load(GADRequest())
-//        }else{
-//            adbannerView.isHidden = true
-//        }
+        adbannerView.isHidden = true
+        let save = UserDefaults.standard
+        if save.value(forKey: "purchase") == nil {
+            print("ad run")
+            adbannerView.delegate = self
+            adbannerView.adUnitID = "ca-app-pub-8893803128543470/8258016120"
+            adbannerView.adSize = kGADAdSizeSmartBannerPortrait
+            adbannerView.rootViewController = self
+            adbannerView.load(GADRequest())
+        }else{
+            adbannerView.isHidden = true
+        }
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
+            self.factsArray.removeAll()
             if self.category == nil {
                 self.category = "Science"
             }
             self.observeFactsFromFirebase(category: self.category)
             self.tabBarController?.tabBarItem.title = "\(self.category)"
         }
-        
+//
         if Reachability.isConnectedToNetwork(){
-            
+
         }else{
             FactsFeverCustomLoader.instance.hideLoader()
             let alert = PCLBlurEffectAlert.Controller(title: "No Internet Connection", message: "LOST IN THE JUNGLE", effect: UIBlurEffect(style: .dark), style: .alert)
             alert.addImageView(with: #imageLiteral(resourceName: "pandsTran"))
-            
+
             let yesButton = PCLBlurEffectAlertAction.init(title: "OK", style: .default) { (alert) in
             }
             alert.addAction(yesButton)
@@ -116,46 +118,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     } 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-//        adbannerView.isHidden = true
+        adbannerView.isHidden = true
     
     }
 
-    func likeButtonPressed(cell: NewCellCollectionViewCell) {
-//        collectionView.isScrollEnabled = false
-        let indexPath = self.collectionView.indexPath(for: cell)
-        print("Like Button Pressed...\(indexPath?.row)")
-        var facts = factsArray[(indexPath?.item)!]
-        
-        ///////////////
-        let factsRef = Database.database().reference().child("Facts").child(facts.categories).child(facts.factsId).child("likes")
-                    likeButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
-        
-                    UIView.animate(withDuration: 3.0,
-                                   delay: 0,
-                                   usingSpringWithDamping: CGFloat(0.30),
-                                   initialSpringVelocity: CGFloat(5.0),
-                                   options: UIView.AnimationOptions.allowUserInteraction,
-                                   animations: {
-                                    self.likeButton.transform = CGAffineTransform.identity
-                    },
-                                   completion: { Void in()  }
-                    )
-        
-        
-                    factsRef.observeSingleEvent(of: .value) { (snapshot) in
-                        if self.likeButton.isSelected == true {
-                            self.likeButton.isSelected = false
-                            self.addSubtractLike(addLike: false,indexPath: indexPath!)
-                        } else {
-                            self.likeButton.isSelected = true
-                            self.addSubtractLike(addLike: true,indexPath: indexPath!)
-        
-                        }
-                    }
 
-        //////////
-        
-    }
     
     func addSubtractLike(addLike: Bool, indexPath: IndexPath){
         var facts = factsArray[indexPath.item]
@@ -243,8 +210,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.title = "\(category)"
             self.collectionView.reloadData()
             if self.factsArray.count > 0{
-                let indexPath = IndexPath(row: 0, section: 0)
-                self.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+//                let indexPath = IndexPath(row: 0, section: 0)
+////                self.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
             
             }
 
@@ -331,21 +298,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: ADBanner Delegate
     func adBannerConstraints(){
-//        adbannerView.translatesAutoresizingMaskIntoConstraints = false
-//        adbannerView.backgroundColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
-//        navigationController?.view.addSubview(adbannerView)
-//        adbannerView.leftAnchor.constraint(equalTo: (navigationController?.view.leftAnchor)!).isActive = true
-//        adbannerView.rightAnchor.constraint(equalTo: (navigationController?.view.rightAnchor)!).isActive = true
-//        adbannerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        let bottom = CGFloat((tabBarController?.tabBar.frame.height)!)
-//        adbannerView.bottomAnchor.constraint(equalTo: (navigationController?.view.bottomAnchor)!, constant: -bottom).isActive = true
+        adbannerView.translatesAutoresizingMaskIntoConstraints = false
+        adbannerView.backgroundColor = #colorLiteral(red: 0.01084895124, green: 0.06884861029, blue: 0.1449754088, alpha: 1)
+        navigationController?.view.addSubview(adbannerView)
+        adbannerView.leftAnchor.constraint(equalTo: (navigationController?.view.leftAnchor)!).isActive = true
+        adbannerView.rightAnchor.constraint(equalTo: (navigationController?.view.rightAnchor)!).isActive = true
+        adbannerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        let bottom = CGFloat((tabBarController?.tabBar.frame.height)!)
+        adbannerView.bottomAnchor.constraint(equalTo: (navigationController?.view.bottomAnchor)!, constant: -bottom).isActive = true
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-//        adbannerView.isHidden = false
+        adbannerView.isHidden = false
     }
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-//        adbannerView.isHidden = true
+        adbannerView.isHidden = true
     }
    
 }
@@ -368,7 +335,7 @@ extension ViewController: UICollectionViewDataSource{
         cell?.configureCell(fact: facts, IndexPath: indexPath)
         cell?.infoButton.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
         likeButton = cell?.likeButton
-        cell?.delegate = self
+        
 //        likeButton.tag = indexPath.row
 //        cell?.likeButton.addTarget(self, action: #selector(likeButtonPressed(indexPath:)), for: .touchUpInside)
        ProgressHUD.dismiss()

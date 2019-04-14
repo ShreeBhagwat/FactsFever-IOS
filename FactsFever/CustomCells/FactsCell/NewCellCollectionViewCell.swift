@@ -93,42 +93,36 @@ class NewCellCollectionViewCell: UICollectionViewCell {
         likeButton.tintColor = UIColor.white
     }
     
-    @IBAction func likeButtonTapped(_ sender: Any) {
-        if delegate != nil {
-            delegate?.likeButtonPressed(cell: self)
-        }
+
+        @IBAction func likeButtonPressed(_ sender: Any) {
         
+            let factsRef = Database.database().reference().child("Facts").child(facts.categories).child(facts.factsId).child("likes")
+            likeButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+
+            UIView.animate(withDuration: 3.0,
+                           delay: 0,
+                           usingSpringWithDamping: CGFloat(0.30),
+                           initialSpringVelocity: CGFloat(5.0),
+                           options: UIView.AnimationOptions.allowUserInteraction,
+                           animations: {
+                            self.likeButton.transform = CGAffineTransform.identity
+            },
+                           completion: { Void in()  }
+            )
+
+
+            factsRef.observeSingleEvent(of: .value) { (snapshot) in
+                if self.likeButton.isSelected == true {
+                    self.likeButton.isSelected = false
+                    self.facts.addSubtractLike(addLike: false)
+                } else {
+                    self.likeButton.isSelected = true
+                    self.facts.addSubtractLike(addLike: true)
+
+                }
+            }
         
     }
-    //    @IBAction func likeButtonPressed(_ sender: Any) {
-//        
-//            let factsRef = Database.database().reference().child("Facts").child(facts.categories).child(facts.factsId).child("likes")
-//            likeButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
-//
-//            UIView.animate(withDuration: 3.0,
-//                           delay: 0,
-//                           usingSpringWithDamping: CGFloat(0.30),
-//                           initialSpringVelocity: CGFloat(5.0),
-//                           options: UIView.AnimationOptions.allowUserInteraction,
-//                           animations: {
-//                            self.likeButton.transform = CGAffineTransform.identity
-//            },
-//                           completion: { Void in()  }
-//            )
-//
-//
-//            factsRef.observeSingleEvent(of: .value) { (snapshot) in
-//                if self.likeButton.isSelected == true {
-//                    self.likeButton.isSelected = false
-//                    self.facts.addSubtractLike(addLike: false)
-//                } else {
-//                    self.likeButton.isSelected = true
-//                    self.facts.addSubtractLike(addLike: true)
-//
-//                }
-//            }
-//        
-//    }
     
     
     

@@ -160,7 +160,7 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" image="noLike"/>
                                                     <connections>
-                                                        <action selector="likeButtonTapped:" destination="piK-AD-ti6" eventType="touchUpInside" id="Piu-cD-xVb"/>
+                                                        <action selector="likeButtonPressed:" destination="piK-AD-ti6" eventType="touchUpInside" id="GRu-6W-TnZ"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P57-5K-AfF">
