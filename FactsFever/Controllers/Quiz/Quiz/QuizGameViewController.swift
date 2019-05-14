@@ -657,7 +657,7 @@ class QuizGameViewController: UIViewController {
         Question(Question: "Vitamin D come from ?", Answers: ["Sun","Fish","Supplements","Cholesterol"], Answer: 3),
         Question(Question: "The new word added to Oxford Dictionary at the end was ?", Answers: ["zymogens","Zyzzyva","zymosans","Zeda"], Answer: 1),
         Question(Question: "Chewing gum is illegal in what country ?", Answers: ["Nigeria","Switzerland","Singapore","China"], Answer: 2),
-        Question(Question: "Which is the country with maximum number of people suffering from depression?", Answers: ["USA","China","indonesia","India"], Answer: 3),
+        Question(Question: "Which is the country with maximum number of people suffering from depression?", Answers: ["USA","China","Indonesia","India"], Answer: 3),
         Question(Question: "Which animals will eat themselves if no other food source is available?", Answers: ["Humans","Ribbon worms","Earthworms","Snakes"], Answer: 1),
         Question(Question: "Name the dead gene that came back to life, prevents cancer by killing cells with DNA damage.", Answers: ["LIF6","Abraxne","Cytoxan","Doxil"], Answer: 0),
         Question(Question: "Number of recognised words for Vagina.", Answers: ["2000","500","10","1000"], Answer: 3),
@@ -674,7 +674,7 @@ class QuizGameViewController: UIViewController {
          Question(Question: "The first proposal for space travel in English history was made by whose brother in law ?", Answers: ["Oliver Cromwell","Leonardo da Vinci","Galileo Galilei","Avicenna"], Answer: 0),
          Question(Question: "How much time do Sloths take  to digest their food?", Answers: ["4 Hours","2 days","1 week","2 weeks"], Answer: 3),
          Question(Question: "The president of Poland awards a medal to couples that remain married for how many years ?", Answers: ["25","50","40","60+"], Answer: 1),
-         Question(Question: "The first man to urinate on the moon was ?", Answers: ["Niel Armstrong","Michael Collins ","Buzz aldrin","Yuri Gagrin"], Answer: 2),
+         Question(Question: "The first man to urinate on the moon was ?", Answers: ["Niel Armstrong","Michael Collins ","Buzz Aldrin","Yuri Gagrin"], Answer: 2),
          Question(Question: "Which software is use by movie makers to create fake actors through AI ?", Answers: ["MASSIVE","HOUDINI","SOFTIMAGE","ZBrush"], Answer: 0)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
@@ -701,7 +701,7 @@ class QuizGameViewController: UIViewController {
                      Question(Question: "Name the first fruit to be eaten on the moon.", Answers: ["Peach","Mango","Cherry","Avacado"], Answer: 0),
                      Question(Question: "Which is the food most stolen in the world ?", Answers: ["Meat","Nutella","Chocolate","Cheese"], Answer: 3),
                      Question(Question: "Amount of cups of spit does an healthy individual acumulates ? ", Answers: [">1","1 - 2","2 - 4","6 "], Answer: 2),
-                     Question(Question: "Which bird is known to eat more than 1000 items", Answers: ["Eagle","Crow","Vulture","Falcon"], Answer: 1),
+                     Question(Question: "Which bird is known to eat more than 1000 items ?", Answers: ["Eagle","Crow","Vulture","Falcon"], Answer: 1),
                      Question(Question: "What was the size of the entire Super Mario Bro", Answers: ["13 kb","5 mb","32 kb","40 kb"], Answer: 2),
                      Question(Question: "How many days can sperm live inside of woman", Answers: ["1-3 days","5-7 days","7 - 9 days","<9 days"], Answer: 1),
                      Question(Question: "Which tree is most fireproof", Answers: ["Redwood","Conkers","Japanes Elm","Ponderosa"], Answer: 0),
@@ -710,9 +710,9 @@ class QuizGameViewController: UIViewController {
         totalQuestion = Questions.count
     }
     func questionLevel4(){
-        Questions = [Question(Question: "Who scored the first goal in football history", Answers: ["Raoul Diagne","Lucien Laurent","Larbi Benbarek","Jean Vincent"], Answer: 1),
+        Questions = [Question(Question: "Who scored the first goal in football history ?", Answers: ["Raoul Diagne","Lucien Laurent","Larbi Benbarek","Jean Vincent"], Answer: 1),
                      Question(Question: "Guys fall in love after 3 dates, How many dates it takes for a girl to fall in love", Answers: ["2","10","14","20"], Answer: 2),
-                     Question(Question: "Its important for the food to mix in saliva, for it to", Answers: ["Taste","Digest","cheewed","Swallowed"], Answer: 0),
+                     Question(Question: "Why is it important for the food to mix in saliva ?", Answers: ["Taste","Digest","cheewed","Swallowed"], Answer: 0),
                      Question(Question: "Name the village/City in India which plants a tree behind every female child birth", Answers: ["Wadgaon","Kerla","Pune","Piplantri"], Answer: 3),
                      Question(Question: "Which is the first country in the world to allow the creation of babies from the DNA of three people", Answers: ["America","UK","Africa","Japan"], Answer: 1),
                      Question(Question: "How many hours will be there in day on Earth after million years", Answers: ["10","20","30","40"], Answer: 2),
@@ -728,9 +728,9 @@ class QuizGameViewController: UIViewController {
      Question(Question: "We identify banana as a tree, but what are they really ?", Answers: ["Shrubs","Grass","Herbs","Non of Above"], Answer: 3),
      Question(Question: "Which country sprouted a a plant on moon?", Answers: ["America","China","India","Russia"], Answer: 1),
      Question(Question: "If you could drive your car straight to the space how long will it take to reach space ?", Answers: ["30 min","1 hr","10 hr","1 day"], Answer: 1 ),
-     Question(Question: "Which is the only country without mosquitoes?", Answers: ["iceland","Antartica","Greenland","Russia"], Answer: 0),
+     Question(Question: "Which is the only country without mosquitoes?", Answers: ["Iceland","Antartica","Greenland","Russia"], Answer: 0),
      Question(Question: "How many peanuts does to take make a 12 ounce penut butter", Answers: ["400","500","600","700"], Answer: 1),
-     Question(Question: "Weirdly interesting thing is that the word “hundred” is derived from another word hundrath, how much is hundrath ", Answers: ["80","100","120","101"], Answer: 2),
+     Question(Question: "Weirdly interesting thing is that the word “hundred” is derived from another word hundrath, how much is hundrath ", Answers: ["80","100","101","120"], Answer: 3),
      Question(Question: "Which river flows for north to south half year, and south to north rest of the year", Answers: ["Tonle Sap","Ganga","Thames","Mississippi"], Answer: 0),
      Question(Question: "Which alcohol can reduce the acne breakout after applying it to face", Answers: ["Wiskey","Taquila","Gin","Vodka"], Answer: 3),
      Question(Question: "What was the slowest speed of light observed", Answers: ["30km/s","40km/s","50km/s","60km/s"], Answer: 1)]
@@ -738,14 +738,14 @@ class QuizGameViewController: UIViewController {
         totalQuestion = Questions.count
     }
     func questionLevel6(){
-        Questions = [Question(Question: "Which is the most poisonous tree", Answers: ["Atropa","manchineel","Taxus Baccata","Aconite"], Answer: 1),
+        Questions = [Question(Question: "Which is the most poisonous tree ?", Answers: ["Atropa","Manchineel","Taxus Baccata","Aconite"], Answer: 1),
                      Question(Question: "If all the carbon is extracted from human body how many lead pencil can be made?", Answers: ["5000","7000","9000","11000"], Answer: 2),
                      Question(Question: "Which continent has maximum countries?", Answers: ["America","Asia","Europe","Africa"], Answer: 3),
-                     Question(Question: "How many years old was the first chewing gum", Answers: ["9000","8000","7000","6000"], Answer: 0),
+                     Question(Question: "How many years old was the first chewing gum ?", Answers: ["9000","8000","7000","6000"], Answer: 0),
                      Question(Question: "Which animals evidance is addmisible in court", Answers: ["Sniffers","Begles","German Shepards","Bloodhounds"], Answer: 3),
-                     Question(Question: "who is deadpools heartmate", Answers: ["Spiderman","Iron Man","Wolvorine","Cpt America"], Answer: 0),
-                     Question(Question: "Which is the most traded food or drink commodity in the world?", Answers: ["Cheese","Coffee","Tea","alcohols"], Answer: 1),
-                     Question(Question: "Most fetish people have is of", Answers: ["Roll play","Cuckold","Foot","armpits"], Answer: 2),
+                     Question(Question: "Who is deadpools heartmate ?", Answers: ["Spiderman","Iron Man","Wolvorine","Cpt America"], Answer: 0),
+                     Question(Question: "Which is the most traded food or drink commodity in the world?", Answers: ["Cheese","Coffee","Tea","Alcohols"], Answer: 1),
+                     Question(Question: "Most fetish people have is of", Answers: ["Roll play","Cuckold","Foot","Armpits"], Answer: 2),
                      Question(Question: "Which country has the most doughnut shops?", Answers: ["London","Australia","Africa","Canada"], Answer: 3),
                      Question(Question: "Which drug did coca-cola contained at the start", Answers: ["Cocaine","Heroin","Marijuana","Meth"], Answer: 0)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
@@ -760,7 +760,7 @@ class QuizGameViewController: UIViewController {
                      Question(Question: "Which bird can remember faces and can even attack people, if mistreated ?", Answers: ["Kingfisher","Crow","Eagle","Kite"], Answer: 1),
                      Question(Question: "Total number of blood groups in humans identified by International Society of Blood Transfusion ?", Answers: ["4","8","24","35"], Answer: 3),
                      Question(Question: "Which plant is more closely related to humans than other plants ?", Answers: ["Vines","Banana","Mushrooms","alge"], Answer: 2),
-                     Question(Question: "whhich is the animal/insect with largest brain in comparison with its body ?", Answers: ["Elephant","Musquiteo","Monkey","Ant",], Answer: 3),
+                     Question(Question: "Which is the animal/insect with largest brain in comparison with its body ?", Answers: ["Elephant","Musquiteo","Monkey","Ant",], Answer: 3),
                      Question(Question: "How long it takes a photon to travel from the core of the sun to surface of the sun ?", Answers: ["10,000 yrs","20,000 yrs","30,000 yrs","40,000 yrs"], Answer: 3)]
         quizScoreLable.text = "\(score)/\(Questions.count)"
         totalQuestion = Questions.count
@@ -798,7 +798,7 @@ class QuizGameViewController: UIViewController {
                      Question(Question: "What is the female equivalent word for Dude?", Answers: ["Dudi","Dudine","Dudini","Dudoni"], Answer: 2),
                      Question(Question: "What is the shape of the pupil of an octopus", Answers: ["Rectangle","Cicle","Squar","triangle"], Answer: 0),
                      Question(Question: "Snail breaths through ?", Answers: ["Nose","Arms","Foot","Skin"], Answer: 2),
-                     Question(Question: "Which living creater except humans, navigate and orrient themselves according the mily way.", Answers: ["Moths","Bees","Beatles","Wasps"], Answer: 2),
+                     Question(Question: "Which living creature except humans, navigate and orrient themselves according the mily way.", Answers: ["Moths","Bees","Beatles","Wasps"], Answer: 2),
                      Question(Question: "Which company bymistakely made cameras which could see through clothes ?", Answers: ["Kodak","Sony","Nikkon","Cannon"], Answer: 1),
                      Question(Question: "Which country give death penalty for killing an elephant ?", Answers: ["Sri Lanaka","India","Malasia","Nepal"], Answer: 0),
                      Question(Question: "Which fruit has more trade regulation than AK-47", Answers: ["Apple","Mango","Berry","Banana"], Answer: 3),

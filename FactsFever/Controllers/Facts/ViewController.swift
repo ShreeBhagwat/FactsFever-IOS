@@ -36,7 +36,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let activityView = UIActivityIndicatorView(style: .whiteLarge)
     var likeButton : UIButton!
     var factsLayout = FactsFeverLayout()
-     var adbannerView = GADBannerView()
+    var adbannerView = GADBannerView()
+    var handler: AuthStateDidChangeListenerHandle?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,7 +54,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         collectionView.backgroundColor = UIColor.black
 
-        navigationItem.setRightBarButton(nil, animated: false)
+//        navigationItem.setRightBarButton(nil, animated: false)
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
         swipeRight.direction = .right
 
@@ -61,9 +62,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         adBannerConstraints()
        
          }
-    
-  
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -73,6 +71,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("View Will Appear")
+       
+        handler = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            self.checkLoggedInUser()
+        })
+        
         self.tabBarController?.tabBar.isHidden = false
         adbannerView.isHidden = true
         let save = UserDefaults.standard
@@ -87,8 +90,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             adbannerView.isHidden = true
         }
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-            self.factsArray.removeAll()
-            if self.category == nil {
+           
+            
+            if self.category == nil || self.category == "" {
                 self.category = "Science"
             }
             self.observeFactsFromFirebase(category: self.category)
@@ -118,24 +122,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     } 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        Auth.auth().removeStateDidChangeListener(handler!)
+        
         adbannerView.isHidden = true
-    
+        FactsFeverCustomLoader.instance.hideLoader()
+
     }
 
-
-    
-    func addSubtractLike(addLike: Bool, indexPath: IndexPath){
-        var facts = factsArray[indexPath.item]
-        let currentUser = Auth.auth().currentUser?.uid
-        if addLike{
-            facts.factsLikes.append(currentUser!)
-        } else {
-            facts.factsLikes.removeAll{$0 == currentUser}
+    func checkLoggedInUser(){
+        DispatchQueue.main.async {
+            if Auth.auth().currentUser == nil {
+                let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeViewController") as! UIViewController
+                self.present(VC, animated: true, completion: nil)
+                return
+            } else {
+                let uid = Auth.auth().currentUser?.uid
+            }
         }
-        let factsRef = Database.database().reference().child("Facts").child(facts.categories).child(facts.factsId).child("likes")
-        
-        factsRef.setValue(facts.factsLikes)
-        collectionView.reloadData()
         
         
     }

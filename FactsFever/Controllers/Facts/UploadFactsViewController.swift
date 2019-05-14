@@ -22,7 +22,7 @@ import SkeletonView
 
 class UploadFactsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     
-    private let categoriesOption = ["Animal","Country","Food","History","Human","Interesting","Game","Language","LifeHack","Love","Movie","Science","Space","Sports","Trees","Weird","Other",]
+    private let categoriesOption = ["Animal","Country","Food","History","Human","Interesting","Game","Language","LifeHack","Love","Movies","Science","Space","Sports","Trees","Weird","Other",]
     var categories = ""
     @IBOutlet weak var imageViewOutlet: UIImageView!
     @IBOutlet weak var captionViewOutlet: UITextView!
@@ -88,6 +88,7 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
                  self.allUsers.append(user.UserId)
                 self.pushId.append(user.pushId)
             }
+            
            
         }
     }
@@ -114,17 +115,17 @@ class UploadFactsViewController: UIViewController, UIImagePickerControllerDelega
                 if self.captionViewOutlet.text == nil || self.captionViewOutlet.text == ""{
                     self.captionViewOutlet.text = "FactsFever"
                     self.addToDatabase(imageUrl: imageUrl, caption: self.captionViewOutlet.text, image: imageToUpload!)
-//                     sendPushNotification(membersToPush: self.allUsers, category: self.categories)
+
                     ProgressHUD.dismiss()
                     self.uploadFactButtonOutlet.isEnabled = false
                 }else {
                     self.addToDatabase(imageUrl: imageUrl, caption: self.captionViewOutlet.text, image: imageToUpload!)
-//                     sendPushNotification(membersToPush: self.allUsers, category: self.categories)
+
                     ProgressHUD.dismiss()
                     self.uploadFactButtonOutlet.isEnabled = false
                 }
                
-//                sendPushNotification(membersToPush: self.allUsers, category: self.categories, pushId: self.pushId)
+
                 sendPushNotification1(pushId: self.pushId, category: self.categories)
             }
         }else {

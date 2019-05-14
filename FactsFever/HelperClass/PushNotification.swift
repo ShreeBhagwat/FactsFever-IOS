@@ -28,5 +28,9 @@ func sendPushNotification1(pushId:[String], category: String){
     OneSignal.postNotification(["contents" : ["en" : " Amazing New Facts uploaded in \(category) "],
                                 "ios_badgeCount" : 1,
                                 "ios_badgeType" : "Increase",
+                                "android_visibility": 1,
                                 "include_player_ids" : pushIds])
+//    "included_segments":["All"],
+
+    
 }

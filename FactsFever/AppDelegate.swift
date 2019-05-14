@@ -18,16 +18,8 @@ import ProgressHUD
 class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
     
     static var menu_bool = true
-//    let admobAppId = "ca-app-pub-8893803128543470~2150583409"
-//    let bannerAdUnitId = "ca-app-pub-8893803128543470/8258016120"
-//    let testBannerAddUnitId = "ca-app-pub-3940256099942544/2934735716"
-//      let interstitalAd = "ca-app-pub-8893803128543470/2149409947"
-//      let testInterstitalAdd = "ca-app-pub-3940256099942544/4411468910"
-    
-//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-//
-//    }
-//
+    var category = ""
+
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
 
     }
@@ -37,8 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+                FirebaseApp.configure()
+        if (Auth.auth().currentUser != nil){
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.makeKeyAndVisible()
+            let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
+            window?.rootViewController = VC
+        }
+        
         // Override point for customization after application launch.
-        FirebaseApp.configure()
 //        GIDSignIn.sharedInstance()?.clientID = "381776864970-lcii1cqlamngbhc34a1n4rli2sivb1f3.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
 //        GIDSignIn.sharedInstance()?.delegate = self
@@ -82,16 +81,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
             print("User accepted notifications: \(accepted)")
         })
         
-//        UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
         return true
     }
-    // FaceBook login
-//    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-//
-//        let handled: Bool = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
-//        // Add any custom logic here.
-//        return handled
-//    }
+//    handleNotificationReceived: {notification in
+//    if(notification?.payload.additionalData != nil){
+//    var addtionalData = notification?.payload.additionalData
+//    self.category = addtionalData!["category"] as! String
+//    print(".........appdelegate \(self.category)")
+//    }},
     
     // Google Sign In Login.
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
@@ -113,6 +112,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate{
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
       
     }
+    
+    // Android Customisation
+//    func didReceive(_ request: UNNotificationRequest,withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void){
+//
+//    }
+    
+  
+    
+//    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
+//
+//    }
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        if(application.applicationState == .active){
+//
+//        } else if (application.applicationState == .background){
+//
+//        }else if (application.applicationState == .inactive){
+//            print(".................................................. User Notification Tapped")
+//        }
+//    }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
      

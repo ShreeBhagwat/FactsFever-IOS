@@ -18,6 +18,7 @@ class SetttingsTableViewController: UITableViewController {
     let currentUser = Auth.auth().currentUser
     
     
+    @IBOutlet weak var versionLableView: UILabel!
     @IBOutlet weak var removeAdLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,9 @@ class SetttingsTableViewController: UITableViewController {
 
         tableView.tableFooterView = UIView()
 //       tableView.backgroundColor = UIColor.black
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            versionLableView.text = "Version Number  \(version)"
+        }
     }
 
     // MARK: - Table view data source
@@ -65,7 +69,7 @@ class SetttingsTableViewController: UITableViewController {
         }else if indexPath.row == 5 {
             followUsOnInstagram()
         }else {
-            logOut()
+            
         }
     }
     

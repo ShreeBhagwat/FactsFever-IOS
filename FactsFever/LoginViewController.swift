@@ -45,13 +45,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     }
     
 
-    //    lazy var loginView: FBSDKLoginButton = {
-    //        let loginView = FBSDKLoginButton()
-    //        loginView.translatesAutoresizingMaskIntoConstraints = false
-    //        loginView.readPermissions = ["public_profile", "email"]
-    //        loginView.delegate = self
-    //        return loginView
-    //    }()
+
     
     lazy var GoogleSinginButton: GIDSignInButton = {
         let button = GIDSignInButton()
@@ -60,11 +54,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     }()
     
     func setupfbButton(){
-//        facebookButtonViewOutlet.addSubview(loginView)
-//        loginView.leftAnchor.constraint(equalTo: facebookButtonViewOutlet.leftAnchor).isActive = true
-//        loginView.rightAnchor.constraint(equalTo: facebookButtonViewOutlet.rightAnchor).isActive = true
-//        loginView.topAnchor.constraint(equalTo: facebookButtonViewOutlet.topAnchor).isActive = true
-//        loginView.bottomAnchor.constraint(equalTo: facebookButtonViewOutlet.bottomAnchor).isActive = true
+
         
         facebookButtonViewOutlet.addSubview(GoogleSinginButton)
         GoogleSinginButton.leftAnchor.constraint(equalTo: facebookButtonViewOutlet.leftAnchor).isActive = true
@@ -97,7 +87,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
                 let uid = Auth.auth().currentUser?.uid
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserDidLoginNotification"), object: nil, userInfo: ["userId": uid])
                 let VC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "factsView") as! UITabBarController
-                self.present(VC, animated: true, completion: nil)
+                self.navigationController?.pushViewController(VC, animated: false)
+//
                 return
             }
         }
